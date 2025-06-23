@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Critical persistent TypeError in FunctionTool init",
+    "why": "Breaks multi-agent orchestration — severe runtime bug.",
+    "status": "✅ Reported",
+    "link": "https://github.com/google/adk-python/issues/1592"
+  },
+  {
+    "title": "ADK documentation inconsistencies for FunctionTool",
+    "why": "Causes confusion and misuse, contributing to the TypeError.",
+    "status": "✅ Reported",
+    "link": "https://github.com/google/adk-python/issues/1594"
+  },
+  {
+    "title": "Google ADK version incompatibility with Python 3.13",
+    "why": "Blocks using the latest Python versions — must be tracked & fixed.",
+    "status": "✅ Reported",
+    "link": "https://github.com/google/adk-python/issues/1593"
+  },
+  {
+    "title": "Gemini function call usage quotas undocumented",
+    "why": "Can surprise developers with sudden costs or throttling — needs clear quotas in docs.",
+    "status": "✅ Reported",
+    "link": ""
+  },
+  {
+    "title": "FunctionTool inconsistencies with required vs default params",
+    "why": "Related to #1592 but worth tracking as a separate edge case if you find more patterns.",
+    "status": "🚫 Not Reported",
+    "link": ""
+  },
+  {
+    "title": "Feature request: More detailed error messages for FunctionTool failures",
+    "why": "Current error messages are cryptic and hinder debugging.",
+    "status": "✅ Reported",
+    "link": "https://github.com/google/adk-python/issues/1595"
+  },
+  {
+    "title": "Inconsistent or unclear rate limit errors in Assistant API",
+    "why": "Makes it hard to handle throttling gracefully in production.",
+    "status": "✅ Reported",
+    "link": "https://community.openai.com/t/1293377"
+  },
+  {
+    "title": "Assistant API sometimes loses context in multi-step workflows",
+    "why": "Breaks multi-turn conversations, reducing user experience.",
+    "status": "✅ Reported",
+    "link": "https://community.openai.com/t/1293375"
+  },
+  {
+    "title": "Assistant API returns malformed JSON despite response_format=json_object",
+    "why": "Causes JSON parsing errors, complicating automation.",
+    "status": "✅ Reported",
+    "link": "https://community.openai.com/t/1293374"
+  }
+]
