@@ -1,40 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# prototype-playground
 
-## Getting Started
+Nidhi's personal site — a terminal-themed portfolio built with Next.js. Documents hackathon builds, GitHub repos/issues, and a running "known mistakes" log, all in a self-aware, chaos-first tone.
 
-First, run the development server:
+**Live sections:**
+- `/` — hero/landing page
+- `/about` — bio
+- `/projects` — GitHub repos, open issues (pulled live via the GitHub API), and a manually curated bugs log
+- `/logs` — a running changelog of bugs, patches, and fixes
+
+## Tech stack
+
+- [Next.js](https://nextjs.org) (Pages Router)
+- [Tailwind CSS](https://tailwindcss.com) for styling
+- GitHub REST API for live repo/issue data on `/projects`
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Environment variables
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Create a `.env.local` file in the project root (this file is gitignored — never commit it):
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```
+GITHUB_TOKEN=your_github_personal_access_token
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The token needs at minimum `repo` read access. It's used server-side in `pages/projects.js` to fetch your repos and their open issues. Without it, `/projects` will still render but with an "Error loading repos/issues" message instead of live data.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+components/
+  Layout.js          — shared sidebar nav + page shell
+  TerminalFrame.js    — shared "terminal window" UI wrapper used across pages
+pages/
+  index.js            — landing page
+  about.js             — bio page
+  projects.js           — GitHub repos + issues + manual bugs log
+  logs.js               — known-mistakes changelog
+public/
+  meme.png             — hero image
+bugs.json              — manually curated list of external bugs/issues filed
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Data fetching notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`/projects` uses `getStaticProps` with Incremental Static Regeneration (`revalidate: 3600`) rather than `getServerSideProps`. This means GitHub API calls happen at most once per hour in the background rather than on every page visit — keeps load times fast and avoids burning API rate limits under traffic.
 
-## Deploy on Vercel
+If a specific repo's issues fail to fetch, the page shows a "Couldn't load issues for this repo" notice for that repo rather than silently displaying an empty state.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Known quirks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- Line endings: this repo is intended to use `LF`. If you're on Windows and see every file show as "modified" with no real diff, run `git config --global core.autocrlf false` locally.
+- See `/logs` for a living list of past bugs and fixes — it's part of the site, not just documentation.
