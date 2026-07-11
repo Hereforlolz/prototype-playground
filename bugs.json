@@ -52,5 +52,23 @@
     "why": "Causes JSON parsing errors, complicating automation.",
     "status": "✅ Reported",
     "link": "https://community.openai.com/t/1293374"
+  },
+  {
+    "title": "Prompt injection YAML blocks left in public repos",
+    "why": "Found during a self-audit of my own GitHub profile — removed before they became someone else's problem.",
+    "status": "✅ Fixed",
+    "link": ""
+  },
+  {
+    "title": "Cross-model jailbreak/prompt-injection vulnerabilities",
+    "why": "Cross-model security evaluation across Claude, ChatGPT, and Bedrock uncovered real issues, not just theoretical ones.",
+    "status": "✅ Documented",
+    "link": ""
+  },
+  {
+    "title": "GitLab Orbit knowledge graph edge cases",
+    "why": "Hit while building a dead-code finder on GitLab's AI Catalog for a hackathon — some graph relationships didn't resolve cleanly.",
+    "status": "✅ Worked around",
+    "link": ""
   }
 ]
