@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
 
@@ -44,7 +45,7 @@ export default function Logs() {
         <p className="text-slate-400 mb-6 text-sm">
           A living record of bugs, misfires, and the occasional meltdown — because transparency is my brand.
           For bugs filed against other people&apos;s tools, see the{' '}
-          <a href="/projects" className="text-pink-400 hover:text-pink-300 underline">Repos &amp; Bugs Lab</a>.
+          <Link href="/projects" className="text-pink-400 hover:text-pink-300 underline">Repos &amp; Bugs Lab</Link>.
         </p>
 
         <TerminalFrame label="STDOUT_STREAM_ACTIVE">

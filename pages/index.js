@@ -1,5 +1,6 @@
 // 📁 /pages/index.js
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
 
@@ -23,24 +24,24 @@ export default function Home() {
         </p>
 
         <nav className="flex flex-wrap gap-3 mb-10">
-          <a
+          <Link
             href="/projects"
             className="font-mono border border-pink-500 text-pink-400 px-4 py-2 hover:bg-pink-500 hover:text-gray-900 hover:-translate-y-1 transition-all duration-150"
           >
             $ run --explore-experiments
-          </a>
-          <a
+          </Link>
+          <Link
             href="/logs"
             className="font-mono border border-purple-500 text-purple-400 px-4 py-2 hover:bg-purple-500 hover:text-gray-900 hover:-translate-y-1 transition-all duration-150"
           >
             $ tail --known-bugs
-          </a>
-          <a
+          </Link>
+          <Link
             href="/about"
             className="font-mono border border-blue-500 text-blue-400 px-4 py-2 hover:bg-blue-500 hover:text-gray-900 hover:-translate-y-1 transition-all duration-150"
           >
             $ whoami
-          </a>
+          </Link>
         </nav>
 
         <div className="max-w-md">
