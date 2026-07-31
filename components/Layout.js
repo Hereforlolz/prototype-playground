@@ -7,6 +7,11 @@ const NAV_LINKS = [
   { href: '/about', label: '$ finger /about_me', hover: 'hover:text-blue-400' },
 ];
 
+const CONTACT_LINKS = [
+  { href: 'mailto:svedartham92@gmail.com', label: '$ mail --to nidhi', hover: 'hover:text-pink-400' },
+  { href: 'https://www.linkedin.com/in/sreenidhivedartham', label: '$ open --linkedin', hover: 'hover:text-blue-400' },
+];
+
 export default function Layout({ children }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen bg-[#0b0c10] text-slate-100 font-mono">
@@ -20,7 +25,21 @@ export default function Layout({ children }) {
           [SYSTEM STATUS: STABLE-ISH]
         </p>
 
-        <nav className="flex flex-col gap-3 mt-8 text-sm">
+        <nav aria-label="Contact" className="flex flex-col gap-3 mt-6 text-sm">
+          {CONTACT_LINKS.map(link => (
+            <a
+              key={link.href}
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+              className={`${link.hover} transition-colors hover:translate-x-1 duration-150 w-fit`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <nav aria-label="Site" className="flex flex-col gap-3 mt-8 text-sm">
           {NAV_LINKS.map(link => (
             <Link
               key={link.href}
