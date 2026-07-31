@@ -5,14 +5,14 @@ import TerminalFrame from '../components/TerminalFrame';
 
 // Newest first — the nav links to this page as "$ tail --known-bugs",
 // so the rendered order should match what `tail` actually shows.
-// NOTE: the three 2026-07 entries below use a placeholder day (01) since
-// exact dates weren't tracked at the time — swap in the real day if you
-// have it, but keep the YYYY-MM-DD shape so these stay sortable/parseable
-// alongside the rest.
+// NOTE: the three 2026-07 entries below use month-level precision
+// ("~2026-07") since exact days weren't tracked at the time. Swap in a
+// real YYYY-MM-DD date if you find it, but don't state a specific day
+// that isn't real.
 const LOG_ENTRIES = [
-  { date: '2026-07-01', level: 'FIXED', msg: 'This site itself — dead /ai-playground link sat unnoticed for a year. Fixed.' },
-  { date: '2026-07-01', level: 'BUG', msg: 'Sensify scrollytelling demo — camera transform bugs, hand shape variable scope errors, CSS limb pivot points fighting me the whole way.' },
-  { date: '2026-07-01', level: 'DEBUG', msg: 'Local model iterations on analyze_ha_csv.py — five rounds before ghost-sensor detection actually worked.' },
+  { date: '~2026-07', level: 'FIXED', msg: 'This site itself — dead /ai-playground link sat unnoticed for a year. Fixed.' },
+  { date: '~2026-07', level: 'BUG', msg: 'Sensify scrollytelling demo — camera transform bugs, hand shape variable scope errors, CSS limb pivot points fighting me the whole way.' },
+  { date: '~2026-07', level: 'DEBUG', msg: 'Local model iterations on analyze_ha_csv.py — five rounds before ghost-sensor detection actually worked.' },
   { date: '2025-06-26', level: 'PERF', msg: 'Firestore logging delayed under heavy intake; optimized batch writes.' },
   { date: '2025-06-25', level: 'PATCH', msg: 'Gemini 1.5 Flash misinterpreted user crisis responses; patched prompt logic.' },
   { date: '2025-06-24', level: 'FATAL', msg: 'Accidentally deployed test secrets. Fun times.' },
