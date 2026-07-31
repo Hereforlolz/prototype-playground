@@ -14,9 +14,6 @@ const LOG_ENTRIES = [
   { date: '~2026-07', level: 'BUG', msg: 'Sensify scrollytelling demo — camera transform bugs, hand shape variable scope errors, CSS limb pivot points fighting me the whole way.' },
   { date: '~2026-07', level: 'DEBUG', msg: 'Local model iterations on analyze_ha_csv.py — five rounds before ghost-sensor detection actually worked.' },
   { date: '2025-06-26', level: 'PERF', msg: 'Firestore logging delayed under heavy intake; optimized batch writes.' },
-  { date: '2025-06-25', level: 'PATCH', msg: 'Gemini 1.5 Flash misinterpreted user crisis responses; patched prompt logic.' },
-  { date: '2025-06-24', level: 'FATAL', msg: 'Accidentally deployed test secrets. Fun times.' },
-  { date: '2025-06-23', level: 'BUG', msg: 'Broke the build by adding AI inside AI. Oops.' },
 ];
 
 const LEVEL_COLOR = {
