@@ -21,7 +21,7 @@
     "title": "Gemini function call usage quotas undocumented",
     "why": "Can surprise developers with sudden costs or throttling — needs clear quotas in docs.",
     "status": "✅ Reported",
-    "link": ""
+    "link": "https://github.com/google/adk-docs/issues/472"
   },
   {
     "title": "FunctionTool inconsistencies with required vs default params",
