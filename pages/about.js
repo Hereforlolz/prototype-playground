@@ -59,6 +59,17 @@ export default function About() {
           the dust settles.
         </p>
       </div>
+
+      <section className="mt-12 max-w-2xl">
+        <h2 className="text-xl font-bold text-slate-200 mb-4">🌱 Embark Women (2017–2022)</h2>
+        <p className="text-slate-300">
+          Co-founder and CEO of Embark Women, a grassroots organization supporting young women entrepreneurs and
+          students in Tyler, TX. Ran 20+ events — webinars, hands-on workshops, live networking meetups — serving
+          500+ participants, and personally recruited and mentored 150+ members with career and business guidance.
+          Owned delivery end to end: sponsorships, branded decks and marketing assets, the WordPress/Wix sites, and
+          analytics dashboards across HubSpot, Google Analytics, and Facebook tools.
+        </p>
+      </section>
     </Layout>
   );
 }
