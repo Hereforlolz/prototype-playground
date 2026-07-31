@@ -10,6 +10,7 @@ const NAV_LINKS = [
 const CONTACT_LINKS = [
   { href: 'mailto:svedartham92@gmail.com', label: '$ mail --to nidhi', hover: 'hover:text-pink-400' },
   { href: 'https://www.linkedin.com/in/sreenidhivedartham', label: '$ open --linkedin', hover: 'hover:text-blue-400' },
+  { href: '/Sreenidhi-Vedartham-Resume.pdf', label: '$ curl --resume', hover: 'hover:text-cyan-400' },
 ];
 
 export default function Layout({ children }) {

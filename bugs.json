@@ -3,7 +3,7 @@
     "title": "Critical persistent TypeError in FunctionTool init",
     "why": "Breaks multi-agent orchestration — severe runtime bug.",
     "status": "✅ Reported",
-    "link": "https://github.com/google/adk-python/issues/1592"
+    "link": "https://github.com/google/adk-docs/issues/826"
   },
   {
     "title": "ADK documentation inconsistencies for FunctionTool",
@@ -21,11 +21,11 @@
     "title": "Gemini function call usage quotas undocumented",
     "why": "Can surprise developers with sudden costs or throttling — needs clear quotas in docs.",
     "status": "✅ Reported",
-    "link": ""
+    "link": "https://github.com/google/adk-docs/issues/472"
   },
   {
     "title": "FunctionTool inconsistencies with required vs default params",
-    "why": "Related to #1592 but worth tracking as a separate edge case if you find more patterns.",
+    "why": "Related to #826 but worth tracking as a separate edge case if you find more patterns.",
     "status": "🚫 Not Reported",
     "link": ""
   },
