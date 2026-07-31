@@ -55,6 +55,21 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
         <p className="text-red-400 mb-4 font-mono text-sm">Error loading repos/issues: {error}</p>
       )}
 
+      <section className="mb-12 max-w-3xl">
+        <TerminalFrame label="PROMPT_ENGINEERING_IMPACT">
+          <div className="flex flex-wrap gap-8 text-sm">
+            <div>
+              <p className="text-2xl font-black text-pink-400">~50%</p>
+              <p className="text-slate-400 mt-1">rework reduction from refined prompt engineering practices</p>
+            </div>
+            <div>
+              <p className="text-2xl font-black text-cyan-400">~8 min</p>
+              <p className="text-slate-400 mt-1">saved per query</p>
+            </div>
+          </div>
+        </TerminalFrame>
+      </section>
+
       {highlighted.length > 0 && (
         <section className="mb-12 max-w-3xl">
           <h2 className="text-xl font-bold text-slate-200 mb-1">⭐ Recent Highlights</h2>
