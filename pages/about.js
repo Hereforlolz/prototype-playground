@@ -20,6 +20,10 @@ export default function About() {
           I build fast, break faster, and document the chaos for your amusement (and my future regret). If you want to
           collaborate, or have a system you dare me to break — hit me up.
         </p>
+
+        <p className="text-xs text-purple-400 font-bold tracking-wide uppercase mb-3">
+          $ cat ./bio.md
+        </p>
         <p className="mb-4 text-slate-300">
           By day: I&apos;m a Software/Electrical Engineer at Ivani (Jan 2018–present), bridging hardware, embedded
           software, and data engineering for wireless IoT systems. That&apos;s meant turning ordinary devices into
