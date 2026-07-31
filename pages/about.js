@@ -28,7 +28,7 @@ export default function About() {
         <p className="text-slate-300">
           Recent chaos: multiple hackathon builds (Slack onboarding agents, memory systems on Neon/pgvector,
           knowledge-graph bug finders), a handful of GitHub issues filed against Google&apos;s ADK, and a habit of
-          writing up what broke on <a href="https://dev.to" target="_blank" rel="noreferrer" className="text-pink-400 hover:text-pink-300 underline">dev.to</a> after
+          writing up what broke on <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-pink-400 hover:text-pink-300 underline">dev.to</a> after
           the dust settles.
         </p>
       </div>
