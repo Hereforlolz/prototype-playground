@@ -3,7 +3,7 @@
     "title": "Critical persistent TypeError in FunctionTool init",
     "why": "Breaks multi-agent orchestration — severe runtime bug.",
     "status": "✅ Reported",
-    "link": "https://github.com/google/adk-python/issues/1592"
+    "link": "https://github.com/google/adk-docs/issues/826"
   },
   {
     "title": "ADK documentation inconsistencies for FunctionTool",
@@ -25,7 +25,7 @@
   },
   {
     "title": "FunctionTool inconsistencies with required vs default params",
-    "why": "Related to #1592 but worth tracking as a separate edge case if you find more patterns.",
+    "why": "Related to #826 but worth tracking as a separate edge case if you find more patterns.",
     "status": "🚫 Not Reported",
     "link": ""
   },
