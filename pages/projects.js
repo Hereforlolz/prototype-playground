@@ -9,6 +9,18 @@ import manualBugs from '../bugs.json';
 // since a couple of repos have had injected marketing text in READMEs before.
 const HIGHLIGHTS = [
   {
+    name: 'Hereforlolz/ai-pitch-deck-generator',
+    blurb: 'AI pitch-deck generator — turns a topic into a 6-slide VC-style deck via the Anthropic API and Unsplash imagery, with a fully offline mock mode for when you don’t want to wire up keys.',
+  },
+  {
+    name: 'Hereforlolz/ai-content-generator',
+    blurb: 'AI content generator — blog posts, social copy, email campaigns, and product descriptions from templates plus your choice of OpenAI, Claude, Gemini, or Hugging Face, with a keyless Mock mode built in.',
+  },
+  {
+    name: 'Hereforlolz/ai-existential-crisis-bot',
+    blurb: 'Paste in code, get an existential crisis back — pattern-matches your code structure and chains through Hugging Face, OpenRouter, and Groq for a philosophical critique, with canned fallbacks if every API fails.',
+  },
+  {
     name: 'Hereforlolz/teamtrail',
     blurb: 'AI onboarding agent for Slack — reads real workspace history via Slack\u2019s Real-Time Search API and briefs new members with LLaMA 3.3 70B (Groq), citing actual sources instead of a static wiki. Built for the Slack Agent Builder Challenge 2026.',
   },
