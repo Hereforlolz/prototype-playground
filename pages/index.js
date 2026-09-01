@@ -28,19 +28,19 @@ export default function Home() {
             href="/projects"
             className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
           >
-            See my projects
+            View Projects &amp; Experiments
           </Link>
           <Link
             href="/logs"
             className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
           >
-            Lessons learned
+            Lessons Learned
           </Link>
           <Link
             href="/about"
             className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
           >
-            About me
+            About
           </Link>
         </nav>
 

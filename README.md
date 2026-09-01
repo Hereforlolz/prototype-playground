@@ -30,8 +30,29 @@ None required. `/projects` fetches from GitHub's public, unauthenticated
 since this repo's build output is served on a public site (source repo
 itself stays private, but anything `getStaticProps` returns ships to every
 visitor). Private repos never come back from that endpoint, and the fetch
-in `pages/projects.js` filters them out again explicitly as a second,
+in `lib/projects-data.js` filters them out again explicitly as a second,
 independent check before they can reach page props.
+
+## Privacy model
+
+Two different things both involve "private repos" on this site, and it's
+worth being precise about which is which:
+
+- **Automatically fetched private-repository metadata — prohibited.**
+  Anything sourced from the GitHub API about a repo (its existence, open
+  issue titles, activity) must never reach a private repo, full stop.
+  `filterPublicRepos()` and `shouldFetchIssues()` in `lib/projects-data.js`
+  enforce this, with tests proving it holds even if the API response
+  itself misbehaves.
+- **Intentionally curated public case-study content about a private
+  project — allowed.** Three entries in `HIGHLIGHTS`
+  (`EphemeralAgentExecutor`, `GreenGrid`, `SafeSakhi`) describe repos that
+  are actually private. Their name and description are hand-written
+  portfolio copy the account owner chose to publish — not API data — so
+  showing them is fine. What's not fine is implying the repository itself
+  is reachable: those entries have no `url`, so the page renders "Private
+  prototype — case study coming soon" instead of a link that would 404 for
+  a visitor without access.
 
 ## Project structure
 

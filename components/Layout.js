@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
-  { href: '/projects', label: 'Projects' },
+  { href: '/projects', label: 'Projects & Experiments' },
   { href: '/logs', label: 'Lessons Learned' },
   { href: '/about', label: 'About' },
 ];

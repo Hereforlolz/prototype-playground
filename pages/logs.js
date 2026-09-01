@@ -37,7 +37,7 @@ export default function Logs() {
       </Head>
       <div className="max-w-2xl">
         <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-4">
-          🐞 Known Mistakes Log
+          Lessons Learned
         </h1>
         <p className="text-muted mb-6 text-sm">
           A living record of bugs, misfires, and the occasional meltdown — because transparency is my brand.

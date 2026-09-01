@@ -16,14 +16,14 @@ export default function Projects({ repos, repoIssues, issuesFailed, githubUnavai
   return (
     <Layout>
       <Head>
-        <title>Projects — Nidhi Vedartham</title>
+        <title>Projects &amp; Experiments — Nidhi Vedartham</title>
         <meta
           name="description"
           content="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
         />
       </Head>
       <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-8">
-        🧪 Projects &amp; Experiments
+        Projects &amp; Experiments
       </h1>
 
       {githubUnavailable && (
@@ -53,36 +53,44 @@ export default function Projects({ repos, repoIssues, issuesFailed, githubUnavai
         <div className="space-y-4">
           {highlighted.map(({ name, url, blurb, liveRepo }) => (
             <TerminalFrame key={name} label={name}>
-              <a
-                href={url}
-                target="_blank"
-                rel="noreferrer"
-                className="font-mono text-sm text-accent hover:opacity-80 hover:translate-x-1 transition-all duration-150 inline-block"
-              >
-                {name}
-              </a>
+              {url ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-mono text-sm text-accent hover:opacity-80 hover:translate-x-1 transition-all duration-150 inline-block"
+                >
+                  {name}
+                </a>
+              ) : (
+                <p className="font-mono text-sm text-text">{name}</p>
+              )}
               <p className="text-muted text-sm mt-2">{blurb}</p>
-              {liveRepo && (
-                <div className="mt-3 text-xs space-y-1">
-                  {repoIssues[name]?.length > 0 ? (
-                    repoIssues[name].map(issue => (
-                      <p key={issue.id}>
-                        <a
-                          href={issue.html_url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-muted hover:text-accent hover:underline"
-                        >
-                          #{issue.number}: {issue.title}
-                        </a>
-                      </p>
-                    ))
-                  ) : issuesFailed[name] ? (
-                    <p className="text-yellow-600">⚠ Couldn&apos;t load issues for this repo — try again later</p>
-                  ) : repoIssues[name] ? (
-                    <p className="text-muted">No open issues found</p>
-                  ) : null}
-                </div>
+              {url ? (
+                liveRepo && (
+                  <div className="mt-3 text-xs space-y-1">
+                    {repoIssues[name]?.length > 0 ? (
+                      repoIssues[name].map(issue => (
+                        <p key={issue.id}>
+                          <a
+                            href={issue.html_url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-muted hover:text-accent hover:underline"
+                          >
+                            #{issue.number}: {issue.title}
+                          </a>
+                        </p>
+                      ))
+                    ) : issuesFailed[name] ? (
+                      <p className="text-yellow-600">⚠ Couldn&apos;t load issues for this repo — try again later</p>
+                    ) : repoIssues[name] ? (
+                      <p className="text-muted">No open issues found</p>
+                    ) : null}
+                  </div>
+                )
+              ) : (
+                <p className="text-muted text-xs mt-2 italic">Private prototype — case study coming soon</p>
               )}
             </TerminalFrame>
           ))}
