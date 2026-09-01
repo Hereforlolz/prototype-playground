@@ -32,7 +32,7 @@ export default function Logs() {
         <title>Lessons Learned — Nidhi Vedartham</title>
         <meta
           name="description"
-          content="A living, transparent log of bugs, patches, and misfires — because transparency is the brand."
+          content="A running, honest log of bugs, patches, and misfires from building and testing AI tools."
         />
       </Head>
       <div className="max-w-2xl">
@@ -40,7 +40,7 @@ export default function Logs() {
           Lessons Learned
         </h1>
         <p className="text-muted mb-6 text-sm">
-          A living record of bugs, misfires, and the occasional meltdown — because transparency is my brand.
+          A running record of bugs, misfires, and what I learned fixing them — kept honest instead of polished.
           For bugs filed against other people&apos;s tools, see{' '}
           <Link href="/projects" className="text-accent hover:opacity-80 underline">Projects &amp; Experiments</Link>.
         </p>
