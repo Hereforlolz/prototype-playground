@@ -2,9 +2,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
+import ClosingCTA from '../components/ClosingCTA';
 
-// Newest first — the nav links to this page as "$ tail --known-bugs",
-// so the rendered order should match what `tail` actually shows.
+// Newest first, matching the "recent entries" framing above the list.
 // NOTE: the three 2026-07 entries below use month-level precision
 // ("~2026-07") since exact days weren't tracked at the time. Swap in a
 // real YYYY-MM-DD date if you find it, but don't state a specific day
@@ -46,7 +46,7 @@ export default function Logs() {
         </p>
 
         <TerminalFrame label="Recent entries">
-          <div className="space-y-2 text-xs">
+          <div className="space-y-3 text-sm">
             {LOG_ENTRIES.map((entry, i) => (
               <p key={i} className="text-muted hover:translate-x-1 transition-transform duration-150">
                 <span className="text-muted">[{entry.date}]</span>{' '}
@@ -58,6 +58,10 @@ export default function Logs() {
             ))}
           </div>
         </TerminalFrame>
+      </div>
+
+      <div className="mt-12 max-w-2xl">
+        <ClosingCTA />
       </div>
     </Layout>
   );

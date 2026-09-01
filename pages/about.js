@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
+import ClosingCTA from '../components/ClosingCTA';
 
 export default function About() {
   return (
@@ -51,15 +52,22 @@ export default function About() {
           Recent chaos: multiple hackathon builds (
           <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
             a Slack onboarding agent
+            <span className="sr-only"> (opens in new tab)</span>
           </a>,{' '}
           <a href="https://devpost.com/software/track-1-qwen-memoryagent" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
             a memory system on pgvector
+            <span className="sr-only"> (opens in new tab)</span>
           </a>,{' '}
           <a href="https://devpost.com/software/dead-code-finder" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
             a knowledge-graph bug finder
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
           ), a handful of GitHub issues filed against Google&apos;s ADK, and a habit of
-          writing up what broke on <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">dev.to</a> after
+          writing up what broke on{' '}
+          <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            dev.to
+            <span className="sr-only"> (opens in new tab)</span>
+          </a> after
           the dust settles.
         </p>
       </div>
@@ -74,6 +82,10 @@ export default function About() {
           analytics dashboards across HubSpot, Google Analytics, and Facebook tools.
         </p>
       </section>
+
+      <div className="mt-12 max-w-2xl">
+        <ClosingCTA />
+      </div>
     </Layout>
   );
 }

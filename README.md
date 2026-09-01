@@ -17,8 +17,7 @@ with emerging AI tools.
 ## Pages
 
 - `/` — Home. Positioning, entry points into the other three pages.
-- `/projects` — Projects & Experiments. Curated project cards plus a live,
-  optional view into public GitHub activity.
+- `/projects` — Projects & Experiments. Curated, hand-written project cards.
 - `/logs` — Lessons Learned. A running record of real bugs, misfires, and
   what came out of them.
 - `/about` — About. Background, current role, and community work.
@@ -27,9 +26,11 @@ Current behavior worth calling out on `/projects`:
 - Curated project cards are static content and stay visible even if
   GitHub is unreachable or rate-limited — see
   [`lib/projects-data.js`](lib/projects-data.js).
-- Public GitHub data (each open issue's number, title, and link) is an
-  optional enhancement layered on top, never a requirement for a card to
-  render.
+- `lib/projects-data.js` fetches each curated repo's open GitHub issues
+  (GitHub's issues API also returns open pull requests, undistinguished),
+  but nothing from that fetch is currently rendered — cards are static
+  text only. Removed as UI clutter; the fetch and its tests stay, since a
+  future page could reasonably surface it.
 - A few curated projects describe private repos. Their name and
   description are intentionally public, but they never link to a
   repository a visitor can't actually open.
@@ -61,9 +62,11 @@ No environment variables are required to run this locally or in CI.
 - Curated portfolio content (project names, descriptions, links) is static
   data, not fetched from any API — see the `HIGHLIGHTS` array in
   [`lib/projects-data.js`](lib/projects-data.js).
-- Live GitHub data comes only from two public, unauthenticated endpoints —
-  listing a user's public repos, and each curated repo's open issues — no
-  token, no elevated access, for either.
+- The only GitHub calls made are two public, unauthenticated endpoints —
+  listing a user's public repos, and each curated repo's open issues
+  (which GitHub's API mixes with open pull requests) — no token, no
+  elevated access, for either. Neither result is currently rendered
+  anywhere on the site; see the "Pages" section above.
 - Anything private is filtered out before it reaches page props, as an
   explicit check independent of what the endpoint itself guarantees.
 - A GitHub outage or rate limit never removes curated project cards —

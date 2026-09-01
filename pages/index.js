@@ -1,6 +1,7 @@
 // 📁 /pages/index.js
 import Head from 'next/head';
 import Link from 'next/link';
+import { track } from '@vercel/analytics';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
 
@@ -26,19 +27,22 @@ export default function Home() {
         <nav className="flex flex-wrap gap-3 mb-10">
           <Link
             href="/projects"
-            className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
+            onClick={() => track('homepage_cta_click', { destination: 'projects' })}
+            className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             View Projects &amp; Experiments
           </Link>
           <Link
             href="/logs"
-            className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
+            onClick={() => track('homepage_cta_click', { destination: 'logs' })}
+            className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             Lessons Learned
           </Link>
           <Link
             href="/about"
-            className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
+            onClick={() => track('homepage_cta_click', { destination: 'about' })}
+            className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             About
           </Link>
@@ -48,7 +52,7 @@ export default function Home() {
           <TerminalFrame label="Reality check">
             <img
               src="/meme.png"
-              alt="AI Meme"
+              alt="&quot;This is fine&quot; meme: a dog sitting calmly at a table in a room that's on fire."
               className="rounded shadow-lg w-full h-auto"
             />
             <p className="text-muted text-xs mt-2">

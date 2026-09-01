@@ -1,16 +1,20 @@
 // pages/projects.js
 import Head from 'next/head';
+import { track } from '@vercel/analytics';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
+import ClosingCTA from '../components/ClosingCTA';
 import manualBugs from '../bugs.json';
 import {
   buildHighlightedProjects,
   buildOtherRepos,
+  splitHighlightedProjects,
   fetchProjectsPageProps,
 } from '../lib/projects-data';
 
-export default function Projects({ repos, repoIssues, issuesFailed, githubUnavailable }) {
+export default function Projects({ repos, githubUnavailable }) {
   const highlighted = buildHighlightedProjects(repos);
+  const { available, inProgress } = splitHighlightedProjects(highlighted);
   const rest = buildOtherRepos(repos);
 
   return (
@@ -49,53 +53,43 @@ export default function Projects({ repos, repoIssues, issuesFailed, githubUnavai
 
       <section className="mb-12 max-w-3xl">
         <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
-        <p className="text-muted text-sm mb-4">Most recent work, roughly newest first.</p>
+        <p className="text-muted text-sm mb-4">Most differentiated work first.</p>
         <div className="space-y-4">
-          {highlighted.map(({ name, url, blurb, liveRepo }) => (
+          {available.map(({ name, title, url, blurb }) => (
             <TerminalFrame key={name} label={name}>
-              {url ? (
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-mono text-sm text-accent hover:opacity-80 hover:translate-x-1 transition-all duration-150 inline-block"
-                >
-                  {name}
-                </a>
-              ) : (
-                <p className="font-mono text-sm text-text">{name}</p>
-              )}
+              <a
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => track('project_link_click', { project: name })}
+                className="font-display font-semibold text-text hover:text-accent transition-colors duration-150 inline-block"
+              >
+                {title}
+                <span className="sr-only"> (opens in new tab)</span>
+              </a>
               <p className="text-muted text-sm mt-2">{blurb}</p>
-              {url ? (
-                liveRepo && (
-                  <div className="mt-3 text-xs space-y-1">
-                    {repoIssues[name]?.length > 0 ? (
-                      repoIssues[name].map(issue => (
-                        <p key={issue.id}>
-                          <a
-                            href={issue.html_url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-muted hover:text-accent hover:underline"
-                          >
-                            #{issue.number}: {issue.title}
-                          </a>
-                        </p>
-                      ))
-                    ) : issuesFailed[name] ? (
-                      <p className="text-yellow-600">⚠ Couldn&apos;t load issues for this repo — try again later</p>
-                    ) : repoIssues[name] ? (
-                      <p className="text-muted">No open issues found</p>
-                    ) : null}
-                  </div>
-                )
-              ) : (
-                <p className="text-muted text-xs mt-2 italic">Private prototype — case study coming soon</p>
-              )}
             </TerminalFrame>
           ))}
         </div>
       </section>
+
+      {inProgress.length > 0 && (
+        <section className="mb-12 max-w-3xl">
+          <h2 className="font-display text-xl font-bold text-text mb-1">🔒 In Progress</h2>
+          <p className="text-muted text-sm mb-4">
+            Private prototypes with public write-ups — no repository link since there&apos;s nothing public to open yet.
+          </p>
+          <div className="space-y-4">
+            {inProgress.map(({ name, title, blurb }) => (
+              <TerminalFrame key={name} label={name}>
+                <p className="font-display font-semibold text-text">{title}</p>
+                <p className="text-muted text-sm mt-2">{blurb}</p>
+                <p className="text-muted text-xs mt-2 italic">Private prototype — case study coming soon</p>
+              </TerminalFrame>
+            ))}
+          </div>
+        </section>
+      )}
 
       {rest.length > 0 && (
         <section className="mb-12 max-w-3xl">
@@ -111,6 +105,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, githubUnavai
                     className="text-text hover:text-accent hover:translate-x-1 transition-all duration-150 inline-block"
                   >
                     {repo.full_name}
+                    <span className="sr-only"> (opens in new tab)</span>
                   </a>
                 </li>
               ))}
@@ -119,7 +114,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, githubUnavai
         </section>
       )}
 
-      <section className="max-w-3xl">
+      <section className="mb-12 max-w-3xl">
         <h2 className="font-display text-xl font-bold text-text mb-4">🐞 Manual Bugs Log</h2>
         <TerminalFrame label="Bugs I've filed">
           <div className="space-y-4 text-sm">
@@ -136,6 +131,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, githubUnavai
                     className="text-accent hover:opacity-80 hover:underline text-xs"
                   >
                     View Report
+                    <span className="sr-only"> (opens in new tab)</span>
                   </a>
                 )}
               </div>
@@ -143,6 +139,8 @@ export default function Projects({ repos, repoIssues, issuesFailed, githubUnavai
           </div>
         </TerminalFrame>
       </section>
+
+      <ClosingCTA />
     </Layout>
   );
 }

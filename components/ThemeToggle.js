@@ -36,7 +36,8 @@ export default function ThemeToggle() {
       type="button"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       aria-pressed={theme === 'dark'}
-      className="flex items-center gap-1.5 rounded-full border border-border bg-surface-alt px-3 py-1.5 text-xs text-text hover:border-accent transition-colors w-fit"
+      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      className="flex items-center gap-1.5 rounded-full border border-border bg-surface-alt px-3 py-1.5 text-xs text-text hover:border-accent transition-colors w-fit focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
     >
       <span aria-hidden="true">{theme === 'dark' ? '☾' : '☀'}</span>
       {theme === 'dark' ? 'Dark mode' : 'Light mode'}
