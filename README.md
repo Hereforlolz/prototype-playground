@@ -25,13 +25,13 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Environment variables
 
-Create a `.env.local` file in the project root (this file is gitignored — never commit it):
-
-```
-GITHUB_TOKEN=your_github_personal_access_token
-```
-
-The token needs at minimum `repo` read access. It's used server-side in `pages/projects.js` to fetch your repos and their open issues. Without it, `/projects` will still render but with an "Error loading repos/issues" message instead of live data.
+None required. `/projects` fetches from GitHub's public, unauthenticated
+`/users/{username}/repos` endpoint — deliberately not a repo-scoped token —
+since this repo's build output is served on a public site (source repo
+itself stays private, but anything `getStaticProps` returns ships to every
+visitor). Private repos never come back from that endpoint, and the fetch
+in `pages/projects.js` filters them out again explicitly as a second,
+independent check before they can reach page props.
 
 ## Project structure
 

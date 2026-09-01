@@ -3,52 +3,15 @@ import Head from 'next/head';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
 import manualBugs from '../bugs.json';
+import {
+  buildHighlightedProjects,
+  buildOtherRepos,
+  fetchProjectsPageProps,
+} from '../lib/projects-data';
 
-// Curated, ranked by recency. Descriptions written from each repo's
-// "About" line / README summary only — never from full README body text,
-// since a couple of repos have had injected marketing text in READMEs before.
-const HIGHLIGHTS = [
-  {
-    name: 'Hereforlolz/ai-pitch-deck-generator',
-    blurb: 'AI pitch-deck generator — turns a topic into a 6-slide VC-style deck via the Anthropic API and Unsplash imagery, with a fully offline mock mode for when you don’t want to wire up keys.',
-  },
-  {
-    name: 'Hereforlolz/ai-content-generator',
-    blurb: 'AI content generator — blog posts, social copy, email campaigns, and product descriptions from templates plus your choice of OpenAI, Claude, Gemini, or Hugging Face, with a keyless Mock mode built in.',
-  },
-  {
-    name: 'Hereforlolz/ai-existential-crisis-bot',
-    blurb: 'Paste in code, get an existential crisis back — pattern-matches your code structure and chains through Hugging Face, OpenRouter, and Groq for a philosophical critique, with canned fallbacks if every API fails.',
-  },
-  {
-    name: 'Hereforlolz/teamtrail',
-    blurb: 'AI onboarding agent for Slack — reads real workspace history via Slack\u2019s Real-Time Search API and briefs new members with LLaMA 3.3 70B (Groq), citing actual sources instead of a static wiki. Built for the Slack Agent Builder Challenge 2026.',
-  },
-  {
-    name: 'Hereforlolz/qwen-memory-agent',
-    blurb: 'Persistent memory layer for AI agents — Qwen-scored importance, semantic search via pgvector, and "smart forgetting" instead of blunt TTL expiry. Built for the Qwen Cloud Hackathon, Track 1.',
-  },
-  {
-    name: 'Hereforlolz/EphemeralAgentExecutor',
-    blurb: 'Python SDK for managing subprocess agents — automatic cleanup, CPU/memory resource limits, thread-safe execution, and a watchdog that kills runaway processes before they eat your RAM.',
-  },
-  {
-    name: 'Hereforlolz/GreenGrid',
-    blurb: 'AI-powered neighborhood energy orchestration — AWS IoT Greengrass, SageMaker forecasting, and Bedrock-generated multilingual tips, aimed at cutting utility costs in underserved Missouri households.',
-  },
-  {
-    name: 'Hereforlolz/SafeSakhi',
-    blurb: 'AI-driven women\u2019s safety platform — real-time audio threat detection, motion analysis, and text sentiment monitoring on a fully serverless AWS stack.',
-  },
-];
-
-const HIGHLIGHT_NAMES = new Set(HIGHLIGHTS.map(h => h.name));
-
-export default function Projects({ repos, repoIssues, issuesFailed, error }) {
-  const highlighted = HIGHLIGHTS
-    .map(h => ({ ...h, repo: repos.find(r => r.full_name === h.name) }))
-    .filter(h => h.repo);
-  const rest = repos.filter(repo => !HIGHLIGHT_NAMES.has(repo.full_name));
+export default function Projects({ repos, repoIssues, issuesFailed, githubUnavailable }) {
+  const highlighted = buildHighlightedProjects(repos);
+  const rest = buildOtherRepos(repos);
 
   return (
     <Layout>
@@ -63,8 +26,10 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
         🧪 Projects &amp; Experiments
       </h1>
 
-      {error && (
-        <p className="text-red-500 mb-4 font-mono text-sm">Error loading repos/issues: {error}</p>
+      {githubUnavailable && (
+        <p className="text-muted text-sm mb-8 border border-border rounded-md px-3 py-2 bg-surface-alt w-fit">
+          Live GitHub data temporarily unavailable — showing project info without it.
+        </p>
       )}
 
       <section className="mb-12 max-w-3xl">
@@ -82,25 +47,25 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
         </TerminalFrame>
       </section>
 
-      {highlighted.length > 0 && (
-        <section className="mb-12 max-w-3xl">
-          <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
-          <p className="text-muted text-sm mb-4">Most recent work, roughly newest first.</p>
-          <div className="space-y-4">
-            {highlighted.map(({ repo, blurb }) => (
-              <TerminalFrame key={repo.id} label={repo.full_name}>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-mono text-sm text-accent hover:opacity-80 hover:translate-x-1 transition-all duration-150 inline-block"
-                >
-                  {repo.full_name}
-                </a>
-                <p className="text-muted text-sm mt-2">{blurb}</p>
+      <section className="mb-12 max-w-3xl">
+        <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
+        <p className="text-muted text-sm mb-4">Most recent work, roughly newest first.</p>
+        <div className="space-y-4">
+          {highlighted.map(({ name, url, blurb, liveRepo }) => (
+            <TerminalFrame key={name} label={name}>
+              <a
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="font-mono text-sm text-accent hover:opacity-80 hover:translate-x-1 transition-all duration-150 inline-block"
+              >
+                {name}
+              </a>
+              <p className="text-muted text-sm mt-2">{blurb}</p>
+              {liveRepo && (
                 <div className="mt-3 text-xs space-y-1">
-                  {repoIssues[repo.full_name]?.length > 0 ? (
-                    repoIssues[repo.full_name].map(issue => (
+                  {repoIssues[name]?.length > 0 ? (
+                    repoIssues[name].map(issue => (
                       <p key={issue.id}>
                         <a
                           href={issue.html_url}
@@ -112,57 +77,39 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
                         </a>
                       </p>
                     ))
-                  ) : issuesFailed[repo.full_name] ? (
+                  ) : issuesFailed[name] ? (
                     <p className="text-yellow-600">⚠ Couldn&apos;t load issues for this repo — try again later</p>
-                  ) : (
+                  ) : repoIssues[name] ? (
                     <p className="text-muted">No open issues found</p>
-                  )}
+                  ) : null}
                 </div>
-              </TerminalFrame>
-            ))}
-          </div>
+              )}
+            </TerminalFrame>
+          ))}
+        </div>
+      </section>
+
+      {rest.length > 0 && (
+        <section className="mb-12 max-w-3xl">
+          <h2 className="font-display text-xl font-bold text-text mb-4">📂 All Other Repos</h2>
+          <TerminalFrame label="All repos">
+            <ul className="space-y-3 text-sm">
+              {rest.map(repo => (
+                <li key={repo.id}>
+                  <a
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-text hover:text-accent hover:translate-x-1 transition-all duration-150 inline-block"
+                  >
+                    {repo.full_name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </TerminalFrame>
         </section>
       )}
-
-      <section className="mb-12 max-w-3xl">
-        <h2 className="font-display text-xl font-bold text-text mb-4">📂 All Other Repos</h2>
-        <TerminalFrame label="All repos">
-          <ul className="space-y-3 text-sm">
-            {rest.map(repo => (
-              <li key={repo.id}>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-text hover:text-accent hover:translate-x-1 transition-all duration-150 inline-block"
-                >
-                  {repo.full_name}
-                </a>
-                <ul className="ml-4 mt-1 text-xs space-y-1">
-                  {repoIssues[repo.full_name]?.length > 0 ? (
-                    repoIssues[repo.full_name].map(issue => (
-                      <li key={issue.id}>
-                        <a
-                          href={issue.html_url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-muted hover:text-accent hover:underline"
-                        >
-                          #{issue.number}: {issue.title}
-                        </a>
-                      </li>
-                    ))
-                  ) : issuesFailed[repo.full_name] ? (
-                    <li className="text-yellow-600">⚠ Couldn&apos;t load issues for this repo — try again later</li>
-                  ) : (
-                    <li className="text-muted">No open issues found</li>
-                  )}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </TerminalFrame>
-      </section>
 
       <section className="max-w-3xl">
         <h2 className="font-display text-xl font-bold text-text mb-4">🐞 Manual Bugs Log</h2>
@@ -199,98 +146,13 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
 // With revalidate: 3600, Next.js serves the pre-built page instantly and
 // regenerates it in the background at most once an hour, so a stale repo
 // list is the tradeoff for a page that never makes a visitor wait on GitHub.
+//
+// The actual fetch/filter/privacy logic lives in lib/projects-data.js,
+// kept free of JSX so it's testable with Node's built-in test runner.
 export async function getStaticProps() {
-  const token = process.env.GITHUB_TOKEN;
-
-  if (!token) {
-    return {
-      props: {
-        repos: [],
-        repoIssues: {},
-        issuesFailed: {},
-        error: 'Missing GITHUB_TOKEN.',
-      },
-      revalidate: 3600,
-    };
-  }
-
-  try {
-    const repoRes = await fetch('https://api.github.com/user/repos?per_page=100', {
-      headers: {
-        Authorization: `token ${token}`,
-        Accept: 'application/vnd.github+json',
-      },
-    });
-
-    if (!repoRes.ok) {
-      const errorText = await repoRes.text();
-      console.error('Error fetching repos:', errorText);
-      return {
-        props: {
-          repos: [],
-          repoIssues: {},
-          issuesFailed: {},
-          error: errorText,
-        },
-        revalidate: 3600,
-      };
-    }
-
-    const repos = await repoRes.json();
-    const repoIssues = {};
-    const issuesFailed = {};
-
-    for (const repo of repos) {
-      if (repo.has_issues) {
-        try {
-          const issuesRes = await fetch(
-            `https://api.github.com/repos/${repo.full_name}/issues?state=open`,
-            {
-              headers: {
-                Authorization: `token ${token}`,
-                Accept: 'application/vnd.github+json',
-              },
-            }
-          );
-
-          if (issuesRes.ok) {
-            const issues = await issuesRes.json();
-            repoIssues[repo.full_name] = issues;
-          } else {
-            const failText = await issuesRes.text();
-            console.error(`Error fetching issues for ${repo.full_name}:`, failText);
-            repoIssues[repo.full_name] = [];
-            issuesFailed[repo.full_name] = true;
-          }
-        } catch (issueErr) {
-          console.error(`Error fetching issues for ${repo.full_name}:`, issueErr);
-          repoIssues[repo.full_name] = [];
-          issuesFailed[repo.full_name] = true;
-        }
-      } else {
-        repoIssues[repo.full_name] = [];
-      }
-    }
-
-    return {
-      props: {
-        repos,
-        repoIssues,
-        issuesFailed,
-        error: null,
-      },
-      revalidate: 3600,
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      props: {
-        repos: [],
-        repoIssues: {},
-        issuesFailed: {},
-        error: err.message,
-      },
-      revalidate: 3600,
-    };
-  }
+  const props = await fetchProjectsPageProps();
+  return {
+    props,
+    revalidate: 3600,
+  };
 }
