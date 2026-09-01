@@ -5,14 +5,14 @@ export default function About() {
   return (
     <Layout>
       <Head>
-        <title>About — Nidhi // Void Tinkerer</title>
+        <title>About — Nidhi Vedartham</title>
         <meta
           name="description"
-          content="Nidhi — zero-gravity thinker and AI systems tinkerer. 8+ years in IoT/embedded systems, now building agent infrastructure and prompt engineering programs."
+          content="Nidhi — software engineer turned product person, all in on AI. 8+ years in IoT/embedded systems, now building agent infrastructure and prompt engineering programs."
         />
       </Head>
       <div className="max-w-2xl">
-        <h1 className="text-3xl font-black tracking-tight uppercase text-text mb-6">
+        <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-6">
           👋 About Me
         </h1>
         <p className="mb-4 text-muted">
@@ -21,8 +21,8 @@ export default function About() {
           collaborate, or have a system you dare me to break — hit me up.
         </p>
 
-        <p className="text-xs text-accent font-bold tracking-wide uppercase mb-3">
-          $ cat ./bio.md
+        <p className="text-xs text-accent font-mono font-semibold tracking-wide uppercase mb-3">
+          Bio
         </p>
         <p className="mb-4 text-muted">
           By day: I&apos;m a Software/Electrical Engineer at Ivani (Jan 2018–present), bridging hardware, embedded
@@ -65,7 +65,7 @@ export default function About() {
       </div>
 
       <section className="mt-12 max-w-2xl">
-        <h2 className="text-xl font-bold text-text mb-4">🌱 Embark Women (2017–2022)</h2>
+        <h2 className="font-display text-xl font-bold text-text mb-4">🌱 Embark Women (2017–2022)</h2>
         <p className="text-muted">
           Co-founder and CEO of Embark Women, a grassroots organization supporting young women entrepreneurs and
           students in Tyler, TX. Ran 20+ events — webinars, hands-on workshops, live networking meetups — serving
