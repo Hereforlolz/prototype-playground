@@ -53,14 +53,14 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
   return (
     <Layout>
       <Head>
-        <title>Projects — Nidhi // Void Tinkerer</title>
+        <title>Projects — Nidhi Vedartham</title>
         <meta
           name="description"
           content="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
         />
       </Head>
-      <h1 className="text-3xl font-black tracking-tight uppercase text-text mb-8">
-        🧪 My Repos &amp; Bugs Lab
+      <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-8">
+        🧪 Projects &amp; Experiments
       </h1>
 
       {error && (
@@ -68,7 +68,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
       )}
 
       <section className="mb-12 max-w-3xl">
-        <TerminalFrame label="PROMPT_ENGINEERING_IMPACT">
+        <TerminalFrame label="Prompt engineering impact">
           <div className="flex flex-wrap gap-8 text-sm">
             <div>
               <p className="text-2xl font-black text-accent">~50%</p>
@@ -84,7 +84,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
 
       {highlighted.length > 0 && (
         <section className="mb-12 max-w-3xl">
-          <h2 className="text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
+          <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
           <p className="text-muted text-sm mb-4">Most recent work, roughly newest first.</p>
           <div className="space-y-4">
             {highlighted.map(({ repo, blurb }) => (
@@ -125,8 +125,8 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
       )}
 
       <section className="mb-12 max-w-3xl">
-        <h2 className="text-xl font-bold text-text mb-4">📂 All Other Repos</h2>
-        <TerminalFrame label="REPO_INDEX">
+        <h2 className="font-display text-xl font-bold text-text mb-4">📂 All Other Repos</h2>
+        <TerminalFrame label="All repos">
           <ul className="space-y-3 text-sm">
             {rest.map(repo => (
               <li key={repo.id}>
@@ -165,8 +165,8 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
       </section>
 
       <section className="max-w-3xl">
-        <h2 className="text-xl font-bold text-text mb-4">🐞 Manual Bugs Log</h2>
-        <TerminalFrame label="EXTERNAL_ISSUES_TRACKED">
+        <h2 className="font-display text-xl font-bold text-text mb-4">🐞 Manual Bugs Log</h2>
+        <TerminalFrame label="Bugs I've filed">
           <div className="space-y-4 text-sm">
             {manualBugs.map((bug, index) => (
               <div key={index} className="hover:translate-x-1 transition-transform duration-150">

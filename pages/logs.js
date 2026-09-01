@@ -29,23 +29,23 @@ export default function Logs() {
   return (
     <Layout>
       <Head>
-        <title>Known Mistakes Log — Nidhi // Void Tinkerer</title>
+        <title>Lessons Learned — Nidhi Vedartham</title>
         <meta
           name="description"
           content="A living, transparent log of bugs, patches, and misfires — because transparency is the brand."
         />
       </Head>
       <div className="max-w-2xl">
-        <h1 className="text-3xl font-black tracking-tight uppercase text-text mb-4">
+        <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-4">
           🐞 Known Mistakes Log
         </h1>
         <p className="text-muted mb-6 text-sm">
           A living record of bugs, misfires, and the occasional meltdown — because transparency is my brand.
-          For bugs filed against other people&apos;s tools, see the{' '}
-          <Link href="/projects" className="text-accent hover:opacity-80 underline">Repos &amp; Bugs Lab</Link>.
+          For bugs filed against other people&apos;s tools, see{' '}
+          <Link href="/projects" className="text-accent hover:opacity-80 underline">Projects &amp; Experiments</Link>.
         </p>
 
-        <TerminalFrame label="STDOUT_STREAM_ACTIVE">
+        <TerminalFrame label="Recent entries">
           <div className="space-y-2 text-xs">
             {LOG_ENTRIES.map((entry, i) => (
               <p key={i} className="text-muted hover:translate-x-1 transition-transform duration-150">
