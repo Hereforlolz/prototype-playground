@@ -79,7 +79,7 @@ export default function Projects({ repos, githubUnavailable }) {
         <section className="mb-12 max-w-3xl">
           <h2 className="font-display text-lg font-bold text-text mb-1">📚 More Case Studies</h2>
           <p className="text-muted text-sm mb-4">
-            Real, working builds with a full case study — not given the same top billing as the highlights above.
+            Additional working builds with detailed write-ups covering the problem, decisions, results, and limitations.
           </p>
           <div className="space-y-4">
             {caseStudies.map(({ name, title, url, blurb, analyticsEvent, caseStudyHref }) => (
