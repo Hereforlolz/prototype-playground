@@ -95,7 +95,6 @@ pages/
 bugs.json                — manually curated external bug reports
 public/
   Sreenidhi-Vedartham-Resume.pdf
-  meme.png
 ```
 
 ## Deployment
@@ -111,10 +110,17 @@ straight to the production portfolio above.
 - Privacy-safe GitHub integration (public-only data, private repos never
   linked or leaked)
 - Consistent page naming across navigation, headings, titles, and CTAs
+- Recruiter-positioning copy on the homepage and `/projects`, centered on
+  AI adoption and product enablement, with a two-tier flagship/experiment
+  project hierarchy and a disclosed internal-estimate metric line — see
+  [`lib/homepage-content.js`](lib/homepage-content.js)
+- Custom analytics events beyond Vercel's default pageview tracking (CTA
+  clicks, per-project link clicks) via `safeTrack()` in
+  [`lib/analytics.js`](lib/analytics.js), which never blocks navigation
+  if tracking fails
 
 **Planned, not yet implemented:**
-- Dedicated recruiter-positioning copy
-- Flagship case studies (current project cards are short descriptions, not
-  full case studies)
+- Flagship case studies (TeamTrail and Qwen MemoryAgent have short,
+  verified descriptions on `/projects`, not full problem/approach/outcome
+  case studies)
 - Work-authorization / location wording
-- Custom analytics events beyond Vercel's default pageview tracking

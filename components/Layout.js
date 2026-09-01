@@ -29,7 +29,7 @@ function SidebarContent({ pathname }) {
         </h1>
       </Link>
       <p className="text-sm text-muted mt-1">
-        Software engineer turned product person, all in on AI
+        AI adoption and enablement, from prototype to practice
       </p>
       <p className="text-xs text-accent font-semibold mt-2">
         Co-founder, Embark Women

@@ -9,7 +9,7 @@ export default function About() {
         <title>About — Nidhi Vedartham</title>
         <meta
           name="description"
-          content="Nidhi — software engineer turned product person, all in on AI. 8+ years in IoT/embedded systems, now building agent infrastructure and prompt engineering programs."
+          content="Nidhi — I turn AI experimentation into practical workflows. 8+ years in IoT/embedded systems, now focused on AI adoption, enablement, and applied prototyping."
         />
       </Head>
       <div className="max-w-2xl">
@@ -17,9 +17,9 @@ export default function About() {
           About
         </h1>
         <p className="mb-4 text-muted">
-          Hi, I&apos;m Nidhi — a zero-gravity thinker, experimental systems tinkerer, and playful skeptic of shiny hype.
-          I build fast, break faster, and document the chaos for your amusement (and my future regret). If you want to
-          collaborate, or have a system you dare me to break — hit me up.
+          Hi, I&apos;m Nidhi — I investigate where AI tools and systems break, then figure out what actually fixes it.
+          I build fast, document what goes wrong along the way instead of smoothing it over, and adjust from there. If
+          you&apos;re evaluating AI adoption or have a system you want pressure-tested, I&apos;d like to hear about it.
         </p>
 
         <p className="text-xs text-accent font-mono font-semibold tracking-wide uppercase mb-3">
@@ -49,7 +49,7 @@ export default function About() {
           infrastructure, and generally seeing how far I can push these tools before they break (or I do).
         </p>
         <p className="text-muted">
-          Recent chaos: multiple hackathon builds (
+          Recent work: multiple hackathon builds (
           <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
             a Slack onboarding agent
             <span className="sr-only"> (opens in new tab)</span>
