@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { track } from '@vercel/analytics';
+import { safeTrack } from '../lib/analytics';
+import { CTA_ACTIONS } from '../lib/cta';
 import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
@@ -11,10 +12,12 @@ const NAV_LINKS = [
   { href: '/about', label: 'About' },
 ];
 
+// Terse sidebar labels, sourced from the shared CTA data so hrefs/events
+// stay in sync with the closing CTA — only the visible label differs here.
 const CONTACT_LINKS = [
-  { href: 'mailto:svedartham92@gmail.com', label: 'Email', channel: 'email' },
-  { href: 'https://www.linkedin.com/in/sreenidhivedartham', label: 'LinkedIn', channel: 'linkedin' },
-  { href: '/Sreenidhi-Vedartham-Resume.pdf', label: 'Resume', channel: 'resume' },
+  { href: CTA_ACTIONS.discussRole.href, label: 'Email', event: CTA_ACTIONS.discussRole.event },
+  { href: CTA_ACTIONS.linkedin.href, label: 'LinkedIn', event: CTA_ACTIONS.linkedin.event },
+  { href: CTA_ACTIONS.resume.href, label: 'Resume', event: CTA_ACTIONS.resume.event },
 ];
 
 function SidebarContent({ pathname }) {
@@ -59,7 +62,7 @@ function SidebarContent({ pathname }) {
               href={link.href}
               target={isExternal ? '_blank' : undefined}
               rel={isExternal ? 'noreferrer' : undefined}
-              onClick={() => track('contact_link_click', { channel: link.channel })}
+              onClick={() => safeTrack(link.event, { source: 'sidebar' })}
               className="text-text hover:text-accent transition-colors duration-150 w-fit rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
             >
               {link.label}

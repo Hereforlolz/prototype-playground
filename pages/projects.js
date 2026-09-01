@@ -1,9 +1,10 @@
 // pages/projects.js
 import Head from 'next/head';
-import { track } from '@vercel/analytics';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
+import { safeTrack } from '../lib/analytics';
+import { METRIC_LINE, METRIC_DISCLOSURE } from '../lib/homepage-content';
 import manualBugs from '../bugs.json';
 import {
   buildHighlightedProjects,
@@ -14,7 +15,7 @@ import {
 
 export default function Projects({ repos, githubUnavailable }) {
   const highlighted = buildHighlightedProjects(repos);
-  const { available, inProgress } = splitHighlightedProjects(highlighted);
+  const { flagship, experiments, inProgress } = splitHighlightedProjects(highlighted);
   const rest = buildOtherRepos(repos);
 
   return (
@@ -37,31 +38,26 @@ export default function Projects({ repos, githubUnavailable }) {
       )}
 
       <section className="mb-12 max-w-3xl">
-        <TerminalFrame label="Prompt engineering impact">
-          <div className="flex flex-wrap gap-8 text-sm">
-            <div>
-              <p className="text-2xl font-black text-accent">~50%</p>
-              <p className="text-muted mt-1">rework reduction from refined prompt engineering practices</p>
-            </div>
-            <div>
-              <p className="text-2xl font-black text-accent">~8 min</p>
-              <p className="text-muted mt-1">saved per query</p>
-            </div>
-          </div>
+        <TerminalFrame label="AI adoption impact">
+          <p className="text-text font-medium">{METRIC_LINE}</p>
+          <p className="text-muted text-xs mt-3 italic">
+            {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
+            projects below.
+          </p>
         </TerminalFrame>
       </section>
 
       <section className="mb-12 max-w-3xl">
         <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
-        <p className="text-muted text-sm mb-4">Most differentiated work first.</p>
+        <p className="text-muted text-sm mb-4">The two most differentiated, hackathon-judged builds.</p>
         <div className="space-y-4">
-          {available.map(({ name, title, url, blurb }) => (
+          {flagship.map(({ name, title, url, blurb, analyticsEvent }) => (
             <TerminalFrame key={name} label={name}>
               <a
                 href={url}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => track('project_link_click', { project: name })}
+                onClick={() => safeTrack(analyticsEvent || 'project_link_click', { project: name })}
                 className="font-display font-semibold text-text hover:text-accent transition-colors duration-150 inline-block"
               >
                 {title}
@@ -72,6 +68,32 @@ export default function Projects({ repos, githubUnavailable }) {
           ))}
         </div>
       </section>
+
+      {experiments.length > 0 && (
+        <section className="mb-12 max-w-3xl">
+          <h2 className="font-display text-lg font-bold text-muted mb-1">🧪 Experiments</h2>
+          <p className="text-muted text-sm mb-4">
+            Smaller, single-purpose AI tools — real and working, but secondary to the flagship builds above.
+          </p>
+          <div className="space-y-3">
+            {experiments.map(({ name, title, url, blurb }) => (
+              <TerminalFrame key={name} label={name}>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => safeTrack('project_link_click', { project: name })}
+                  className="font-display font-medium text-sm text-text hover:text-accent transition-colors duration-150 inline-block"
+                >
+                  {title}
+                  <span className="sr-only"> (opens in new tab)</span>
+                </a>
+                <p className="text-muted text-xs mt-2">{blurb}</p>
+              </TerminalFrame>
+            ))}
+          </div>
+        </section>
+      )}
 
       {inProgress.length > 0 && (
         <section className="mb-12 max-w-3xl">

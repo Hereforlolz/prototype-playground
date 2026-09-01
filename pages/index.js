@@ -1,65 +1,74 @@
 // 📁 /pages/index.js
+import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { track } from '@vercel/analytics';
 import Layout from '../components/Layout';
-import TerminalFrame from '../components/TerminalFrame';
+import { safeTrack } from '../lib/analytics';
+import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE } from '../lib/homepage-content';
 
 export default function Home() {
+  const [showDisclosure, setShowDisclosure] = useState(false);
+
   return (
     <Layout>
       <Head>
         <title>Nidhi Vedartham</title>
         <meta
           name="description"
-          content="Software engineer turned product person, all in on AI. IoT/embedded engineer by day, building and breaking AI agents by night — and writing up what happens."
+          content="I turn AI experimentation into workflows people can actually use — AI adoption and product enablement, with practical prototypes and honest write-ups of what breaks."
         />
       </Head>
       <div className="max-w-2xl">
         <h1 className="font-display [text-wrap:balance] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text mb-4">
-          Software engineer turned product person, all in on AI 🚀
+          {HEADLINE}
         </h1>
 
-        <p className="text-muted mb-8 max-w-prose">
-          I build fast, ship real things, and write up what breaks along the way.
-        </p>
+        <p className="text-muted mb-6 max-w-prose">{SUBTEXT}</p>
+
+        <ul className="text-sm text-muted space-y-2 mb-6 max-w-prose list-disc list-inside">
+          {PROOF_POINTS.map(point => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+
+        <div className="text-sm mb-10 max-w-prose">
+          <p className="text-text font-medium">
+            {METRIC_LINE}{' '}
+            <button
+              type="button"
+              onClick={() => setShowDisclosure(open => !open)}
+              aria-expanded={showDisclosure}
+              className="text-muted underline decoration-dotted hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            >
+              What does this mean?
+            </button>
+          </p>
+          {showDisclosure && <p className="text-muted text-xs mt-2">{METRIC_DISCLOSURE}</p>}
+        </div>
 
         <nav className="flex flex-wrap gap-3 mb-10">
           <Link
             href="/projects"
-            onClick={() => track('homepage_cta_click', { destination: 'projects' })}
+            onClick={() => safeTrack('homepage_cta_click', { destination: 'projects' })}
             className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             View Projects &amp; Experiments
           </Link>
           <Link
             href="/logs"
-            onClick={() => track('homepage_cta_click', { destination: 'logs' })}
+            onClick={() => safeTrack('homepage_cta_click', { destination: 'logs' })}
             className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             Lessons Learned
           </Link>
           <Link
             href="/about"
-            onClick={() => track('homepage_cta_click', { destination: 'about' })}
+            onClick={() => safeTrack('homepage_cta_click', { destination: 'about' })}
             className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             About
           </Link>
         </nav>
-
-        <div className="max-w-md">
-          <TerminalFrame label="Reality check">
-            <img
-              src="/meme.png"
-              alt="&quot;This is fine&quot; meme: a dog sitting calmly at a table in a room that's on fire."
-              className="rounded shadow-lg w-full h-auto"
-            />
-            <p className="text-muted text-xs mt-2">
-              A fairly accurate summary of most sprints.
-            </p>
-          </TerminalFrame>
-        </div>
       </div>
     </Layout>
   );
