@@ -50,7 +50,7 @@ export default function Projects({ repos, githubUnavailable }) {
 
       <section className="mb-12 max-w-3xl">
         <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
-        <p className="text-muted text-sm mb-4">The two most differentiated, hackathon-judged builds.</p>
+        <p className="text-muted text-sm mb-4">The most differentiated, hackathon-judged builds.</p>
         <div className="space-y-4">
           {flagship.map(({ name, title, url, blurb, analyticsEvent, caseStudyHref }) => (
             <TerminalFrame key={name} label={name}>
