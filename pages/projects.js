@@ -16,7 +16,7 @@ import {
 
 export default function Projects({ repos, githubUnavailable }) {
   const highlighted = buildHighlightedProjects(repos);
-  const { flagship, experiments, inProgress } = splitHighlightedProjects(highlighted);
+  const { flagship, caseStudies, experiments, inProgress } = splitHighlightedProjects(highlighted);
   const rest = buildOtherRepos(repos);
 
   return (
@@ -74,6 +74,37 @@ export default function Projects({ repos, githubUnavailable }) {
           ))}
         </div>
       </section>
+
+      {caseStudies.length > 0 && (
+        <section className="mb-12 max-w-3xl">
+          <h2 className="font-display text-lg font-bold text-text mb-1">📚 More Case Studies</h2>
+          <p className="text-muted text-sm mb-4">
+            Additional working builds with detailed write-ups covering the problem, decisions, results, and limitations.
+          </p>
+          <div className="space-y-4">
+            {caseStudies.map(({ name, title, url, blurb, analyticsEvent, caseStudyHref }) => (
+              <TerminalFrame key={name} label={name}>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => safeTrack(analyticsEvent || 'project_link_click', { project: name })}
+                  className="font-display font-semibold text-sm text-text hover:text-accent transition-colors duration-150 inline-block"
+                >
+                  {title}
+                  <span className="sr-only"> (opens in new tab)</span>
+                </a>
+                <p className="text-muted text-sm mt-2">{blurb}</p>
+                {caseStudyHref && (
+                  <Link href={caseStudyHref} className="text-accent text-sm hover:opacity-80 underline inline-block mt-2">
+                    Read the case study →
+                  </Link>
+                )}
+              </TerminalFrame>
+            ))}
+          </div>
+        </section>
+      )}
 
       {experiments.length > 0 && (
         <section className="mb-12 max-w-3xl">
