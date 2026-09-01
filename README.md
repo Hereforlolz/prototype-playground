@@ -124,22 +124,31 @@ straight to the production portfolio above.
   linked or leaked)
 - Consistent page naming across navigation, headings, titles, and CTAs
 - Recruiter-positioning copy on the homepage and `/projects`, centered on
-  AI adoption and product enablement, with a two-tier flagship/experiment
-  project hierarchy and a disclosed internal-estimate metric line — see
-  [`lib/homepage-content.js`](lib/homepage-content.js)
+  AI adoption and product enablement, with a three-tier
+  flagship/case-study/experiment project hierarchy and a disclosed
+  internal-estimate metric line — see
+  [`lib/homepage-content.js`](lib/homepage-content.js). Exactly three
+  projects (TeamTrail, Qwen MemoryAgent, Dead Code Finder) carry the
+  flagship tier and the top visual slot; CompassionateConnect AI,
+  GreenGrid AI, and the AI-Powered Therapist Dashboard have full case
+  studies but are intentionally kept in a secondary "More Case Studies"
+  section, either because the domain calls for a more measured
+  presentation or because the project is less differentiated.
 - Custom analytics events beyond Vercel's default pageview tracking (CTA
   clicks, per-project link clicks) via `safeTrack()` in
   [`lib/analytics.js`](lib/analytics.js), which never blocks navigation
   if tracking fails
-- Flagship case studies for TeamTrail, Qwen MemoryAgent, Dead Code
-  Finder, CompassionateConnect AI, GreenGrid AI, and the AI-Powered
-  Therapist Dashboard (`/projects/teamtrail`,
-  `/projects/qwen-memoryagent`, `/projects/dead-code-finder`,
-  `/projects/compassionateconnect`, `/projects/greengrid`,
-  `/projects/therapist-dashboard`) — problem, approach, what broke and
-  how it got fixed, outcome, and an honest scope note, all sourced from
-  the projects' own repo READMEs — see
-  [`lib/case-studies.js`](lib/case-studies.js)
+- Case studies for TeamTrail, Qwen MemoryAgent, Dead Code Finder,
+  CompassionateConnect AI, GreenGrid AI, and the AI-Powered Therapist
+  Dashboard (`/projects/teamtrail`, `/projects/qwen-memoryagent`,
+  `/projects/dead-code-finder`, `/projects/compassionateconnect`,
+  `/projects/greengrid`, `/projects/therapist-dashboard`) — problem,
+  approach, what broke and how it got fixed, outcome, and an honest
+  scope note, all sourced from the projects' own repo READMEs — see
+  [`lib/case-studies.js`](lib/case-studies.js). The Therapist Dashboard
+  case study was corrected after an initial pass overstated its
+  security/validation posture ("HIPAA-aligned," "piloted") — see that
+  file's top-of-entry comment for what changed and why.
 - Work-authorization / location wording (H-1B transfer status and
   relocation openness), shown in the sidebar on every page and on About —
   see [`lib/status.js`](lib/status.js)
