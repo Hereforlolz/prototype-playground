@@ -199,25 +199,20 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
 // With revalidate: 3600, Next.js serves the pre-built page instantly and
 // regenerates it in the background at most once an hour, so a stale repo
 // list is the tradeoff for a page that never makes a visitor wait on GitHub.
+//
+// This site's source repo is private, but the built output is public on
+// Vercel — anything returned from getStaticProps ships in the page's props
+// to every visitor. So this deliberately uses the unauthenticated public
+// "list a user's public repos" endpoint (never a token with repo access),
+// and still explicitly filters out anything flagged private as a second,
+// independent check before it can reach `props` — never rely on a single
+// control for keeping private repos off a public page. Issue fetching is
+// further scoped to only the curated HIGHLIGHT_NAMES repos, since those are
+// the only ones this page ever needs issue data for.
 export async function getStaticProps() {
-  const token = process.env.GITHUB_TOKEN;
-
-  if (!token) {
-    return {
-      props: {
-        repos: [],
-        repoIssues: {},
-        issuesFailed: {},
-        error: 'Missing GITHUB_TOKEN.',
-      },
-      revalidate: 3600,
-    };
-  }
-
   try {
-    const repoRes = await fetch('https://api.github.com/user/repos?per_page=100', {
+    const repoRes = await fetch('https://api.github.com/users/Hereforlolz/repos?per_page=100', {
       headers: {
-        Authorization: `token ${token}`,
         Accept: 'application/vnd.github+json',
       },
     });
@@ -236,18 +231,21 @@ export async function getStaticProps() {
       };
     }
 
-    const repos = await repoRes.json();
+    const allRepos = await repoRes.json();
+    // Defense in depth: the endpoint above only returns public repos, but
+    // never trust a single control — drop anything flagged private before
+    // it can reach page props for the public site.
+    const repos = allRepos.filter(repo => !repo.private);
     const repoIssues = {};
     const issuesFailed = {};
 
     for (const repo of repos) {
-      if (repo.has_issues) {
+      if (repo.has_issues && HIGHLIGHT_NAMES.has(repo.full_name)) {
         try {
           const issuesRes = await fetch(
             `https://api.github.com/repos/${repo.full_name}/issues?state=open`,
             {
               headers: {
-                Authorization: `token ${token}`,
                 Accept: 'application/vnd.github+json',
               },
             }
