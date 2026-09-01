@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "node --test lib/*.test.js"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -17,10 +17,8 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
-    "esbuild": "^0.28.2",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.12",
-    "tailwindcss": "^4.3.3",
-    "vitest": "^4.1.11"
+    "tailwindcss": "^4.3.3"
   }
 }
