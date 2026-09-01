@@ -1,82 +1,115 @@
-# prototype-playground
+# Prototype Playground
 
-Nidhi's personal site — a terminal-themed portfolio built with Next.js. Documents hackathon builds, GitHub repos/issues, and a running "known mistakes" log, all in a self-aware, chaos-first tone.
+Nidhi Vedartham's recruiter-facing portfolio for AI enablement, rapid
+prototyping, product experimentation, and lessons learned from building
+with emerging AI tools.
 
-**Live sections:**
-- `/` — hero/landing page
-- `/about` — bio
-- `/projects` — GitHub repos, open issues (pulled live via the GitHub API), and a manually curated bugs log
-- `/logs` — a running changelog of bugs, patches, and fixes
+**Live:** https://prototype-playground.vercel.app
+
+## What the site demonstrates
+
+- Turning ambiguous AI ideas into testable prototypes
+- Evaluating what works, and documenting the limitations honestly
+- AI enablement and adoption evidence from real engineering work
+- Product and community experience alongside the technical work
+- Public project experiments, and the lessons pulled out of them
+
+## Pages
+
+- `/` — Home. Positioning, entry points into the other three pages.
+- `/projects` — Projects & Experiments. Curated project cards plus a live,
+  optional view into public GitHub activity.
+- `/logs` — Lessons Learned. A running record of real bugs, misfires, and
+  what came out of them.
+- `/about` — About. Background, current role, and community work.
+
+Current behavior worth calling out on `/projects`:
+- Curated project cards are static content and stay visible even if
+  GitHub is unreachable or rate-limited — see
+  [`lib/projects-data.js`](lib/projects-data.js).
+- Public GitHub data (open issue counts) is an optional enhancement layered
+  on top, never a requirement for a card to render.
+- A few curated projects describe private repos. Their name and
+  description are intentionally public, but they never link to a
+  repository a visitor can't actually open.
 
 ## Tech stack
 
-- [Next.js](https://nextjs.org) (Pages Router)
-- [Tailwind CSS](https://tailwindcss.com) for styling
-- GitHub REST API for live repo/issue data on `/projects`
+- Next.js (Pages Router)
+- React
+- Tailwind CSS
+- GitHub REST API — public endpoint only, for optional live metadata
+- Vercel — hosting, previews, and deploys
+- Vercel Analytics (`@vercel/analytics`, initialized in `pages/_app.js`)
+- Node's built-in test runner (`node --test`)
 
-## Getting started
+## Local development
 
 ```bash
 npm install
-npm run dev
+npm run dev     # start the dev server
+npm run test    # run lib/projects-data.test.js
+npm run lint    # eslint
+npm run build   # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+No environment variables are required to run this locally or in CI.
 
-## Environment variables
+## Architecture and privacy
 
-None required. `/projects` fetches from GitHub's public, unauthenticated
-`/users/{username}/repos` endpoint — deliberately not a repo-scoped token —
-since this repo's build output is served on a public site (source repo
-itself stays private, but anything `getStaticProps` returns ships to every
-visitor). Private repos never come back from that endpoint, and the fetch
-in `lib/projects-data.js` filters them out again explicitly as a second,
-independent check before they can reach page props.
+- Curated portfolio content (project names, descriptions, links) is static
+  data, not fetched from any API — see the `HIGHLIGHTS` array in
+  [`lib/projects-data.js`](lib/projects-data.js).
+- Live GitHub data comes only from the public, unauthenticated
+  `/users/{username}/repos` endpoint — no token, no elevated access.
+- Anything private is filtered out before it reaches page props, as an
+  explicit check independent of what the endpoint itself guarantees.
+- A GitHub outage or rate limit never removes curated project cards —
+  live data is additive only.
+- A hand-written public summary of a private project is fine; a link to
+  its (inaccessible) repository is not, and never appears.
 
-## Privacy model
-
-Two different things both involve "private repos" on this site, and it's
-worth being precise about which is which:
-
-- **Automatically fetched private-repository metadata — prohibited.**
-  Anything sourced from the GitHub API about a repo (its existence, open
-  issue titles, activity) must never reach a private repo, full stop.
-  `filterPublicRepos()` and `shouldFetchIssues()` in `lib/projects-data.js`
-  enforce this, with tests proving it holds even if the API response
-  itself misbehaves.
-- **Intentionally curated public case-study content about a private
-  project — allowed.** Three entries in `HIGHLIGHTS`
-  (`EphemeralAgentExecutor`, `GreenGrid`, `SafeSakhi`) describe repos that
-  are actually private. Their name and description are hand-written
-  portfolio copy the account owner chose to publish — not API data — so
-  showing them is fine. What's not fine is implying the repository itself
-  is reachable: those entries have no `url`, so the page renders "Private
-  prototype — case study coming soon" instead of a link that would 404 for
-  a visitor without access.
+See [`lib/projects-data.test.js`](lib/projects-data.test.js) for the tests
+covering all of the above, including the private-repo and outage cases.
 
 ## Project structure
 
 ```
 components/
-  Layout.js          — shared sidebar nav + page shell
-  TerminalFrame.js    — shared "terminal window" UI wrapper used across pages
+  Layout.js            — sidebar nav + page shell
+  TerminalFrame.js      — shared card component
+  ThemeToggle.js         — light/dark mode toggle
+lib/
+  projects-data.js      — curated project data, GitHub fetch, privacy filtering
+  projects-data.test.js  — tests for the above
 pages/
-  index.js            — landing page
-  about.js             — bio page
-  projects.js           — GitHub repos + issues + manual bugs log
-  logs.js               — known-mistakes changelog
+  index.js              — Home
+  projects.js             — Projects & Experiments
+  logs.js                  — Lessons Learned
+  about.js                  — About
+bugs.json                — manually curated external bug reports
 public/
-  meme.png             — hero image
-bugs.json              — manually curated list of external bugs/issues filed
+  Sreenidhi-Vedartham-Resume.pdf
+  meme.png
 ```
 
-## Data fetching notes
+## Deployment
 
-`/projects` uses `getStaticProps` with Incremental Static Regeneration (`revalidate: 3600`) rather than `getServerSideProps`. This means GitHub API calls happen at most once per hour in the background rather than on every page visit — keeps load times fast and avoids burning API rate limits under traffic.
+The source repository is private; the Vercel deployment is public. Every
+pull request gets its own Vercel preview URL, and merges to `main` deploy
+straight to the production portfolio above.
 
-If a specific repo's issues fail to fetch, the page shows a "Couldn't load issues for this repo" notice for that repo rather than silently displaying an empty state.
+## Current status
 
-## Known quirks
+**Complete:**
+- Visual redesign (palette, typography, dark mode, component styling)
+- Privacy-safe GitHub integration (public-only data, private repos never
+  linked or leaked)
+- Consistent page naming across navigation, headings, titles, and CTAs
 
-- Line endings: this repo is intended to use `LF`. If you're on Windows and see every file show as "modified" with no real diff, run `git config --global core.autocrlf false` locally.
-- See `/logs` for a living list of past bugs and fixes — it's part of the site, not just documentation.
+**Planned, not yet implemented:**
+- Dedicated recruiter-positioning copy
+- Flagship case studies (current project cards are short descriptions, not
+  full case studies)
+- Work-authorization / location wording
+- Custom analytics events beyond Vercel's default pageview tracking
