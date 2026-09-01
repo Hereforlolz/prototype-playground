@@ -13,7 +13,7 @@ export default function About() {
       </Head>
       <div className="max-w-2xl">
         <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-6">
-          👋 About Me
+          About
         </h1>
         <p className="mb-4 text-muted">
           Hi, I&apos;m Nidhi — a zero-gravity thinker, experimental systems tinkerer, and playful skeptic of shiny hype.
