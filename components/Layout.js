@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { safeTrack } from '../lib/analytics';
 import { CTA_ACTIONS } from '../lib/cta';
+import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
 import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
@@ -30,6 +31,12 @@ function SidebarContent({ pathname }) {
       </Link>
       <p className="text-sm text-muted mt-1">
         AI adoption and enablement, from prototype to practice
+      </p>
+      <p className="text-xs text-muted mt-2">
+        {LOCATION} · {RELOCATION}
+      </p>
+      <p className="text-xs text-muted mt-1">
+        {WORK_AUTHORIZATION}
       </p>
       <p className="text-xs text-accent font-semibold mt-2">
         Co-founder, Embark Women

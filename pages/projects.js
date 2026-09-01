@@ -1,5 +1,6 @@
 // pages/projects.js
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
@@ -51,7 +52,7 @@ export default function Projects({ repos, githubUnavailable }) {
         <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
         <p className="text-muted text-sm mb-4">The two most differentiated, hackathon-judged builds.</p>
         <div className="space-y-4">
-          {flagship.map(({ name, title, url, blurb, analyticsEvent }) => (
+          {flagship.map(({ name, title, url, blurb, analyticsEvent, caseStudyHref }) => (
             <TerminalFrame key={name} label={name}>
               <a
                 href={url}
@@ -64,6 +65,11 @@ export default function Projects({ repos, githubUnavailable }) {
                 <span className="sr-only"> (opens in new tab)</span>
               </a>
               <p className="text-muted text-sm mt-2">{blurb}</p>
+              {caseStudyHref && (
+                <Link href={caseStudyHref} className="text-accent text-sm hover:opacity-80 underline inline-block mt-2">
+                  Read the case study →
+                </Link>
+              )}
             </TerminalFrame>
           ))}
         </div>

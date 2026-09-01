@@ -81,17 +81,26 @@ covering all of the above, including the private-repo and outage cases.
 
 ```
 components/
-  Layout.js            — sidebar nav + page shell
+  Layout.js             — sidebar nav + page shell
   TerminalFrame.js      — shared card component
-  ThemeToggle.js         — light/dark mode toggle
+  ThemeToggle.js        — light/dark mode toggle
+  ClosingCTA.js         — shared closing call-to-action (used on every page)
+  CaseStudy.js          — shared layout for the flagship project case-study pages
 lib/
-  projects-data.js      — curated project data, GitHub fetch, privacy filtering
-  projects-data.test.js  — tests for the above
+  projects-data.js       — curated project data, GitHub fetch, privacy filtering
+  homepage-content.js    — homepage/positioning copy (headline, proof points, metric line)
+  cta.js                 — shared CTA labels/hrefs/analytics event names
+  analytics.js           — safeTrack() wrapper so a tracking failure never blocks navigation
+  case-studies.js        — full case-study content for TeamTrail and Qwen MemoryAgent
+  status.js              — work-authorization and location wording, shared sitewide
+  *.test.js               — Node test runner tests for each of the above
 pages/
-  index.js              — Home
-  projects.js             — Projects & Experiments
-  logs.js                  — Lessons Learned
-  about.js                  — About
+  index.js                    — Home
+  projects.js                 — Projects & Experiments
+  projects/teamtrail.js       — TeamTrail case study
+  projects/qwen-memoryagent.js — Qwen MemoryAgent case study
+  logs.js                     — Lessons Learned
+  about.js                    — About
 bugs.json                — manually curated external bug reports
 public/
   Sreenidhi-Vedartham-Resume.pdf
@@ -118,9 +127,14 @@ straight to the production portfolio above.
   clicks, per-project link clicks) via `safeTrack()` in
   [`lib/analytics.js`](lib/analytics.js), which never blocks navigation
   if tracking fails
+- Flagship case studies for TeamTrail and Qwen MemoryAgent
+  (`/projects/teamtrail`, `/projects/qwen-memoryagent`) — problem,
+  approach, what broke and how it got fixed, outcome, and an honest scope
+  note, all sourced from the projects' own repo READMEs — see
+  [`lib/case-studies.js`](lib/case-studies.js)
+- Work-authorization / location wording (H-1B transfer status and
+  relocation openness), shown in the sidebar on every page and on About —
+  see [`lib/status.js`](lib/status.js)
 
 **Planned, not yet implemented:**
-- Flagship case studies (TeamTrail and Qwen MemoryAgent have short,
-  verified descriptions on `/projects`, not full problem/approach/outcome
-  case studies)
-- Work-authorization / location wording
+- Nothing at this time — open an issue if something's missing.
