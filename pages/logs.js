@@ -36,20 +36,20 @@ export default function Logs() {
         />
       </Head>
       <div className="max-w-2xl">
-        <h1 className="text-3xl font-black tracking-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-4">
+        <h1 className="text-3xl font-black tracking-tight uppercase text-text mb-4">
           🐞 Known Mistakes Log
         </h1>
-        <p className="text-slate-400 mb-6 text-sm">
+        <p className="text-muted mb-6 text-sm">
           A living record of bugs, misfires, and the occasional meltdown — because transparency is my brand.
           For bugs filed against other people&apos;s tools, see the{' '}
-          <Link href="/projects" className="text-pink-400 hover:text-pink-300 underline">Repos &amp; Bugs Lab</Link>.
+          <Link href="/projects" className="text-accent hover:opacity-80 underline">Repos &amp; Bugs Lab</Link>.
         </p>
 
         <TerminalFrame label="STDOUT_STREAM_ACTIVE">
           <div className="space-y-2 text-xs">
             {LOG_ENTRIES.map((entry, i) => (
-              <p key={i} className="text-slate-400 hover:translate-x-1 transition-transform duration-150">
-                <span className="text-slate-600">[{entry.date}]</span>{' '}
+              <p key={i} className="text-muted hover:translate-x-1 transition-transform duration-150">
+                <span className="text-muted">[{entry.date}]</span>{' '}
                 <span className={`font-semibold ${LEVEL_COLOR[entry.level] || 'text-slate-400'}`}>
                   [{entry.level}]
                 </span>{' '}

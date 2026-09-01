@@ -9,6 +9,18 @@ import manualBugs from '../bugs.json';
 // since a couple of repos have had injected marketing text in READMEs before.
 const HIGHLIGHTS = [
   {
+    name: 'Hereforlolz/ai-pitch-deck-generator',
+    blurb: 'AI pitch-deck generator — turns a topic into a 6-slide VC-style deck via the Anthropic API and Unsplash imagery, with a fully offline mock mode for when you don’t want to wire up keys.',
+  },
+  {
+    name: 'Hereforlolz/ai-content-generator',
+    blurb: 'AI content generator — blog posts, social copy, email campaigns, and product descriptions from templates plus your choice of OpenAI, Claude, Gemini, or Hugging Face, with a keyless Mock mode built in.',
+  },
+  {
+    name: 'Hereforlolz/ai-existential-crisis-bot',
+    blurb: 'Paste in code, get an existential crisis back — pattern-matches your code structure and chains through Hugging Face, OpenRouter, and Groq for a philosophical critique, with canned fallbacks if every API fails.',
+  },
+  {
     name: 'Hereforlolz/teamtrail',
     blurb: 'AI onboarding agent for Slack — reads real workspace history via Slack\u2019s Real-Time Search API and briefs new members with LLaMA 3.3 70B (Groq), citing actual sources instead of a static wiki. Built for the Slack Agent Builder Challenge 2026.',
   },
@@ -47,24 +59,24 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
           content="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
         />
       </Head>
-      <h1 className="text-3xl font-black tracking-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 mb-8">
+      <h1 className="text-3xl font-black tracking-tight uppercase text-text mb-8">
         🧪 My Repos &amp; Bugs Lab
       </h1>
 
       {error && (
-        <p className="text-red-400 mb-4 font-mono text-sm">Error loading repos/issues: {error}</p>
+        <p className="text-red-500 mb-4 font-mono text-sm">Error loading repos/issues: {error}</p>
       )}
 
       <section className="mb-12 max-w-3xl">
         <TerminalFrame label="PROMPT_ENGINEERING_IMPACT">
           <div className="flex flex-wrap gap-8 text-sm">
             <div>
-              <p className="text-2xl font-black text-pink-400">~50%</p>
-              <p className="text-slate-400 mt-1">rework reduction from refined prompt engineering practices</p>
+              <p className="text-2xl font-black text-accent">~50%</p>
+              <p className="text-muted mt-1">rework reduction from refined prompt engineering practices</p>
             </div>
             <div>
-              <p className="text-2xl font-black text-cyan-400">~8 min</p>
-              <p className="text-slate-400 mt-1">saved per query</p>
+              <p className="text-2xl font-black text-accent">~8 min</p>
+              <p className="text-muted mt-1">saved per query</p>
             </div>
           </div>
         </TerminalFrame>
@@ -72,8 +84,8 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
 
       {highlighted.length > 0 && (
         <section className="mb-12 max-w-3xl">
-          <h2 className="text-xl font-bold text-slate-200 mb-1">⭐ Recent Highlights</h2>
-          <p className="text-slate-500 text-sm mb-4">Most recent work, roughly newest first.</p>
+          <h2 className="text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
+          <p className="text-muted text-sm mb-4">Most recent work, roughly newest first.</p>
           <div className="space-y-4">
             {highlighted.map(({ repo, blurb }) => (
               <TerminalFrame key={repo.id} label={repo.full_name}>
@@ -81,11 +93,11 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
                   href={repo.html_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-sm text-pink-400 hover:text-pink-300 hover:translate-x-1 transition-all duration-150 inline-block"
+                  className="font-mono text-sm text-accent hover:opacity-80 hover:translate-x-1 transition-all duration-150 inline-block"
                 >
                   {repo.full_name}
                 </a>
-                <p className="text-slate-400 text-sm mt-2">{blurb}</p>
+                <p className="text-muted text-sm mt-2">{blurb}</p>
                 <div className="mt-3 text-xs space-y-1">
                   {repoIssues[repo.full_name]?.length > 0 ? (
                     repoIssues[repo.full_name].map(issue => (
@@ -94,7 +106,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
                           href={issue.html_url}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-slate-400 hover:text-pink-400 hover:underline"
+                          className="text-muted hover:text-accent hover:underline"
                         >
                           #{issue.number}: {issue.title}
                         </a>
@@ -103,7 +115,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
                   ) : issuesFailed[repo.full_name] ? (
                     <p className="text-yellow-600">⚠ Couldn&apos;t load issues for this repo — try again later</p>
                   ) : (
-                    <p className="text-slate-600">No open issues found</p>
+                    <p className="text-muted">No open issues found</p>
                   )}
                 </div>
               </TerminalFrame>
@@ -113,7 +125,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
       )}
 
       <section className="mb-12 max-w-3xl">
-        <h2 className="text-xl font-bold text-slate-200 mb-4">📂 All Other Repos</h2>
+        <h2 className="text-xl font-bold text-text mb-4">📂 All Other Repos</h2>
         <TerminalFrame label="REPO_INDEX">
           <ul className="space-y-3 text-sm">
             {rest.map(repo => (
@@ -122,7 +134,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
                   href={repo.html_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-slate-300 hover:text-pink-400 hover:translate-x-1 transition-all duration-150 inline-block"
+                  className="text-text hover:text-accent hover:translate-x-1 transition-all duration-150 inline-block"
                 >
                   {repo.full_name}
                 </a>
@@ -134,7 +146,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
                           href={issue.html_url}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-slate-500 hover:text-pink-400 hover:underline"
+                          className="text-muted hover:text-accent hover:underline"
                         >
                           #{issue.number}: {issue.title}
                         </a>
@@ -143,7 +155,7 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
                   ) : issuesFailed[repo.full_name] ? (
                     <li className="text-yellow-600">⚠ Couldn&apos;t load issues for this repo — try again later</li>
                   ) : (
-                    <li className="text-slate-600">No open issues found</li>
+                    <li className="text-muted">No open issues found</li>
                   )}
                 </ul>
               </li>
@@ -153,20 +165,20 @@ export default function Projects({ repos, repoIssues, issuesFailed, error }) {
       </section>
 
       <section className="max-w-3xl">
-        <h2 className="text-xl font-bold text-slate-200 mb-4">🐞 Manual Bugs Log</h2>
+        <h2 className="text-xl font-bold text-text mb-4">🐞 Manual Bugs Log</h2>
         <TerminalFrame label="EXTERNAL_ISSUES_TRACKED">
           <div className="space-y-4 text-sm">
             {manualBugs.map((bug, index) => (
               <div key={index} className="hover:translate-x-1 transition-transform duration-150">
-                <p className="font-semibold text-slate-200">{bug.title}</p>
-                <p className="text-slate-500 text-xs mt-1">Why: {bug.why}</p>
-                <p className="text-slate-500 text-xs">Status: {bug.status}</p>
+                <p className="font-semibold text-text">{bug.title}</p>
+                <p className="text-muted text-xs mt-1">Why: {bug.why}</p>
+                <p className="text-muted text-xs">Status: {bug.status}</p>
                 {bug.link && (
                   <a
                     href={bug.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-pink-400 hover:text-pink-300 hover:underline text-xs"
+                    className="text-accent hover:opacity-80 hover:underline text-xs"
                   >
                     View Report
                   </a>

@@ -1,30 +1,35 @@
 // components/Layout.js
 import Link from 'next/link';
+import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
-  { href: '/projects', label: '$ cd /experiments', hover: 'hover:text-pink-400' },
-  { href: '/logs', label: '$ cat /mistakes_log', hover: 'hover:text-purple-400' },
-  { href: '/about', label: '$ finger /about_me', hover: 'hover:text-blue-400' },
+  { href: '/projects', label: '$ cd /experiments' },
+  { href: '/logs', label: '$ cat /mistakes_log' },
+  { href: '/about', label: '$ finger /about_me' },
 ];
 
 const CONTACT_LINKS = [
-  { href: 'mailto:svedartham92@gmail.com', label: '$ mail --to nidhi', hover: 'hover:text-pink-400' },
-  { href: 'https://www.linkedin.com/in/sreenidhivedartham', label: '$ open --linkedin', hover: 'hover:text-blue-400' },
-  { href: '/Sreenidhi-Vedartham-Resume.pdf', label: '$ curl --resume', hover: 'hover:text-cyan-400' },
+  { href: 'mailto:svedartham92@gmail.com', label: '$ mail --to nidhi' },
+  { href: 'https://www.linkedin.com/in/sreenidhivedartham', label: '$ open --linkedin' },
+  { href: '/Sreenidhi-Vedartham-Resume.pdf', label: '$ curl --resume' },
 ];
 
 export default function Layout({ children }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen bg-[#0b0c10] text-slate-100 font-mono">
-      <aside className="lg:col-span-4 xl:col-span-3 p-8 lg:sticky lg:top-0 h-fit border-b lg:border-b-0 lg:border-r border-purple-950/40">
+    <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen bg-bg text-text font-mono">
+      <aside className="lg:col-span-4 xl:col-span-3 p-8 lg:sticky lg:top-0 h-fit border-b lg:border-b-0 lg:border-r border-border">
         <Link href="/" className="block">
-          <h1 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-cyan-400 tracking-tight uppercase hover:translate-x-1 transition-transform duration-150 inline-block">
+          <h1 className="text-2xl font-black text-accent tracking-tight uppercase hover:translate-x-1 transition-transform duration-150 inline-block">
             Nidhi // Void Tinkerer
           </h1>
         </Link>
-        <p className="text-xs text-purple-400 mt-1 font-bold">
+        <p className="text-xs text-muted mt-1 font-bold">
           [SYSTEM STATUS: STABLE-ISH]
         </p>
+
+        <div className="mt-6">
+          <ThemeToggle />
+        </div>
 
         <nav aria-label="Contact" className="flex flex-col gap-3 mt-6 text-sm">
           {CONTACT_LINKS.map(link => (
@@ -33,7 +38,7 @@ export default function Layout({ children }) {
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-              className={`${link.hover} transition-colors hover:translate-x-1 duration-150 w-fit`}
+              className="text-text hover:text-accent transition-colors hover:translate-x-1 duration-150 w-fit"
             >
               {link.label}
             </a>
@@ -45,7 +50,7 @@ export default function Layout({ children }) {
             <Link
               key={link.href}
               href={link.href}
-              className={`${link.hover} transition-colors hover:translate-x-1 duration-150 w-fit`}
+              className="text-text hover:text-accent transition-colors hover:translate-x-1 duration-150 w-fit"
             >
               {link.label}
             </Link>
