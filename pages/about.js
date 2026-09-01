@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
 import ClosingCTA from '../components/ClosingCTA';
+import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
 
 export default function About() {
   return (
@@ -20,6 +21,13 @@ export default function About() {
           Hi, I&apos;m Nidhi — I investigate where AI tools and systems break, then figure out what actually fixes it.
           I build fast, document what goes wrong along the way instead of smoothing it over, and adjust from there. If
           you&apos;re evaluating AI adoption or have a system you want pressure-tested, I&apos;d like to hear about it.
+        </p>
+
+        <p className="text-xs text-accent font-mono font-semibold tracking-wide uppercase mb-1">
+          Status
+        </p>
+        <p className="mb-4 text-muted text-sm">
+          {LOCATION} — {RELOCATION.toLowerCase()}. {WORK_AUTHORIZATION}.
         </p>
 
         <p className="text-xs text-accent font-mono font-semibold tracking-wide uppercase mb-3">
