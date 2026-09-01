@@ -101,6 +101,7 @@ pages/
   projects/qwen-memoryagent.js     — Qwen MemoryAgent case study
   projects/dead-code-finder.js     — Dead Code Finder case study
   projects/compassionateconnect.js — CompassionateConnect AI case study
+  projects/greengrid.js            — GreenGrid AI case study
   logs.js                          — Lessons Learned
   about.js                         — About
 bugs.json                — manually curated external bug reports
@@ -130,11 +131,12 @@ straight to the production portfolio above.
   [`lib/analytics.js`](lib/analytics.js), which never blocks navigation
   if tracking fails
 - Flagship case studies for TeamTrail, Qwen MemoryAgent, Dead Code
-  Finder, and CompassionateConnect AI (`/projects/teamtrail`,
-  `/projects/qwen-memoryagent`, `/projects/dead-code-finder`,
-  `/projects/compassionateconnect`) — problem, approach, what broke and
-  how it got fixed, outcome, and an honest scope note, all sourced from
-  the projects' own repo READMEs — see
+  Finder, CompassionateConnect AI, and GreenGrid AI
+  (`/projects/teamtrail`, `/projects/qwen-memoryagent`,
+  `/projects/dead-code-finder`, `/projects/compassionateconnect`,
+  `/projects/greengrid`) — problem, approach, what broke and how it got
+  fixed, outcome, and an honest scope note, all sourced from the
+  projects' own repo READMEs — see
   [`lib/case-studies.js`](lib/case-studies.js)
 - Work-authorization / location wording (H-1B transfer status and
   relocation openness), shown in the sidebar on every page and on About —
