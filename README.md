@@ -91,16 +91,17 @@ lib/
   homepage-content.js    — homepage/positioning copy (headline, proof points, metric line)
   cta.js                 — shared CTA labels/hrefs/analytics event names
   analytics.js           — safeTrack() wrapper so a tracking failure never blocks navigation
-  case-studies.js        — full case-study content for TeamTrail and Qwen MemoryAgent
+  case-studies.js        — full case-study content for the flagship projects
   status.js              — work-authorization and location wording, shared sitewide
   *.test.js               — Node test runner tests for each of the above
 pages/
-  index.js                    — Home
-  projects.js                 — Projects & Experiments
-  projects/teamtrail.js       — TeamTrail case study
+  index.js                     — Home
+  projects.js                  — Projects & Experiments
+  projects/teamtrail.js        — TeamTrail case study
   projects/qwen-memoryagent.js — Qwen MemoryAgent case study
-  logs.js                     — Lessons Learned
-  about.js                    — About
+  projects/dead-code-finder.js — Dead Code Finder case study
+  logs.js                      — Lessons Learned
+  about.js                     — About
 bugs.json                — manually curated external bug reports
 public/
   Sreenidhi-Vedartham-Resume.pdf
@@ -127,10 +128,11 @@ straight to the production portfolio above.
   clicks, per-project link clicks) via `safeTrack()` in
   [`lib/analytics.js`](lib/analytics.js), which never blocks navigation
   if tracking fails
-- Flagship case studies for TeamTrail and Qwen MemoryAgent
-  (`/projects/teamtrail`, `/projects/qwen-memoryagent`) — problem,
-  approach, what broke and how it got fixed, outcome, and an honest scope
-  note, all sourced from the projects' own repo READMEs — see
+- Flagship case studies for TeamTrail, Qwen MemoryAgent, and Dead Code
+  Finder (`/projects/teamtrail`, `/projects/qwen-memoryagent`,
+  `/projects/dead-code-finder`) — problem, approach, what broke and how
+  it got fixed, outcome, and an honest scope note, all sourced from the
+  projects' own repo READMEs — see
   [`lib/case-studies.js`](lib/case-studies.js)
 - Work-authorization / location wording (H-1B transfer status and
   relocation openness), shown in the sidebar on every page and on About —

@@ -19,6 +19,17 @@ function Section({ title, items }) {
   );
 }
 
+function repoLabel(repoUrl) {
+  try {
+    const host = new URL(repoUrl).hostname;
+    if (host.includes('gitlab')) return 'View on GitLab';
+    if (host.includes('github')) return 'View on GitHub';
+  } catch {
+    // fall through to the generic label below
+  }
+  return 'View repository';
+}
+
 export default function CaseStudy({ study }) {
   const { title, subtitle, tagline, repoUrl, devpostUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope } = study;
 
@@ -46,7 +57,7 @@ export default function CaseStudy({ study }) {
             onClick={() => safeTrack(analyticsEvent, { source: 'case_study' })}
             className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
           >
-            View on GitHub
+            {repoLabel(repoUrl)}
             <span className="sr-only"> (opens in new tab)</span>
           </a>
           {devpostUrl && (
