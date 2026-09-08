@@ -8,7 +8,7 @@ export default function ClosingCTA() {
   return (
     <section className="max-w-2xl border-t border-border pt-8">
       <p className="font-display font-semibold text-lg text-text mb-1">
-        Have an ambiguous AI workflow or prototype that needs direction?
+        Have a technical problem — AI or otherwise — that needs a second pair of eyes?
       </p>
       <p className="text-muted text-sm mb-4">Let&apos;s talk.</p>
       <div className="flex flex-wrap gap-3 text-sm">
