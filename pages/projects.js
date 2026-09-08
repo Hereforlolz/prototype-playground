@@ -39,16 +39,6 @@ export default function Projects({ repos, githubUnavailable }) {
       )}
 
       <section className="mb-12 max-w-3xl">
-        <TerminalFrame label="AI adoption impact">
-          <p className="text-text font-medium">{METRIC_LINE}</p>
-          <p className="text-muted text-xs mt-3 italic">
-            {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
-            projects below.
-          </p>
-        </TerminalFrame>
-      </section>
-
-      <section className="mb-12 max-w-3xl">
         <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
         <p className="text-muted text-sm mb-4">The most differentiated, hackathon-judged builds.</p>
         <div className="space-y-4">
@@ -73,6 +63,16 @@ export default function Projects({ repos, githubUnavailable }) {
             </TerminalFrame>
           ))}
         </div>
+      </section>
+
+      <section className="mb-12 max-w-3xl">
+        <TerminalFrame label="AI adoption impact">
+          <p className="text-text font-medium">{METRIC_LINE}</p>
+          <p className="text-muted text-xs mt-3 italic">
+            {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
+            projects above.
+          </p>
+        </TerminalFrame>
       </section>
 
       {caseStudies.length > 0 && (
