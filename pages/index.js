@@ -1,5 +1,4 @@
 // 📁 /pages/index.js
-import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
@@ -7,8 +6,6 @@ import { safeTrack } from '../lib/analytics';
 import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE } from '../lib/homepage-content';
 
 export default function Home() {
-  const [showDisclosure, setShowDisclosure] = useState(false);
-
   return (
     <Layout>
       <Head>
@@ -32,18 +29,13 @@ export default function Home() {
         </ul>
 
         <div className="text-sm mb-10 max-w-prose">
-          <p className="text-text font-medium">
-            {METRIC_LINE}{' '}
-            <button
-              type="button"
-              onClick={() => setShowDisclosure(open => !open)}
-              aria-expanded={showDisclosure}
-              className="text-muted underline decoration-dotted hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-            >
+          <p className="text-text font-medium">{METRIC_LINE}</p>
+          <details className="mt-2">
+            <summary className="text-muted underline decoration-dotted hover:text-accent transition-colors duration-150 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2">
               What does this mean?
-            </button>
-          </p>
-          {showDisclosure && <p className="text-muted text-xs mt-2">{METRIC_DISCLOSURE}</p>}
+            </summary>
+            <p className="text-muted text-xs mt-2">{METRIC_DISCLOSURE}</p>
+          </details>
         </div>
 
         <nav className="flex flex-wrap gap-3 mb-10">
