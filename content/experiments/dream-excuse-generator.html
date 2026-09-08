@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Excuse Generator - Turn Procrastination into Epic Adventures!</title>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .example-quotes {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .example-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+            opacity: 0;
+            animation: slideInQuote 0.8s ease-out forwards;
+        }
+
+        .example-quote:nth-child(2) { animation-delay: 0.5s; }
+        .example-quote:nth-child(3) { animation-delay: 1s; }
+        .example-quote:nth-child(4) { animation-delay: 1.5s; }
+
+        .how-to-use {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .how-to-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #4ecdc4;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .step-number {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+            display: none;
+            margin: 20px auto;
+        }
+
+        .generator-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s ease-in-out infinite;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .excuse-output {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            border-left: 5px solid #4ecdc4;
+            min-height: 100px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .excuse-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .copy-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: none;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Emoji Rain Animation */
+        .emoji-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.7;
+            animation: fall linear infinite;
+            user-select: none;
+        }
+
+        /* Fun Animations */
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInQuote {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+            to { box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-50px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-rain" id="emojiRain"></div>
+
+    <button class="back-btn" id="backBtn" onclick="showHero()">← Back to Home</button>
+
+    <div class="hero-section" id="heroSection">
+        <div class="hero-content">
+            <h1 class="main-title">🌟 Dream Excuse Generator 🌟</h1>
+            <p class="hero-subtitle">Transform your boring procrastination into epic, mystical adventures that nobody can question! 🚀✨</p>
+            
+            <div class="example-quotes">
+                <h3 style="margin-bottom: 20px; color: #4ecdc4;">📜 Recent Epic Excuses:</h3>
+                <div class="example-quote">
+                    "Sorry boss, I couldn't finish the report because The Galactic Procrastination Police conducted a mandatory productivity audit and I spent three cosmic seconds teaching aliens the art of creative excuses." 🛸
+                </div>
+                <div class="example-quote">
+                    "I didn't do laundry because a time-traveling Shakespeare sent a priority message from medieval times and I had to prevent the Great Email Apocalypse of 2087." ⚔️
+                </div>
+                <div class="example-quote">
+                    "Apologies for not calling mom - The Mystical Deadline Fairy invaded my REM cycle and I had to collect seven scattered motivation crystals to restore the cosmic work-life balance." 🧚‍♀️
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">
+                🎭 Classic mode uses creative templates • 🤖 AI mode uses real artificial intelligence
+            </p>
+
+            <div class="how-to-use">
+                <h3 class="how-to-title">🎯 How It Works</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <span>Tell us what you procrastinated on (homework, chores, etc.)</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <span>Add who you're explaining to (optional but funnier!)</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>Choose your adventure style (sci-fi, fantasy, time travel...)</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <span>Get your perfectly ridiculous, copy-paste ready excuse!</span>
+                </div>
+            </div>
+
+            <button class="start-btn" onclick="showGenerator()">
+                🎭 Generate My Epic Excuse! 🎭
+            </button>
+        </div>
+    </div>
+
+    <div class="container" id="generatorSection">
+        <h1 class="generator-title">Dream Excuse Generator</h1>
+        <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">Create your legendary excuse below! 🎪</p>
+        
+        <form id="excuseForm">
+            <div class="input-group">
+                <label for="task">🎯 What did you procrastinate on?</label>
+                <input type="text" id="task" placeholder="e.g., finishing the pitch deck, doing laundry, calling mom" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="context">👥 Who are you explaining this to? (optional)</label>
+                <input type="text" id="context" placeholder="e.g., your boss, your partner, your professor">
+            </div>
+            
+            <div class="input-group">
+                <label for="style">✨ Excuse style preference (optional)</label>
+                <input type="text" id="style" placeholder="e.g., mystical, sci-fi, fantasy, time travel, celebrity encounter">
+            </div>
+
+            <div class="input-group">
+                <label for="apiKey">🔑 OpenAI API Key (optional - for real AI magic!)</label>
+                <input type="password" id="apiKey" placeholder="sk-... (leave blank for classic mode)">
+                <small style="opacity: 0.7; font-size: 0.9rem;">Get yours at platform.openai.com</small>
+            </div>
+            
+            <button type="submit" class="generate-btn" id="generateBtn">
+                🌟 Generate Epic Excuse 🌟
+            </button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>🔮 Consulting the dream realm... 🔮</p>
+        </div>
+        
+        <div class="excuse-output" id="excuseOutput">
+            <div class="excuse-text" id="excuseText"></div>
+            <button class="copy-btn" id="copyBtn">📋 Copy Excuse</button>
+            <button class="copy-btn" onclick="showGenerator(); document.getElementById('excuseOutput').style.display='none';" style="margin-left: 10px;">🎲 Generate Another</button>
+        </div>
+    </div>
+
+    <script>
+        // Utility function with error handling
+        function getRandomElement(arr) {
+            if (!arr || arr.length === 0) {
+                return "mysterious element";
+            }
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Emoji rain effect
+        const emojis = ['✨', '🌟', '⭐', '🔮', '🦄', '🎭', '🎪', '🌙', '💫', '🎨', '🎯', '🚀', '🛸', '⚡', '🌈', '🎊', '🎉', '🔥', '💎', '🎈'];
+        
+        function createEmojiRain() {
+            const emojiRain = document.getElementById('emojiRain');
+            if (!emojiRain) return;
+            
+            setInterval(() => {
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + '%';
+                emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                emoji.style.opacity = Math.random() * 0.7 + 0.3;
+                emoji.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                
+                emojiRain.appendChild(emoji);
+                
+                // Remove emoji after animation
+                setTimeout(() => {
+                    if (emoji.parentNode) {
+                        emoji.parentNode.removeChild(emoji);
+                    }
+                }, 5000);
+            }, 300);
+        }
+
+        // Start emoji rain when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createEmojiRain();
+        });
+
+        function showGenerator() {
+            const heroSection = document.getElementById('heroSection');
+            const generatorSection = document.getElementById('generatorSection');
+            const backBtn = document.getElementById('backBtn');
+            
+            if (heroSection) heroSection.style.display = 'none';
+            if (generatorSection) generatorSection.style.display = 'block';
+            if (backBtn) backBtn.style.display = 'block';
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showHero() {
+            const heroSection = document.getElementById('heroSection');
+            const generatorSection = document.getElementById('generatorSection');
+            const backBtn = document.getElementById('backBtn');
+            
+            if (heroSection) heroSection.style.display = 'flex';
+            if (generatorSection) generatorSection.style.display = 'none';
+            if (backBtn) backBtn.style.display = 'none';
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Fixed excuse templates - removed the problematic template
+        const excuseTemplates = [
+            "Sorry I didn't {task} - I was {action} by {character} who {magical_event} and I had to {heroic_deed}",
+            "I couldn't {task} because {mystical_being} {portal_action} and transported me to {fantasy_location} where I {quest_action}",
+            "Apologies for not {task} - {celebrities} {time_events} from {time_periods} and needed my help to {save_action}",
+            "I didn't {task} because {alien_being} {abduction_action} and I spent {time_duration} {space_activity}",
+            "Sorry about {task} - {mythical_creature} {dream_action} and I had to {magical_quest} to restore {cosmic_balance}",
+            "I couldn't {task} due to {wizard_action} that sent me to {parallel_dimension} where I {dimension_quest}",
+            "Apologies for {task} - {ancient_being} {summoning_action} and I was needed to {prophecy_fulfillment}",
+            "I didn't {task} because {supernatural_event} occurred and I was {chosen_one_action} to {world_saving_mission}",
+            "Sorry I couldn't {task} - {cosmic_entity} declared a {universal_emergency} and I was recruited as {special_role}",
+            "I didn't {task} because {interdimensional_being} opened {magical_portal} to {whimsical_place} and I had to {ridiculous_mission}"
+        ];
+
+        const wordLists = {
+            action: ["kidnapped", "summoned", "teleported", "enchanted", "possessed", "recruited", "chosen", "transformed", "hypnotized", "conscripted"],
+            character: ["a traveling monk", "an interdimensional wizard", "a time-displaced viking", "a cosmic librarian", "a dream weaver", "a quantum physicist cat", "a sentient AI overlord", "a retired superhero", "the Universe's customer service rep", "a caffeinated unicorn"],
+            magical_event: ["opened a portal to Mordor", "revealed a hidden prophecy", "activated an ancient curse", "unleashed a temporal paradox", "discovered the lost city of Atlantis", "awakened the sleeping dragons", "broke the fourth wall of reality", "found the source code of the universe", "triggered the Great Emoji Shortage of 2024", "decoded the Wi-Fi password of existence"],
+            heroic_deed: ["be there in person", "translate ancient runes", "solve the riddle of existence", "restore balance to the Force", "prevent the apocalypse", "save the multiverse", "decode the meaning of life", "fix a glitch in the matrix", "teach them how to use TikTok", "explain why pineapple belongs on pizza"],
+            mystical_being: ["The Ghost of WiFi Past", "A Committee of Unicorns", "The Department of Lost Socks", "An Oracle of Procrastination", "The Minister of Temporal Affairs", "A Council of Dream Cats", "The Bureau of Cosmic Paperwork", "The Association of Misplaced Car Keys"],
+            portal_action: ["opened a bureaucratic wormhole", "initiated a probability storm", "activated the Confusion Engine", "summoned the Excuse Dimension", "triggered a reality refresh", "launched the Procrastination Protocol", "deployed the Chaos Generator", "enabled Creative Mode in reality"],
+            fantasy_location: ["the Land of Infinite Deadlines", "the Realm of Broken Printers", "the Kingdom of Expired Passwords", "the Dimension of Lost Car Keys", "the Empire of Unanswered Emails", "the Republic of Forgotten Birthdays", "the Nation of Unmatched Socks", "the Universe of Loading Screens"],
+            quest_action: ["had to negotiate peace between warring to-do lists", "needed to rescue trapped inspiration", "was required to feed the anxiety monsters", "had to debug the universe's operating system", "needed to restore the WiFi in Narnia", "was tasked with organizing the cosmic junk drawer", "had to mediate a dispute between past and future selves"],
+            celebrities: ["Elon Musk's evil twin", "A time-traveling Shakespeare", "The ghost of Steve Jobs", "Interdimensional Oprah", "Quantum Stephen Hawking", "Parallel universe Morgan Freeman", "Time-displaced Bob Ross", "Multiverse Gordon Ramsay"],
+            time_events: ["sent a priority message", "opened a temporal support ticket", "initiated an emergency consultation", "activated the Time Crisis Protocol", "deployed the Paradox Prevention Squad", "issued a cosmic warrant", "filed an interdimensional complaint"],
+            time_periods: ["the Renaissance", "the year 3024", "ancient Egypt", "medieval times", "the future where cats rule", "an alternate 1980s where disco never died", "the timeline where vegetables taste like candy", "the dimension where Mondays don't exist"],
+            save_action: ["prevent the invention of Monday mornings", "stop the Great Email Apocalypse of 2087", "save the last remaining attention span", "prevent the universe from running out of coffee", "stop the Great Meme War", "prevent the heat death of creativity"],
+            alien_being: ["The Galactic Procrastination Police", "A Martian productivity consultant", "The Intergalactic Time Management Bureau", "An alien efficiency expert"],
+            abduction_action: ["conducted a mandatory productivity audit", "initiated a creative block scan", "performed a procrastination intervention", "executed a deadline emergency protocol"],
+            time_duration: ["three cosmic seconds", "47 interdimensional minutes", "two galactic hours", "half a space-time continuum"],
+            space_activity: ["teaching aliens the art of creative excuses", "explaining human procrastination habits", "attending the Universal Conference of Justified Delays", "serving as Earth's ambassador to the Department of Reasonable Extensions"],
+            mythical_creature: ["The Mystical Deadline Fairy", "A committee of wise procrastination dragons", "The Ancient Spirit of Creative Blocks", "The Legendary Excuse Phoenix"],
+            dream_action: ["invaded my REM cycle", "hijacked my subconscious productivity center", "possessed my motivation headquarters", "took control of my inspiration network"],
+            magical_quest: ["collect seven scattered motivation crystals", "solve the ancient riddle of work-life balance", "restore the sacred timeline of productivity", "rebuild the cosmic to-do list"],
+            cosmic_balance: ["cosmic work-life balance", "universal productivity equilibrium", "interdimensional deadline harmony", "galactic excuse-reality ratio"],
+            wizard_action: ["A glitch in the productivity matrix", "An interdimensional scheduling conflict", "A temporal deadline displacement"],
+            parallel_dimension: ["the Mirror Universe of Infinite Productivity", "the Realm of Completed To-Do Lists", "the Dimension Where Deadlines Don't Exist"],
+            dimension_quest: ["had to teach them the concept of procrastination", "needed to explain why humans need coffee breaks", "was required to establish diplomatic relations"],
+            ancient_being: ["The Council of Ancient Deadline Keepers", "The Original Inventors of Procrastination", "The Primordial Task Masters"],
+            summoning_action: ["issued an emergency creativity consultation", "demanded my expertise in excuse crafting", "required my unique procrastination skills"],
+            prophecy_fulfillment: ["fulfill the prophecy of the Great Extension Request", "prevent the coming apocalypse of completed tasks", "restore balance to the procrastination force"],
+            supernatural_event: ["A supernatural deadline alignment", "The Great Convergence of All Unfinished Tasks", "An interdimensional productivity audit"],
+            chosen_one_action: ["mysteriously chosen", "cosmically selected", "universally appointed"],
+            world_saving_mission: ["save the world from excessive productivity", "prevent the heat death of creativity", "restore balance to the procrastination universe"],
+            cosmic_entity: ["The Department of Universal Productivity", "The Cosmic Committee of Reasonable Excuses", "The Intergalactic Bureau of Creative Delays", "The Supreme Council of Justified Procrastination"],
+            universal_emergency: ["Code Red Excuse Shortage", "Critical Creativity Crisis", "Interdimensional Deadline Disaster", "Galactic Productivity Panic"],
+            special_role: ["Chief Excuse Quality Inspector", "Ambassador of Creative Delays", "Director of Justified Procrastination", "Senior Consultant of Reasonable Extensions"],
+            interdimensional_being: ["The Keeper of Cosmic Excuses", "A traveling salesman from dimension X", "The CEO of Parallel Universe Inc.", "A tourist from the timeline where everything is backwards"],
+            magical_portal: ["the Emergency Excuse Portal", "a gateway to the Land of Valid Reasons", "the Tunnel of Infinite Extensions", "a doorway to the Dimension of Reasonable Delays"],
+            whimsical_place: ["the Factory Where Excuses Are Made", "the Library of All Possible Reasons", "the Theme Park of Justified Delays", "the University of Creative Procrastination"],
+            ridiculous_mission: ["teach them the ancient art of deadline negotiation", "help them organize their collection of impossible tasks", "assist in the Great Excuse Database Migration", "serve as a translator between humans and their calendars"]
+        };
+        async function generateExcuse(task, context, style, apiKey) {
+            // Check if API key exists and is not empty/whitespace
+            if (apiKey && apiKey.trim() !== '') {
+                // Real AI mode
+                try {
+                    const prompt = `Write a hilariously absurd excuse for not doing this task: "${task}"
+                    ${context ? `Address it to: ${context}` : ''}                    
+                    ${style ? `Make it ${style} themed` : ''}
+                    
+                    Requirements:
+                    - Make it involve fantastical elements like aliens, time travel, mystical creatures, or cosmic events
+                    - Sound believable yet completely ridiculous  
+                    - Be creative and unique
+                    - Keep it under 150 words
+                    - Write it as a complete, natural sentence
+                    - Don't use any placeholder text or variables`;
+
+                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${apiKey}`,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            model: 'gpt-3.5-turbo',
+                            messages: [{ role: 'user', content: prompt }],
+                            max_tokens: 200,
+                            temperature: 0.9
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    const aiExcuse = data.choices[0]?.message?.content?.trim();
+                    
+                    if (!aiExcuse) {
+                        throw new Error('Invalid API response');
+                    }
+                    
+                    return aiExcuse;
+                    
+                } catch (error) {
+                    console.log('AI generation failed, falling back to classic mode:', error);
+                    // Fall back to classic mode silently
+                    return generateClassicExcuse(task, context, style);
+                }
+            } else {
+                // Classic template mode (when no API key provided)
+                return generateClassicExcuse(task, context, style);
+            }
+        }
+
+        // Enhanced classic excuse generation with better error handling
+        function generateClassicExcuse(task, context, style) {
+            try {
+                // Ensure task is not empty
+                const taskText = task && task.trim() ? task.trim() : "that important thing";
+                
+                let template = getRandomElement(excuseTemplates);
+                
+                // Replace placeholders with random elements - with error handling
+                Object.keys(wordLists).forEach(category => {
+                    const regex = new RegExp(`{${category}}`, 'g');
+                    if (wordLists[category] && wordLists[category].length > 0) {
+                        template = template.replace(regex, getRandomElement(wordLists[category]));
+                    } else {
+                        // Fallback if wordList category is empty
+                        template = template.replace(regex, `mysterious ${category}`);
+                    }
+                });
+                
+                // Replace task placeholder
+                template = template.replace(/{task}/g, taskText);
+                
+                // Add context-specific intro if provided
+                let finalExcuse = template;
+                if (context && context.trim()) {
+                    const contextIntros = [
+                        `Hey ${context}, `,
+                        `${context}, I need to explain something: `,
+                        `${context}, you're not going to believe this but `,
+                        `Listen ${context}, `,
+                        `${context}, I have a perfectly reasonable explanation: `,
+                        `Dear ${context}, `,
+                        `${context}, prepare yourself for this: `
+                    ];
+                    finalExcuse = getRandomElement(contextIntros) + template.toLowerCase();
+                }
+                
+                // Add style influence if provided
+                if (style && style.trim()) {
+                    const styleEndings = [
+                        ` It was very ${style.toLowerCase()}.`,
+                        ` The whole thing had a distinctly ${style.toLowerCase()} vibe.`,
+                        ` I know it sounds ${style.toLowerCase()}, but I swear it happened.`,
+                        ` Trust me, the ${style.toLowerCase()} elements made it impossible to refuse.`,
+                        ` You know how ${style.toLowerCase()} situations can be.`,
+                        ` It was like something out of a ${style.toLowerCase()} movie.`
+                    ];
+                    finalExcuse += getRandomElement(styleEndings);
+                }
+                
+                // Add random emoji occasionally
+                if (Math.random() > 0.7) {
+                    const randomEmojis = ['✨', '🌟', '🎭', '🚀', '🔮', '🎪'];
+                    finalExcuse += ' ' + getRandomElement(randomEmojis);
+                }
+                
+                return finalExcuse;
+                
+            } catch (error) {
+                console.error('Classic excuse generation failed:', error);
+                // Ultimate fallback
+                const fallbackExcuses = [
+                    "I was abducted by aliens who needed help with their taxes.",
+                    "A time-traveling cat stole my motivation and hid it in the 12th century.",
+                    "The Department of Universal Productivity issued a mandatory creativity break.",
+                    "I got lost in the Bermuda Triangle of procrastination.",
+                    "A wizard turned my to-do list into a magic 8-ball and it only said 'Try again later'."
+                ];
+                return getRandomElement(fallbackExcuses);
+            }
+        }
+
+        // Form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('excuseForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const task = document.getElementById('task').value;
+                    const context = document.getElementById('context').value;
+                    const style = document.getElementById('style').value;
+                    const apiKey = document.getElementById('apiKey').value;
+                    
+                    if (!task.trim()) {
+                        alert('Please enter what you procrastinated on!');
+                        return;
+                    }
+                    
+                    // Show loading
+                    const generateBtn = document.getElementById('generateBtn');
+                    const loading = document.getElementById('loading');
+                    const excuseOutput = document.getElementById('excuseOutput');
+                    
+                    if (generateBtn) generateBtn.disabled = true;
+                    if (loading) loading.style.display = 'block';
+                    if (excuseOutput) excuseOutput.style.display = 'none';
+                    
+                    // Update loading message based on mode
+                    const loadingText = (apiKey && apiKey.trim()) ? 
+                        '🤖 Consulting the AI overlords...' : 
+                        '🔮 Consulting the dream realm...';
+                    document.querySelector('#loading p').textContent = loadingText;
+                    
+                    try {
+                        const excuse = await generateExcuse(task, context, style, apiKey);
+                        
+                        document.getElementById('excuseText').textContent = excuse;
+                        if (loading) loading.style.display = 'none';
+                        if (excuseOutput) excuseOutput.style.display = 'block';
+                        
+                        // Scroll to result
+                        if (excuseOutput) excuseOutput.scrollIntoView({ behavior: 'smooth' });
+                        
+                    } catch (error) {
+                        console.error('Complete excuse generation failed:', error);
+                        if (loading) loading.style.display = 'none';
+                        
+                        // Show a fun error message instead of alert
+                        const excuseTextElement = document.getElementById('excuseText');
+                        if (excuseTextElement) {
+                            excuseTextElement.textContent = 
+                                "Even my excuse generator needs an excuse right now - it seems to be stuck in an interdimensional debugging loop! 🤖💫";
+                        }
+                        if (excuseOutput) excuseOutput.style.display = 'block';
+                        
+                    } finally {
+                        if (generateBtn) generateBtn.disabled = false;
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyBtn = document.getElementById('copyBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    const excuseTextElement = document.getElementById('excuseText');
+                    if (excuseTextElement) {
+                        const excuseText = excuseTextElement.textContent;
+                        navigator.clipboard.writeText(excuseText).then(() => {
+                            this.textContent = '✅ Copied! Ready to use!';
+                            setTimeout(() => {
+                                this.textContent = '📋 Copy Excuse';
+                            }, 3000);
+                        }).catch(err => {
+                            console.error('Failed to copy text: ', err);
+                            alert('Failed to copy excuse. Please copy manually.');
+                        });
+                    }
+                });
+            }
+        });
+
+        // Add some fun interactions
+        document.addEventListener('click', function(e) {
+            if (Math.random() > 0.8) {
+                createTemporaryEmoji(e.clientX, e.clientY);
+            }
+        });
+
+        function createTemporaryEmoji(x, y) {
+            const emoji = document.createElement('div');
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.position = 'fixed';
+            emoji.style.left = x + 'px';
+            emoji.style.top = y + 'px';
+            emoji.style.fontSize = '20px';
+            emoji.style.pointerEvents = 'none';
+            emoji.style.zIndex = '9999';
+            emoji.style.animation = 'fadeOut 1s forwards';
+            
+            document.body.appendChild(emoji);
+            
+            setTimeout(() => {
+                if (emoji.parentNode) {
+                    emoji.parentNode.removeChild(emoji);
+                }
+            }, 1000);
+        }
+
+        // Add fadeOut animation style if not already present
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!document.getElementById('fadeOutStyle')) {
+                const styleElement = document.createElement('style');
+                styleElement.id = 'fadeOutStyle';
+                styleElement.textContent = `
+                    @keyframes fadeOut {
+                        0% { opacity: 1; transform: translateY(0); }
+                        100% { opacity: 0; transform: translateY(-50px); }
+                    }
+                `;
+                document.head.appendChild(styleElement);
+            }
+        });
+    </script>
+</body>
+</html>

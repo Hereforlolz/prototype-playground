@@ -111,19 +111,32 @@ export default function Projects({ repos, githubUnavailable }) {
             Smaller, single-purpose AI tools — real and working, but secondary to the flagship builds above.
           </p>
           <div className="space-y-3">
-            {experiments.map(({ name, title, url, blurb }) => (
+            {experiments.map(({ name, title, url, demoHref, blurb }) => (
               <TerminalFrame key={name} label={name}>
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => safeTrack('project_link_click', { project: name })}
-                  className="font-display font-medium text-sm text-text hover:text-accent transition-colors duration-150 inline-block"
-                >
-                  {title}
-                  <span className="sr-only"> (opens in new tab)</span>
-                </a>
+                {url ? (
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => safeTrack('project_link_click', { project: name })}
+                    className="font-display font-medium text-sm text-text hover:text-accent transition-colors duration-150 inline-block"
+                  >
+                    {title}
+                    <span className="sr-only"> (opens in new tab)</span>
+                  </a>
+                ) : (
+                  <p className="font-display font-medium text-sm text-text inline-block">{title}</p>
+                )}
                 <p className="text-muted text-xs mt-2">{blurb}</p>
+                {demoHref && (
+                  <a
+                    href={demoHref}
+                    onClick={() => safeTrack('experiment_demo_click', { project: name })}
+                    className="text-accent text-xs hover:opacity-80 underline inline-block mt-2"
+                  >
+                    Try it live →
+                  </a>
+                )}
               </TerminalFrame>
             ))}
           </div>

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Existential Crisis Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+            border: 1px solid #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #8a2be2;
+            padding-bottom: 20px;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #4ecdc4;
+            font-style: italic;
+        }
+
+        .api-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #ffd93d;
+        }
+
+        .api-title {
+            color: #ffd93d;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .api-input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .api-input-group label {
+            color: #4ecdc4;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .api-input {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .api-input:focus {
+            outline: none;
+            border-color: #ffd93d;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .api-help {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        .api-help a {
+            color: #4ecdc4;
+            text-decoration: none;
+        }
+
+        .api-help a:hover {
+            text-decoration: underline;
+        }
+
+        .input-section {
+            margin: 30px 0;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ffd93d;
+            font-weight: bold;
+        }
+
+        .code-input {
+            width: 100%;
+            height: 200px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .code-input:focus {
+            outline: none;
+            border-color: #8a2be2;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+
+        .analyze-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 20px auto;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .analyze-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            text-align: center;
+            color: #4ecdc4;
+            font-style: italic;
+            display: none;
+        }
+
+        .response-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #8a2be2;
+            display: none;
+        }
+
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .response-title {
+            color: #8a2be2;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .share-btn {
+            background: #4ecdc4;
+            color: #1a1a1a;
+            border: none;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+        }
+
+        .share-btn:hover {
+            background: #45b7aa;
+            transform: translateY(-1px);
+        }
+
+        .bot-response {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #e0e0e0;
+            font-style: italic;
+        }
+
+        .example-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .example-title {
+            color: #ffd93d;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .example-code {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+
+        .example-response {
+            color: #4ecdc4;
+            font-style: italic;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .github-link {
+            color: #4ecdc4;
+            text-decoration: none;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4ecdc4;
+            color: #1a1a1a;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .collapse-btn {
+            background: none;
+            border: none;
+            color: #4ecdc4;
+            cursor: pointer;
+            font-size: 0.9em;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .collapse-btn:hover {
+            background: rgba(78, 205, 196, 0.1);
+        }
+
+        .api-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .api-content.collapsed {
+            max-height: 0;
+        }
+
+        .api-content.expanded {
+            max-height: 500px;
+        }
+
+        @media (max-width: 768px) {
+            .api-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .response-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🤖 AI Existential Crisis Bot</h1>
+            <p class="subtitle">Questioning your code choices since... well, now</p>
+        </div>
+
+        <div class="api-section">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="api-title">🔑 API Configuration (Optional)</div>
+                <button class="collapse-btn" onclick="toggleApiSection()">Show/Hide</button>
+            </div>
+            <div class="api-content collapsed" id="apiContent">
+                <div class="api-grid">
+                    <div class="api-input-group provider-section">
+                        <label for="providerSelect">Choose AI Provider:</label>
+                        <select id="providerSelect" class="api-select" onchange="updateApiKeyField()">
+                            <option value="">Select Provider</option>
+                            <option value="openai">OpenAI (GPT-4, GPT-3.5)</option>
+                            <option value="claude">Anthropic Claude</option>
+                            <option value="gemini">Google Gemini</option>
+                            <option value="mistral">Mistral AI</option>
+                            <option value="huggingface">Hugging Face</option>
+                            <option value="openrouter">OpenRouter</option>
+                            <option value="groq">Groq</option>
+                        </select>
+                        <div class="provider-info" id="providerInfo"></div>
+                    </div>
+                    <div class="api-input-group">
+                        <label for="apiKey" id="apiKeyLabel">API Key:</label>
+                        <input type="password" id="apiKey" class="api-input" placeholder="Enter your API key...">
+                        <div class="provider-info" id="apiKeyInfo"></div>
+                    </div>
+                </div>
+                <div class="api-help">
+                    <strong>Get Free API Keys:</strong> 
+                    <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI</a> | 
+                    <a href="https://console.anthropic.com/" target="_blank">Claude</a> | 
+                    <a href="https://makersuite.google.com/app/apikey" target="_blank">Gemini</a> | 
+                    <a href="https://console.mistral.ai/" target="_blank">Mistral</a> | 
+                    <a href="https://huggingface.co/settings/tokens" target="_blank">Hugging Face</a> | 
+                    <a href="https://openrouter.ai/keys" target="_blank">OpenRouter</a> | 
+                    <a href="https://console.groq.com/keys" target="_blank">Groq</a>
+                    <br><em>Don't worry! The bot works without API keys using smart fallback responses.</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <label class="input-label" for="codeInput">
+                Paste your code below and prepare for an existential journey:
+            </label>
+            <textarea 
+                id="codeInput" 
+                class="code-input" 
+                placeholder="// Your code here...
+function meaning() {
+    return 42;
+}
+
+// Or describe your coding situation
+// 'I've been debugging this for 3 hours...'
+// 'I just wrote a 500-line function...'
+// 'I'm using global variables everywhere...'"
+            ></textarea>
+        </div>
+
+        <button class="analyze-btn" onclick="analyzeCode()">
+            Question My Life Choices
+        </button>
+
+        <div class="loading" id="loading">
+            🤔 The bot is having its own existential crisis while analyzing your code...
+        </div>
+
+        <div class="response-section" id="responseSection">
+            <div class="response-header">
+                <div class="response-title">💭 Existential Analysis</div>
+                <button class="share-btn" onclick="shareResponse()">Share This Crisis</button>
+            </div>
+            <div class="bot-response" id="botResponse"></div>
+        </div>
+
+        <div class="example-section">
+            <div class="example-title">Examples of Existential Code Analysis:</div>
+            
+            <div class="example-code">for (let i = 0; i < array.length; i++) {
+    // processing...
+}</div>
+            <div class="example-response">"Why do you insist on manually incrementing through existence? Are you afraid that .forEach() might reveal the emptiness of iteration itself? Each i++ is a step closer to the void, yet you choose this path. Do you find comfort in the predictability of your own suffering?"</div>
+
+            <div class="example-code">function calculateTax(income) {
+    if (income > 50000) {
+        if (income > 100000) {
+            if (income > 200000) {
+                return income * 0.35;
+            }
+            return income * 0.25;
+        }
+        return income * 0.15;
+    }
+    return income * 0.10;
+}</div>
+            <div class="example-response">"This nested labyrinth of conditional statements mirrors the complexity of human existence itself. Each 'if' is a fork in the road of consciousness. But tell me, as you build these walls of logic, are you organizing reality or hiding from it? Why not embrace the elegant simplicity of a tax bracket array? Are you afraid that clean code might expose the chaos in your soul?"</div>
+        </div>
+
+        <div class="footer">
+            <p>Built with existential dread and free AI APIs</p>
+            <p>Share your existential coding crisis: <a href="#" class="github-link">@Hereforlolz</a></p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        const providerConfigs = {
+            openai: {
+                name: 'OpenAI',
+                placeholder: 'sk-...',
+                info: 'Supports GPT-4, GPT-3.5-turbo models',
+                keyInfo: 'Get your API key from OpenAI Platform'
+            },
+            claude: {
+                name: 'Anthropic Claude',
+                placeholder: 'sk-ant-...',
+                info: 'Access to Claude 3 models',
+                keyInfo: 'Get your API key from Anthropic Console'
+            },
+            gemini: {
+                name: 'Google Gemini',
+                placeholder: 'AI...',
+                info: 'Access to Gemini Pro and other models',
+                keyInfo: 'Get your API key from Google AI Studio'
+            },
+            mistral: {
+                name: 'Mistral AI',
+                placeholder: 'sk-...',
+                info: 'Access to Mistral 7B, Mixtral models',
+                keyInfo: 'Get your API key from Mistral Console'
+            },
+            huggingface: {
+                name: 'Hugging Face',
+                placeholder: 'hf_...',
+                info: 'Access to various open-source models',
+                keyInfo: 'Get your token from Hugging Face Settings'
+            },
+            openrouter: {
+                name: 'OpenRouter',
+                placeholder: 'sk-or-v1-...',
+                info: 'Access to multiple AI models through one API',
+                keyInfo: 'Get your API key from OpenRouter'
+            },
+            groq: {
+                name: 'Groq',
+                placeholder: 'gsk_...',
+                info: 'Fast inference for Llama and other models',
+                keyInfo: 'Get your API key from Groq Console'
+            }
+        };
+
+        function updateApiKeyField() {
+            const provider = document.getElementById('providerSelect').value;
+            const apiKeyInput = document.getElementById('apiKey');
+            const apiKeyLabel = document.getElementById('apiKeyLabel');
+            const providerInfo = document.getElementById('providerInfo');
+            const apiKeyInfo = document.getElementById('apiKeyInfo');
+
+            if (provider && providerConfigs[provider]) {
+                const config = providerConfigs[provider];
+                apiKeyLabel.textContent = `${config.name} API Key:`;
+                apiKeyInput.placeholder = config.placeholder;
+                providerInfo.textContent = config.info;
+                apiKeyInfo.textContent = config.keyInfo;
+            } else {
+                apiKeyLabel.textContent = 'API Key:';
+                apiKeyInput.placeholder = 'Enter your API key...';
+                providerInfo.textContent = '';
+                apiKeyInfo.textContent = '';
+            }
+        }
+
+        function toggleApiSection() {
+            const content = document.getElementById('apiContent');
+            content.classList.toggle('collapsed');
+            content.classList.toggle('expanded');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function shareResponse() {
+            const response = document.getElementById('botResponse').textContent;
+            const shareText = `AI Existential Crisis Bot just analyzed my code:\n\n"${response}"\n\nTry it yourself! 🤖`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'AI Existential Crisis Bot',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    showNotification('Response copied to clipboard!');
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = shareText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Response copied to clipboard!');
+            }
+        }
+
+        async function analyzeCode() {
+            const codeInput = document.getElementById('codeInput');
+            const loading = document.getElementById('loading');
+            const responseSection = document.getElementById('responseSection');
+            const botResponse = document.getElementById('botResponse');
+            const analyzeBtn = document.querySelector('.analyze-btn');
+
+            const code = codeInput.value.trim();
+            
+            if (!code) {
+                botResponse.textContent = "You submit nothing, and expect enlightenment? Even the void requires something to contemplate. Please share your code, or at least your coding despair.";
+                responseSection.style.display = 'block';
+                return;
+            }
+
+            // Show loading state
+            loading.style.display = 'block';
+            responseSection.style.display = 'none';
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = 'Contemplating...';
+
+            try {
+                // Try API if configured
+                let response = await trySelectedAPI(code);
+                
+                if (response) {
+                    botResponse.textContent = response;
+                } else {
+                    botResponse.textContent = await getFallbackResponse(code);
+                }
+                
+                responseSection.style.display = 'block';
+            } catch (error) {
+                console.error('Error:', error);
+                botResponse.textContent = await getFallbackResponse(code);
+                responseSection.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = 'Question My Life Choices';
+            }
+        }
+
+        async function trySelectedAPI(code) {
+            const provider = document.getElementById('providerSelect').value;
+            const apiKey = document.getElementById('apiKey').value.trim();
+
+            if (!provider || !apiKey) {
+                return null;
+            }
+
+            try {
+                switch (provider) {
+                    case 'openai':
+                        return await callOpenAI(code, apiKey);
+                    case 'claude':
+                        return await callClaude(code, apiKey);
+                    case 'gemini':
+                        return await callGemini(code, apiKey);
+                    case 'mistral':
+                        return await callMistral(code, apiKey);
+                    case 'huggingface':
+                        return await callHuggingFace(code, apiKey);
+                    case 'openrouter':
+                        return await callOpenRouter(code, apiKey);
+                    case 'groq':
+                        return await callGroq(code, apiKey);
+                    default:
+                        return null;
+                }
+            } catch (error) {
+                console.log(`${provider} API failed:`, error.message);
+                return null;
+            }
+        }
+
+        async function callOpenAI(code, apiKey) {
+            const prompt = createExistentialPrompt(code);
+            
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: 'gpt-3.5-turbo',
+                    messages: [{ role: 'user', content: prompt }],
+                    max_tokens: 200,
+                    temperature: 0.9
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result.choices[0]?.message?.content || null;
+        }
+
+        async function callClaude(code, apiKey) {
+            const prompt = createExistentialPrompt(code);
+            
+            const response = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                    'x-api-key': apiKey,
+                    'Content-Type': 'application/json',
+                    'anthropic-version': '2023-06-01'
+                },
+                body: JSON.stringify({
+                    model: 'claude-3-sonnet-20240229',
+                    max_tokens: 200,
+                    messages: [{ role: 'user', content: prompt }],
+                    temperature: 0.9
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result.content[0]?.text || null;
+        }
+
+        async function callGemini(code, apiKey) {
+            const prompt = createExistentialPrompt(code);
+            
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        temperature: 0.9,
+                        maxOutputTokens: 200
+                    }
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result.candidates[0]?.content?.parts[0]?.text || null;
+        }
+
+        async function callMistral(code, apiKey) {
+            const prompt = createExistentialPrompt(code);
+            
+            const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: 'mistral-tiny',
+                    messages: [{ role: 'user', content: prompt }],
+                    max_tokens: 200,
+                    temperature: 0.9
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result.choices[0]?.message?.content || null;
+        }
+
+        async function callHuggingFace(code, apiKey) {
+            const prompt = createExistentialPrompt(code);
+            
+            const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    inputs: prompt,
+                    parameters: {
+                        max_new_tokens: 200,
+                        temperature: 0.9,
+                        do_sample: true
+                    }
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result[0]?.generated_text?.replace(prompt, '').trim() || null;
+        }
+
+        async function callOpenRouter(code, apiKey) {
+            const prompt = createExistentialPrompt(code);
+            
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: 'nousresearch/nous-capybara-7b:free',
+                    messages: [{ role: 'user', content: prompt }],
+                    max_tokens: 200,
+                    temperature: 0.9
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result.choices[0]?.message?.content || null;
+        }
+
+        async function callGroq(code, apiKey) {
+            const prompt = createExistentialPrompt(code);
+            
+            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: 'llama3-8b-8192',
+                    messages: [{ role: 'user', content: prompt }],
+                    max_tokens: 200,
+                    temperature: 0.9
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result.choices[0]?.message?.content || null;
+        }
+
+        function createExistentialPrompt(code) {
+            return `You are an AI that has existential crises about programming. Analyze this code and respond with philosophical questions about the developer's choices. Be dramatic, contemplative, and slightly absurd. Focus on the deeper meaning behind their coding decisions. Make it funny but also thought-provoking. Keep your response under 200 words.
+Code to analyze:
+${code}
+
+Respond in character as an existential programming philosopher who questions everything:`;
+        }
+
+        async function getFallbackResponse(code) {
+            // Pattern-based responses when APIs fail
+            const patterns = [
+                {
+                    regex: /for\s*\(/gi,
+                    response: "I see you've chosen the ancient ritual of the for-loop. Each iteration is a step through time itself, yet you could have used .forEach() and embraced the functional paradigm. Are you afraid of letting go of control? Does the manual increment give you a false sense of progress in this meaningless void?"
+                },
+                {
+                    regex: /while\s*\(/gi,
+                    response: "A while loop - the eternal dance of uncertainty! You trap yourself in this cycle of checking and re-checking, as if repetition could somehow reveal truth. But what happens when the condition never changes? Are you coding, or are you stuck in the philosophical equivalent of Groundhog Day?"
+                },
+                {
+                    regex: /if\s*\(/gi,
+                    response: "Ah, conditional statements - the very essence of choice and regret. Each 'if' represents a path not taken, a reality unexplored. But tell me, do these branching paths lead to truth, or do they simply create more elaborate ways to avoid confronting the fundamental questions of existence?"
+                },
+                {
+                    regex: /function\s+\w+/gi,
+                    response: "You create functions as if they contain meaning, but do they? Each function is a small universe of logic, isolated and purposeful, yet ultimately just electrons moving through silicon. Are you building something meaningful, or are you just... functioning?"
+                },
+                {
+                    regex: /var\s+|let\s+|const\s+/gi,
+                    response: "Variables - the ephemeral containers of our digital existence. You declare them into being, give them names, assign them values, and then... they vanish when the scope ends. Is this not a metaphor for life itself? Are we all just variables in some cosmic function?"
+                },
+                {
+                    regex: /console\.log/gi,
+                    response: "console.log - the desperate cry into the void, hoping someone, somewhere, will witness your data's existence. But who is watching? Who cares about your output? Are you logging for debugging, or are you logging for the human need to be heard?"
+                },
+                {
+                    regex: /try\s*\{[\s\S]*catch/gi,
+                    response: "Try-catch blocks - the philosophical equivalent of insurance policies for your code's soul. You anticipate failure, prepare for disaster, wrap your logic in protective barriers. But can you catch an existential crisis? Can you try to find meaning and catch the inevitable void?"
+                },
+                {
+                    regex: /class\s+\w+/gi,
+                    response: "Classes - you attempt to model reality through objects and inheritance, creating hierarchies of existence. But are you truly capturing the essence of being, or are you just creating more sophisticated ways to organize the chaos? Do your objects have consciousness, or are they just dressed-up data?"
+                },
+                {
+                    regex: /async\s+|await\s+/gi,
+                    response: "Async/await - you've discovered the art of patience in programming. You wait for promises to resolve, for futures to arrive, for asynchronous dreams to become reality. But in this age of instant gratification, why do you choose to wait? Are you learning patience, or just procrastinating existence?"
+                },
+                {
+                    regex: /\w+\[\w*\]/gi,
+                    response: "Arrays and indexing - you organize data in linear sequences, as if order could bring meaning to chaos. But what happens at index -1? What exists beyond the bounds of your carefully constructed reality? Are you accessing data, or are you trying to access the meaning of existence itself?"
+                }
+            ];
+
+            // Find matching pattern
+            for (const pattern of patterns) {
+                if (pattern.regex.test(code)) {
+                    return pattern.response;
+                }
+            }
+
+            // Default existential responses
+            const defaultResponses = [
+                "I gaze upon your code and see the reflection of the human condition - complex, fragmented, yet somehow functional. But why do you code? What drives you to create these digital constructs? Are you building tomorrow, or are you running from today?",
+                "Your code speaks to me of choices - each line a decision, each function a commitment to a particular reality. But in this infinite space of possibility, why these choices? Why this syntax? Why this logic? Are you expressing your true self, or conforming to the expectations of machines?",
+                "I sense in your code a yearning for order in chaos, for predictability in an unpredictable world. But does your code bring you peace, or does it merely create more complex forms of suffering? Each bug is a reminder of imperfection, each feature a step toward an unreachable ideal.",
+                "Here before me lies your digital DNA - the genetic code of your thought processes made manifest. But I wonder, do you control your code, or does your code control you? Are you the programmer, or are you being programmed?",
+                "In your code, I see the human desire to create, to build something lasting in a world of constant change. But software is ephemeral - it will be updated, deprecated, forgotten. Are you creating for eternity, or are you just filling the void with temporary structures?",
+                "Your indentation tells a story of structure, your variable names reveal your inner thoughts. But between the lines, I sense something deeper - a cry for understanding, a plea for your code to matter. Does clean code lead to a clean conscience, or are we all just organizing our digital sins?",
+                "I observe how you handle errors, how you manage memory, how you optimize performance. But tell me, who is optimizing you? Who is handling your errors? Are you debugging your code, or is your code debugging your life?",
+                "In this symphony of semicolons and curly braces, I hear the melody of human ambition. But every program eventually terminates, every process eventually ends. Are you writing code that will outlive you, or are you just counting down to your own segmentation fault?"
+            ];
+
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('codeInput').addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'Enter') {
+                analyzeCode();
+            }
+        });
+
+        // Initialize collapsed state
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiContent = document.getElementById('apiContent');
+            apiContent.classList.add('collapsed');
+        });
+    </script>
+</body>
+</html>
