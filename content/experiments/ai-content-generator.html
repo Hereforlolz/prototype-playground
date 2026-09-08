@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Content Generator</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #0f1115;
+        color: #e8e8ec;
+        min-height: 100vh;
+        padding: 48px 20px 80px;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 2rem; margin-bottom: 6px; }
+    .tagline { color: #9a9ab0; margin-bottom: 32px; }
+    .grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    .panel {
+        background: #171a21;
+        border: 1px solid #2a2e3a;
+        border-radius: 10px;
+        padding: 22px;
+    }
+    label { display: block; font-size: 0.85rem; color: #9a9ab0; margin: 14px 0 6px; }
+    label:first-child { margin-top: 0; }
+    input[type="text"], input[type="password"], select, textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #2a2e3a;
+        background: #10121a;
+        color: #e8e8ec;
+        font-size: 0.9rem;
+        font-family: inherit;
+    }
+    textarea { resize: vertical; }
+    .hint { font-size: 0.78rem; color: #6f6f85; margin-top: 4px; }
+    .hint a { color: #7c8cff; }
+    .template-desc {
+        font-size: 0.82rem;
+        color: #9ab0ff;
+        background: #131a2e;
+        padding: 8px 10px;
+        border-radius: 6px;
+        margin-top: 6px;
+    }
+    button.generate {
+        margin-top: 18px;
+        width: 100%;
+        padding: 13px;
+        border-radius: 8px;
+        border: none;
+        background: #4a5cff;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    button.generate:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.generate:hover:not(:disabled) { background: #3849e6; }
+    .status { margin-top: 12px; font-size: 0.85rem; padding: 10px 12px; border-radius: 8px; display: none; }
+    .status.error { background: #3a1a1a; color: #ff9a9a; display: block; }
+    .status.loading { background: #1a2038; color: #9ab0ff; display: block; }
+    #output {
+        min-height: 200px;
+        white-space: pre-wrap;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: #d5d5e0;
+    }
+    #output:empty::before {
+        content: 'Generated content will show up here.';
+        color: #52526a;
+    }
+    .output-meta {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid #2a2e3a;
+        font-size: 0.78rem;
+        color: #6f6f85;
+    }
+    .output-meta code {
+        display: block;
+        margin-top: 6px;
+        background: #10121a;
+        padding: 10px;
+        border-radius: 6px;
+        color: #9ab0ff;
+        white-space: pre-wrap;
+    }
+    .copy-btn {
+        margin-top: 12px;
+        padding: 7px 14px;
+        border-radius: 6px;
+        border: 1px solid #2a2e3a;
+        background: #10121a;
+        color: #c7c7d9;
+        cursor: pointer;
+        font-size: 0.8rem;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1>📝 AI Content Generator</h1>
+    <p class="tagline">Blog posts, social copy, email campaigns, and product descriptions from templates — or your choice of live AI provider.</p>
+
+    <div class="grid">
+        <div class="panel">
+            <label for="providerSelect">AI Provider</label>
+            <select id="providerSelect" onchange="onProviderChange()">
+                <option value="mock">Mock (free, no key needed)</option>
+                <option value="openai">OpenAI</option>
+                <option value="claude">Anthropic Claude</option>
+                <option value="gemini">Google Gemini</option>
+                <option value="huggingface-gpt2">Hugging Face — GPT-2</option>
+                <option value="huggingface-flan-t5">Hugging Face — Flan-T5</option>
+            </select>
+
+            <div id="apiKeyGroup" style="display:none;">
+                <label for="apiKey" id="apiKeyLabel">API Key</label>
+                <input type="password" id="apiKey" placeholder="Enter your API key">
+                <p class="hint" id="apiKeyHint"></p>
+            </div>
+
+            <label for="templateSelect">Content Type</label>
+            <select id="templateSelect" onchange="onTemplateChange()">
+                <option value="Blog Post">Blog Post</option>
+                <option value="Social Media">Social Media</option>
+                <option value="Email Marketing">Email Marketing</option>
+                <option value="Product Description">Product Description</option>
+            </select>
+            <p class="template-desc" id="templateDesc"></p>
+
+            <div id="dynamicInputs"></div>
+
+            <button class="generate" id="generateBtn" onclick="generateContent()">🎯 Generate Content</button>
+            <div class="status" id="status"></div>
+        </div>
+
+        <div class="panel">
+            <h3 style="font-size:1rem; margin-bottom:12px;">📄 Generated Content</h3>
+            <div id="output"></div>
+            <button class="copy-btn" id="copyBtn" style="display:none;" onclick="copyOutput()">📋 Copy</button>
+            <div class="output-meta" id="outputMeta" style="display:none;">
+                <strong>What just happened:</strong>
+                <code id="whatHappened"></code>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ---- Ported verbatim from clone-jasper.py's MOCK_RESPONSES ----
+    const MOCK_RESPONSES = {
+        blog_post: [
+            "# The Future of {topic}\n\n{topic} is revolutionizing the way we think about {industry}. With cutting-edge innovation and groundbreaking technology, {topic} offers unprecedented opportunities for growth and success.\n\n## Why {topic} Matters\n\nIn today's fast-paced digital landscape, {topic} has emerged as a game-changer. Companies that embrace {topic} are seeing remarkable results:\n\n- Increased efficiency by 300%\n- Enhanced customer satisfaction\n- Streamlined operations\n- Competitive advantage\n\n## The Bottom Line\n\n{topic} isn't just a trend—it's the future. Don't get left behind in the {industry} revolution.",
+            "# Unlocking the Power of {topic}\n\nDiscover how {topic} is transforming the {industry} landscape. From startups to Fortune 500 companies, everyone is talking about {topic}.\n\n## The {topic} Revolution\n\n{topic} represents a paradigm shift in how we approach {industry}. This innovative solution delivers:\n\n✅ Seamless integration\n✅ Scalable architecture\n✅ Real-time analytics\n✅ Cost-effective implementation\n\n## Ready to Get Started?\n\nThe {topic} opportunity won't wait. Join thousands of industry leaders who are already leveraging {topic} to drive unprecedented growth.",
+        ],
+        social_media: [
+            "🚀 Ready to transform your {industry} game? {topic} is the secret weapon top companies use to stay ahead!\n\n#Innovation #Growth #Success",
+            "💡 Hot take: {topic} isn't just changing {industry}—it's completely revolutionizing it.\n\nWhat's your experience with {topic}? Drop your thoughts below! 👇",
+            "🔥 BREAKING: {topic} just hit a new milestone!\n\nThis is exactly why smart {industry} leaders are investing in {topic} NOW.\n\nDon't miss out on the {topic} revolution! 🚀",
+        ],
+        email_marketing: [
+            "Subject: Don't Miss Out on the {topic} Revolution!\n\nHey there,\n\nHave you heard about {topic}? It's completely transforming the {industry} space, and I didn't want you to miss out.\n\nHere's what makes {topic} so special:\n• Saves you 10+ hours per week\n• Increases ROI by 250%\n• Trusted by 50,000+ professionals\n\nReady to experience {topic} for yourself?\n\n[Get Started Today]\n\nBest regards,\nThe {topic} Team",
+            "Subject: Your {industry} Success Starts Here\n\nHi there,\n\nStruggling with {industry} challenges? You're not alone.\n\nThat's exactly why we created {topic}—to help professionals like you achieve breakthrough results.\n\n✅ Proven results in 30 days\n✅ No technical expertise required\n✅ 24/7 support included\n\nJoin thousands who've already transformed their {industry} approach with {topic}.\n\n[Start Your Journey]\n\nCheers,\nYour {topic} Team",
+        ],
+        product_description: [
+            "Introducing {topic}—the game-changing solution that's revolutionizing {industry}.\n\nDesigned for modern professionals who demand excellence, {topic} combines cutting-edge technology with user-friendly design to deliver unprecedented results.\n\n🌟 KEY FEATURES:\n{features}\n\nWhether you're a startup founder or Fortune 500 executive, {topic} adapts to your unique needs and scales with your success.\n\nReady to experience the future of {industry}? Try {topic} today!",
+            "Meet {topic}: Your Secret Weapon for {industry} Success\n\nTired of outdated {industry} solutions? {topic} is here to change everything.\n\nPowerful yet simple, {topic} delivers:\n{features}\n\nJoin the {topic} revolution and discover why industry leaders choose us over the competition.",
+        ],
+    };
+
+    // ---- Ported from clone-jasper.py's TEMPLATES ----
+    const TEMPLATES = {
+        'Blog Post': { description: 'SEO-optimized blog posts that drive traffic', inputs: ['topic', 'industry'], mockKey: 'blog_post' },
+        'Social Media': { description: 'Viral social media posts that boost engagement', inputs: ['topic', 'industry'], mockKey: 'social_media' },
+        'Email Marketing': { description: 'High-converting email campaigns', inputs: ['topic', 'industry'], mockKey: 'email_marketing' },
+        'Product Description': { description: 'Compelling product descriptions that sell', inputs: ['topic', 'industry', 'features'], mockKey: 'product_description' },
+    };
+
+    const PROVIDER_INFO = {
+        openai: { label: 'OpenAI API Key', hint: 'Get a free key at platform.openai.com/api-keys', url: 'https://platform.openai.com/api-keys' },
+        claude: { label: 'Anthropic Claude API Key', hint: 'Get a free key at console.anthropic.com', url: 'https://console.anthropic.com/' },
+        gemini: { label: 'Google Gemini API Key', hint: 'Get a free key at aistudio.google.com/apikey', url: 'https://aistudio.google.com/apikey' },
+        'huggingface-gpt2': { label: 'Hugging Face API Key', hint: 'Get a free key at huggingface.co/settings/tokens', url: 'https://huggingface.co/settings/tokens' },
+        'huggingface-flan-t5': { label: 'Hugging Face API Key', hint: 'Get a free key at huggingface.co/settings/tokens', url: 'https://huggingface.co/settings/tokens' },
+    };
+
+    function onProviderChange() {
+        const provider = document.getElementById('providerSelect').value;
+        const group = document.getElementById('apiKeyGroup');
+        if (provider === 'mock') {
+            group.style.display = 'none';
+            return;
+        }
+        group.style.display = 'block';
+        const info = PROVIDER_INFO[provider];
+        document.getElementById('apiKeyLabel').textContent = info.label;
+        document.getElementById('apiKeyHint').innerHTML = `${info.hint} — <a href="${info.url}" target="_blank" rel="noreferrer">get one here</a>. Sent directly from your browser to the provider, never stored.`;
+    }
+
+    function onTemplateChange() {
+        const templateName = document.getElementById('templateSelect').value;
+        const template = TEMPLATES[templateName];
+        document.getElementById('templateDesc').textContent = template.description;
+
+        const container = document.getElementById('dynamicInputs');
+        container.innerHTML = '';
+        for (const field of template.inputs) {
+            const label = document.createElement('label');
+            label.setAttribute('for', `field-${field}`);
+            label.textContent = field === 'topic' ? 'Topic'
+                : field === 'industry' ? 'Industry'
+                : 'Key Features';
+
+            let input;
+            if (field === 'features') {
+                input = document.createElement('textarea');
+                input.rows = 3;
+                input.placeholder = 'List the main features or benefits';
+            } else {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = field === 'topic' ? 'AI, SaaS, Marketing, etc.' : 'Technology, Healthcare, Finance, etc.';
+            }
+            input.id = `field-${field}`;
+
+            container.appendChild(label);
+            container.appendChild(input);
+        }
+    }
+
+    function showStatus(type, message) {
+        const el = document.getElementById('status');
+        el.className = 'status ' + type;
+        el.textContent = message;
+    }
+
+    function clearStatus() {
+        const el = document.getElementById('status');
+        el.className = 'status';
+        el.textContent = '';
+    }
+
+    // ---- Mock generation (ported from make_api_call's Mock branch) ----
+    function generateMock(templateName, inputs) {
+        const template = TEMPLATES[templateName];
+        const responses = MOCK_RESPONSES[template.mockKey];
+        let response = responses[Math.floor(Math.random() * responses.length)];
+        for (const [key, value] of Object.entries(inputs)) {
+            if (value) response = response.split(`{${key}}`).join(value);
+        }
+        return response;
+    }
+
+    // ---- Live provider calls (ported from call_openai / call_claude / call_gemini / call_huggingface) ----
+    async function callOpenAI(prompt, apiKey) {
+        const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], max_tokens: 500, temperature: 0.7 }),
+        });
+        if (!res.ok) throw new Error(`OpenAI API error: ${res.status} — ${await res.text()}`);
+        const data = await res.json();
+        return data.choices[0].message.content;
+    }
+
+    async function callClaude(prompt, apiKey) {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'x-api-key': apiKey,
+                'Content-Type': 'application/json',
+                'anthropic-version': '2023-06-01',
+                'anthropic-dangerous-direct-browser-access': 'true',
+            },
+            body: JSON.stringify({ model: 'claude-sonnet-5', max_tokens: 500, messages: [{ role: 'user', content: prompt }] }),
+        });
+        if (!res.ok) throw new Error(`Claude API error: ${res.status} — ${await res.text()}`);
+        const data = await res.json();
+        return data.content[0].text;
+    }
+
+    async function callGemini(prompt, apiKey) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 500, temperature: 0.7 } }),
+        });
+        if (!res.ok) throw new Error(`Gemini API error: ${res.status} — ${await res.text()}`);
+        const data = await res.json();
+        if (data.candidates && data.candidates.length > 0) return data.candidates[0].content.parts[0].text;
+        throw new Error('No content generated by Gemini');
+    }
+
+    async function callHuggingFace(prompt, apiKey, model) {
+        const modelUrl = `https://api-inference.huggingface.co/models/${model}`;
+        const res = await fetch(modelUrl, {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ inputs: prompt, parameters: { max_new_tokens: 500, temperature: 0.7, do_sample: true } }),
+        });
+        if (res.status === 503) throw new Error('Model is loading on Hugging Face — wait a minute and try again.');
+        if (!res.ok) throw new Error(`Hugging Face API error: ${res.status} — ${await res.text()}`);
+        const data = await res.json();
+        if (Array.isArray(data) && data[0]) {
+            let text = data[0].generated_text || data[0].text || '';
+            if (text.startsWith(prompt)) text = text.slice(prompt.length).trim();
+            return text || 'No content generated by Hugging Face';
+        }
+        return 'No content generated by Hugging Face';
+    }
+
+    async function callLiveProvider(provider, templateName, inputs, apiKey) {
+        const prompt = `Write a ${templateName.toLowerCase()} about ${inputs.topic || 'technology'} for the ${inputs.industry || 'business'} industry.`;
+        if (provider === 'openai') return callOpenAI(prompt, apiKey);
+        if (provider === 'claude') return callClaude(prompt, apiKey);
+        if (provider === 'gemini') return callGemini(prompt, apiKey);
+        if (provider === 'huggingface-gpt2') return callHuggingFace(prompt, apiKey, 'gpt2');
+        if (provider === 'huggingface-flan-t5') return callHuggingFace(prompt, apiKey, 'google/flan-t5-large');
+        throw new Error('Unknown provider');
+    }
+
+    function copyOutput() {
+        const text = document.getElementById('output').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.getElementById('copyBtn');
+            const original = btn.textContent;
+            btn.textContent = '✅ Copied';
+            setTimeout(() => { btn.textContent = original; }, 1500);
+        });
+    }
+
+    async function generateContent() {
+        const provider = document.getElementById('providerSelect').value;
+        const templateName = document.getElementById('templateSelect').value;
+        const template = TEMPLATES[templateName];
+        const generateBtn = document.getElementById('generateBtn');
+
+        const inputs = {};
+        for (const field of template.inputs) {
+            inputs[field] = document.getElementById(`field-${field}`).value.trim();
+        }
+
+        const apiKey = document.getElementById('apiKey').value.trim();
+        if (provider !== 'mock' && !apiKey) {
+            showStatus('error', 'Enter an API key for this provider, or switch to Mock.');
+            return;
+        }
+
+        generateBtn.disabled = true;
+        document.getElementById('copyBtn').style.display = 'none';
+        document.getElementById('outputMeta').style.display = 'none';
+        document.getElementById('output').textContent = '';
+        showStatus('loading', `Generating with ${provider === 'mock' ? 'Mock' : provider}…`);
+
+        try {
+            const result = provider === 'mock'
+                ? generateMock(templateName, inputs)
+                : await callLiveProvider(provider, templateName, inputs, apiKey);
+
+            document.getElementById('output').textContent = result;
+            document.getElementById('copyBtn').style.display = 'inline-block';
+            document.getElementById('whatHappened').textContent =
+                `template = "${templateName}"\ninputs = ${JSON.stringify(inputs)}\nprovider = "${provider}"`;
+            document.getElementById('outputMeta').style.display = 'block';
+            clearStatus();
+        } catch (e) {
+            showStatus('error', e.message || 'Something went wrong. Try again.');
+        } finally {
+            generateBtn.disabled = false;
+        }
+    }
+
+    // Init
+    onTemplateChange();
+</script>
+</body>
+</html>
