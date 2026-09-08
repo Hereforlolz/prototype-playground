@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
 import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE } from '../lib/homepage-content';
+import { PERSON_JSON_LD } from '../lib/person';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         title="Nidhi Vedartham"
         description="Software/electrical engineer working across embedded IoT, technical strategy, and applied AI — practical prototypes and honest write-ups of what breaks."
         path="/"
+        jsonLd={PERSON_JSON_LD}
       />
       <div className="max-w-2xl">
         <h1 className="font-display [text-wrap:balance] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text mb-4">
