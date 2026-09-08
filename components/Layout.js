@@ -30,7 +30,7 @@ function SidebarContent({ pathname }) {
         </h1>
       </Link>
       <p className="text-sm text-muted mt-1">
-        AI adoption and enablement, from prototype to practice
+        Software/electrical engineer — IoT, technical strategy, and applied AI
       </p>
       <p className="text-xs text-muted mt-2">
         {LOCATION} · {RELOCATION}
