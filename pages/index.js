@@ -1,20 +1,18 @@
 // 📁 /pages/index.js
-import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
 import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE } from '../lib/homepage-content';
 
 export default function Home() {
   return (
     <Layout>
-      <Head>
-        <title>Nidhi Vedartham</title>
-        <meta
-          name="description"
-          content="Software/electrical engineer working across embedded IoT, technical strategy, and applied AI — practical prototypes and honest write-ups of what breaks."
-        />
-      </Head>
+      <SeoHead
+        title="Nidhi Vedartham"
+        description="Software/electrical engineer working across embedded IoT, technical strategy, and applied AI — practical prototypes and honest write-ups of what breaks."
+        path="/"
+      />
       <div className="max-w-2xl">
         <h1 className="font-display [text-wrap:balance] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text mb-4">
           {HEADLINE}

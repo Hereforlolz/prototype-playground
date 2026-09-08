@@ -1,18 +1,16 @@
-import Head from 'next/head';
 import Layout from '../components/Layout';
+import SeoHead from '../components/SeoHead';
 import ClosingCTA from '../components/ClosingCTA';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
 
 export default function About() {
   return (
     <Layout>
-      <Head>
-        <title>About — Nidhi Vedartham</title>
-        <meta
-          name="description"
-          content="Nidhi — software/electrical engineer with 8+ years in IoT/embedded systems, cross-team technical strategy, and applied AI prototyping."
-        />
-      </Head>
+      <SeoHead
+        title="About — Nidhi Vedartham"
+        description="Nidhi — software/electrical engineer with 8+ years in IoT/embedded systems, cross-team technical strategy, and applied AI prototyping."
+        path="/about"
+      />
       <div className="max-w-2xl">
         <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-6">
           About
