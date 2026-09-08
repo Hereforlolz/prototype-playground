@@ -15,7 +15,7 @@ export default function Home() {
         <title>Nidhi Vedartham</title>
         <meta
           name="description"
-          content="I turn AI experimentation into workflows people can actually use — AI adoption and product enablement, with practical prototypes and honest write-ups of what breaks."
+          content="Software/electrical engineer working across embedded IoT, technical strategy, and applied AI — practical prototypes and honest write-ups of what breaks."
         />
       </Head>
       <div className="max-w-2xl">

@@ -10,7 +10,7 @@ export default function About() {
         <title>About — Nidhi Vedartham</title>
         <meta
           name="description"
-          content="Nidhi — I turn AI experimentation into practical workflows. 8+ years in IoT/embedded systems, now focused on AI adoption, enablement, and applied prototyping."
+          content="Nidhi — software/electrical engineer with 8+ years in IoT/embedded systems, cross-team technical strategy, and applied AI prototyping."
         />
       </Head>
       <div className="max-w-2xl">
@@ -18,9 +18,10 @@ export default function About() {
           About
         </h1>
         <p className="mb-4 text-muted">
-          Hi, I&apos;m Nidhi — I investigate where AI tools and systems break, then figure out what actually fixes it.
-          I build fast, document what goes wrong along the way instead of smoothing it over, and adjust from there. If
-          you&apos;re evaluating AI adoption or have a system you want pressure-tested, I&apos;d like to hear about it.
+          Hi, I&apos;m Nidhi — a software and electrical engineer who likes finding where systems break, from embedded
+          IoT hardware to AI workflows, and figuring out what actually fixes it. I build fast, document what goes
+          wrong along the way instead of smoothing it over, and adjust from there. If you have a system you want
+          pressure-tested — AI or otherwise — I&apos;d like to hear about it.
         </p>
 
         <p className="text-xs text-accent font-mono font-semibold tracking-wide uppercase mb-1">
