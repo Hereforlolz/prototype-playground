@@ -1,7 +1,7 @@
 // components/CaseStudy.js
-import Head from 'next/head';
 import Link from 'next/link';
 import Layout from './Layout';
+import SeoHead from './SeoHead';
 import TerminalFrame from './TerminalFrame';
 import ClosingCTA from './ClosingCTA';
 import { safeTrack } from '../lib/analytics';
@@ -31,14 +31,15 @@ function repoLabel(repoUrl) {
 }
 
 export default function CaseStudy({ study }) {
-  const { title, subtitle, tagline, repoUrl, devpostUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope } = study;
+  const { slug, title, subtitle, tagline, repoUrl, devpostUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope } = study;
 
   return (
     <Layout>
-      <Head>
-        <title>{title} case study — Nidhi Vedartham</title>
-        <meta name="description" content={`${subtitle} — problem, approach, what broke, and honest scope.`} />
-      </Head>
+      <SeoHead
+        title={`${title} case study — Nidhi Vedartham`}
+        description={`${subtitle} — problem, approach, what broke, and honest scope.`}
+        path={`/projects/${slug}`}
+      />
       <div className="max-w-3xl">
         <p className="text-sm mb-2">
           <Link href="/projects" className="text-accent hover:opacity-80 underline">← Back to Projects &amp; Experiments</Link>

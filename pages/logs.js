@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 
@@ -28,13 +28,11 @@ const LEVEL_COLOR = {
 export default function Logs() {
   return (
     <Layout>
-      <Head>
-        <title>Lessons Learned — Nidhi Vedartham</title>
-        <meta
-          name="description"
-          content="A running, honest log of bugs, patches, and misfires from building and testing AI tools."
-        />
-      </Head>
+      <SeoHead
+        title="Lessons Learned — Nidhi Vedartham"
+        description="A running, honest log of bugs, patches, and misfires from building and testing AI tools."
+        path="/logs"
+      />
       <div className="max-w-2xl">
         <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-4">
           Lessons Learned

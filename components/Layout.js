@@ -25,9 +25,9 @@ function SidebarContent({ pathname }) {
   return (
     <>
       <Link href="/" className="block w-fit">
-        <h1 className="font-display text-xl sm:text-2xl font-bold text-text tracking-tight hover:text-accent transition-colors duration-150">
+        <p className="font-display text-xl sm:text-2xl font-bold text-text tracking-tight hover:text-accent transition-colors duration-150">
           Nidhi Vedartham
-        </h1>
+        </p>
       </Link>
       <p className="text-sm text-muted mt-1">
         Software/electrical engineer — IoT, technical strategy, and applied AI

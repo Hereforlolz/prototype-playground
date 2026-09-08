@@ -1,7 +1,7 @@
 // pages/projects.js
-import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 import { safeTrack } from '../lib/analytics';
@@ -21,13 +21,11 @@ export default function Projects({ repos, githubUnavailable }) {
 
   return (
     <Layout>
-      <Head>
-        <title>Projects &amp; Experiments — Nidhi Vedartham</title>
-        <meta
-          name="description"
-          content="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
-        />
-      </Head>
+      <SeoHead
+        title="Projects & Experiments — Nidhi Vedartham"
+        description="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
+        path="/projects"
+      />
       <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-8">
         Projects &amp; Experiments
       </h1>
