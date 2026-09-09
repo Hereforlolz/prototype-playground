@@ -23,7 +23,7 @@ function Section({ title, items }) {
 
 // The existing recruiter/product-level case study — unchanged from before
 // the mode selector existed. Extracted so it can render either on its own
-// (every case study without a simple explanation) or inside a tabpanel
+// (every case study without a simple explanation) or below the selector
 // (PilotCraft), without duplicating this markup between the two.
 function Overview({ stack, problem, approach, whatBroke, outcome, scope }) {
   return (
@@ -71,36 +71,32 @@ function SimpleExplanation({ sections }) {
   );
 }
 
-// Two mutually exclusive views of the same case study, not two independent
-// on/off settings — ARIA tabs are the correct pattern for that (not a
-// radiogroup, which represents a form choice, not a switch between content
-// panels). Kept intentionally minimal: two real, individually focusable
-// buttons and no roving-tabindex/arrow-key machinery, since that's not
-// needed for two plain Tab-reachable options to be fully keyboard operable.
+// Two mutually exclusive views of the same case study, kept as two plain,
+// individually Tab-focusable buttons with aria-pressed marking which one
+// is active — not the full ARIA tabs pattern (tablist/tab/tabpanel, roving
+// tabindex, arrow-key navigation), which is more machinery than two views
+// need.
 function ExplanationSelector({ mode, onSelect }) {
-  const tabs = [
+  const options = [
     { id: 'simple', label: 'Explain simply' },
     { id: 'overview', label: 'Overview' },
   ];
 
   return (
-    <div role="tablist" aria-label="Explanation depth" className="inline-flex gap-1 rounded-md border border-border bg-surface-alt p-1 mb-8">
-      {tabs.map(tab => {
-        const selected = mode === tab.id;
+    <div role="group" aria-label="Explanation depth" className="inline-flex gap-1 rounded-md border border-border bg-surface-alt p-1 mb-8">
+      {options.map(option => {
+        const selected = mode === option.id;
         return (
           <button
-            key={tab.id}
+            key={option.id}
             type="button"
-            role="tab"
-            id={`case-study-tab-${tab.id}`}
-            aria-selected={selected}
-            aria-controls={`case-study-panel-${tab.id}`}
-            onClick={() => onSelect(tab.id)}
+            aria-pressed={selected}
+            onClick={() => onSelect(option.id)}
             className={`px-3 py-1.5 rounded text-sm font-display font-semibold transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 ${
               selected ? 'bg-accent text-surface' : 'text-muted hover:text-text'
             }`}
           >
-            {tab.label}
+            {option.label}
           </button>
         );
       })}
@@ -176,11 +172,11 @@ export default function CaseStudy({ study }) {
           <>
             <ExplanationSelector mode={mode} onSelect={selectMode} />
 
-            <div id="case-study-panel-simple" role="tabpanel" aria-labelledby="case-study-tab-simple" hidden={mode !== 'simple'}>
+            <div hidden={mode !== 'simple'}>
               <SimpleExplanation sections={study.explanations.simple.sections} />
             </div>
 
-            <div id="case-study-panel-overview" role="tabpanel" aria-labelledby="case-study-tab-overview" hidden={mode !== 'overview'}>
+            <div hidden={mode !== 'overview'}>
               <Overview stack={stack} problem={problem} approach={approach} whatBroke={whatBroke} outcome={outcome} scope={scope} />
             </div>
           </>
