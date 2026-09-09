@@ -142,7 +142,7 @@ function repoLabel(repoUrl) {
 }
 
 export default function CaseStudy({ study }) {
-  const { slug, title, subtitle, tagline, repoUrl, devpostUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope, media } = study;
+  const { slug, title, subtitle, tagline, repoUrl, devpostUrl, linkedinUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope, media } = study;
   const showSelector = hasSimpleExplanation(study);
   const [mode, setMode] = useState(DEFAULT_MODE);
 
@@ -189,6 +189,17 @@ export default function CaseStudy({ study }) {
               className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
             >
               View on Devpost
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>
+          )}
+          {linkedinUrl && (
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
+            >
+              LinkedIn article
               <span className="sr-only"> (opens in new tab)</span>
             </a>
           )}
