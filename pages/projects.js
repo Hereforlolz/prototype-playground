@@ -41,7 +41,7 @@ export default function Projects({ repos, githubUnavailable }) {
         <p className="text-muted text-sm mb-4">The most differentiated, hackathon-judged builds.</p>
         <div className="space-y-4">
           {flagship.map(({ name, title, url, blurb, analyticsEvent, caseStudyHref }) => (
-            <TerminalFrame key={name} label={name}>
+            <TerminalFrame key={name} label={name} variant="featured">
               <a
                 href={url}
                 target="_blank"
@@ -164,7 +164,7 @@ export default function Projects({ repos, githubUnavailable }) {
       {rest.length > 0 && (
         <section className="mb-12 max-w-3xl">
           <h2 className="font-display text-xl font-bold text-text mb-4">📂 All Other Repos</h2>
-          <TerminalFrame label="All repos">
+          <TerminalFrame label="All repos" variant="quiet">
             <ul className="space-y-3 text-sm">
               {rest.map(repo => (
                 <li key={repo.id}>
@@ -186,7 +186,7 @@ export default function Projects({ repos, githubUnavailable }) {
 
       <section className="mb-12 max-w-3xl">
         <h2 className="font-display text-xl font-bold text-text mb-4">🐞 Manual Bugs Log</h2>
-        <TerminalFrame label="Bugs I've filed">
+        <TerminalFrame label="Bugs I've filed" variant="quiet">
           <div className="space-y-4 text-sm">
             {manualBugs.map((bug, index) => (
               <div key={index} className="hover:translate-x-1 transition-transform duration-150">

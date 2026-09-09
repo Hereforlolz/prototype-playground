@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import { Analytics } from '@vercel/analytics/next';
-import { Figtree, Karla, IBM_Plex_Mono } from 'next/font/google';
+import { Figtree, Karla, Space_Mono } from 'next/font/google';
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -16,16 +16,16 @@ const karla = Karla({
   display: 'swap',
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const spaceMono = Space_Mono({
   subsets: ['latin'],
-  weight: ['500', '600'],
-  variable: '--font-ibm-plex-mono',
+  weight: ['400', '700'],
+  variable: '--font-mono-face',
   display: 'swap',
 });
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className={`${figtree.variable} ${karla.variable} ${ibmPlexMono.variable}`}>
+    <div className={`${figtree.variable} ${karla.variable} ${spaceMono.variable}`}>
       <Component {...pageProps} />
       <Analytics />
     </div>
