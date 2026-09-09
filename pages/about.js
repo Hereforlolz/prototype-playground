@@ -6,31 +6,26 @@ import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
 
-// Recurring pattern behind almost everything on /projects and /logs:
-// an ambiguous ask, understanding the system underneath it, building and
-// testing, learning from what broke, then documenting it for the next
-// person. Wording here is drawn from the existing bio, case studies, and
-// Lessons Learned entries — not new claims.
+// The four-phase approach behind the work on this site: understand the
+// real system, build enough to expose what's actually true, separate
+// proven results from assumptions, then leave a clear trail for whoever
+// picks it up next.
 const WORK_PATTERN = [
   {
-    step: 'Ambiguity',
-    detail: 'Requirements rarely arrive complete. I sketch the problem at a helicopter-view level before anyone dives into detail.',
+    step: 'Find the real system behind the ask',
+    detail: 'Understand the people, constraints, dependencies, evidence gaps, and actual runtime behavior before deciding where the problem is.',
   },
   {
-    step: 'Understand the system',
-    detail: "Embed with the team, ask the outside-perspective questions, trace how the pieces actually connect — hardware, data pipeline, or a model's context.",
+    step: 'Build enough for the gaps to surface',
+    detail: 'Get something working far enough end-to-end that assumptions stop being theoretical and weak spots become visible.',
   },
   {
-    step: 'Build & test',
-    detail: 'Ship fast, then verify it — a 19-check Playwright audit, unit tests that regress real bugs, an IoT pipeline built end to end.',
+    step: "Separate what works from what's proven",
+    detail: "Test outputs and failure modes. If the evidence doesn't support a claim, qualify it, revise it, or remove it.",
   },
   {
-    step: 'Learn from failures',
-    detail: "Document what breaks instead of smoothing it over — an honest running log of misfires, bugs filed against my own and others' tools.",
-  },
-  {
-    step: 'Document & enable others',
-    detail: "Write it up so the next person doesn't repeat it — the onboarding program I run for new engineers, dev.to postmortems, case studies with the broken parts left in.",
+    step: 'Leave the next decision easier',
+    detail: 'Capture the reasoning, limitations, criteria, and next steps so someone else can understand what was learned and decide what to do next.',
   },
 ];
 
@@ -92,7 +87,7 @@ export default function About() {
           />
           <h2 className="font-display text-xl font-bold text-text">How I work</h2>
         </div>
-        <p className="text-muted text-sm mb-4">The pattern behind most of the work on this site.</p>
+        <p className="text-muted text-sm mb-4">A pattern I&apos;ve noticed in how I work:</p>
 
         <TerminalFrame label="workflow.log" variant="featured">
           <ol className="space-y-4">
@@ -113,7 +108,11 @@ export default function About() {
 
       {/* 3. Where this shows up */}
       <section className="mt-12 max-w-4xl">
-        <h2 className="font-display text-xl font-bold text-text mb-4">Where this shows up</h2>
+        <h2 className="font-display text-xl font-bold text-text mb-1">Where this shows up</h2>
+        <p className="text-muted text-sm mb-4">
+          I bring the same systems-first approach and evidence discipline to engineering, AI experimentation, and
+          community work.
+        </p>
         <div className="grid sm:grid-cols-3 gap-4 items-start">
           <TerminalFrame label="Engineering & systems">
             <p className="text-muted text-sm">
@@ -128,9 +127,9 @@ export default function About() {
           <TerminalFrame label="AI adoption & prototyping">
             <p className="text-muted text-sm mb-2">
               Benchmarking prompt-engineering practices and building agent infrastructure — seeing how far these
-              tools push before they (or I) break. As social-media marketing co-lead, built 7 interactive Sensify
-              product demos in 3 weeks using AI coding agents and a 19-check Playwright audit, then presented them
-              to the C-suite.
+              tools push before they (or I) break. As part of Ivani&apos;s social-media marketing team, I built 7
+              interactive Sensify product demos in 3 weeks using AI coding agents and a 19-check Playwright audit,
+              then presented them to the C-suite.
             </p>
             <p className="text-muted text-sm">
               Outside of work:{' '}
@@ -165,6 +164,9 @@ export default function About() {
             </p>
           </TerminalFrame>
         </div>
+        <p className="text-text text-sm font-medium mt-6">
+          The setting changes; the pattern doesn&apos;t.
+        </p>
       </section>
 
       {/* 4. Embark Women */}
