@@ -26,9 +26,27 @@ export default function Projects({ repos, githubUnavailable }) {
         description="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
         path="/projects"
       />
-      <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-8">
+      <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-4">
         Projects &amp; Experiments
       </h1>
+
+      <nav aria-label="Jump to section" className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted mb-8">
+        <a href="#highlights" className="hover:text-accent transition-colors duration-150">Highlights</a>
+        <a href="#impact" className="hover:text-accent transition-colors duration-150">Impact</a>
+        {caseStudies.length > 0 && (
+          <a href="#case-studies" className="hover:text-accent transition-colors duration-150">Case Studies</a>
+        )}
+        {experiments.length > 0 && (
+          <a href="#experiments" className="hover:text-accent transition-colors duration-150">Experiments</a>
+        )}
+        {inProgress.length > 0 && (
+          <a href="#in-progress" className="hover:text-accent transition-colors duration-150">In Progress</a>
+        )}
+        {rest.length > 0 && (
+          <a href="#all-repos" className="hover:text-accent transition-colors duration-150">All Repos</a>
+        )}
+        <a href="#bugs-log" className="hover:text-accent transition-colors duration-150">Bugs Log</a>
+      </nav>
 
       {githubUnavailable && (
         <p className="text-muted text-sm mb-8 border border-border rounded-md px-3 py-2 bg-surface-alt w-fit">
@@ -36,7 +54,7 @@ export default function Projects({ repos, githubUnavailable }) {
         </p>
       )}
 
-      <section className="mb-12 max-w-3xl">
+      <section className="mb-12 max-w-3xl" id="highlights">
         <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
         <p className="text-muted text-sm mb-4">The most differentiated, hackathon-judged builds.</p>
         <div className="space-y-4">
@@ -63,8 +81,8 @@ export default function Projects({ repos, githubUnavailable }) {
         </div>
       </section>
 
-      <section className="mb-12 max-w-3xl">
-        <TerminalFrame label="AI adoption impact">
+      <section className="mb-12 max-w-3xl" id="impact">
+        <TerminalFrame label="AI adoption impact" variant="featured">
           <p className="text-text font-medium">{METRIC_LINE}</p>
           <p className="text-muted text-xs mt-3 italic">
             {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
@@ -74,7 +92,7 @@ export default function Projects({ repos, githubUnavailable }) {
       </section>
 
       {caseStudies.length > 0 && (
-        <section className="mb-12 max-w-3xl">
+        <section className="mb-12 max-w-3xl" id="case-studies">
           <h2 className="font-display text-lg font-bold text-text mb-1">📚 More Case Studies</h2>
           <p className="text-muted text-sm mb-4">
             Additional working builds with detailed write-ups covering the problem, decisions, results, and limitations.
@@ -105,7 +123,7 @@ export default function Projects({ repos, githubUnavailable }) {
       )}
 
       {experiments.length > 0 && (
-        <section className="mb-12 max-w-3xl">
+        <section className="mb-12 max-w-3xl" id="experiments">
           <h2 className="font-display text-lg font-bold text-muted mb-1">🧪 Experiments</h2>
           <p className="text-muted text-sm mb-4">
             Smaller, single-purpose AI tools — real and working, but secondary to the flagship builds above.
@@ -144,7 +162,7 @@ export default function Projects({ repos, githubUnavailable }) {
       )}
 
       {inProgress.length > 0 && (
-        <section className="mb-12 max-w-3xl">
+        <section className="mb-12 max-w-3xl" id="in-progress">
           <h2 className="font-display text-xl font-bold text-text mb-1">🔒 In Progress</h2>
           <p className="text-muted text-sm mb-4">
             Private prototypes with public write-ups — no repository link since there&apos;s nothing public to open yet.
@@ -162,52 +180,62 @@ export default function Projects({ repos, githubUnavailable }) {
       )}
 
       {rest.length > 0 && (
-        <section className="mb-12 max-w-3xl">
-          <h2 className="font-display text-xl font-bold text-text mb-4">📂 All Other Repos</h2>
-          <TerminalFrame label="All repos" variant="quiet">
-            <ul className="space-y-3 text-sm">
-              {rest.map(repo => (
-                <li key={repo.id}>
-                  <a
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-text hover:text-accent hover:translate-x-1 transition-all duration-150 inline-block"
-                  >
-                    {repo.full_name}
-                    <span className="sr-only"> (opens in new tab)</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </TerminalFrame>
+        <section className="mb-12 max-w-3xl" id="all-repos">
+          <details className="group">
+            <summary className="flex items-center gap-2 cursor-pointer list-none font-display text-xl font-bold text-text mb-4 hover:text-accent transition-colors duration-150 [&::-webkit-details-marker]:hidden rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2">
+              <span className="text-muted transition-transform duration-150 group-open:rotate-90" aria-hidden="true">▸</span>
+              📂 All Other Repos
+            </summary>
+            <TerminalFrame label="All repos" variant="quiet">
+              <ul className="space-y-3 text-sm">
+                {rest.map(repo => (
+                  <li key={repo.id}>
+                    <a
+                      href={repo.html_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-text hover:text-accent hover:translate-x-1 transition-all duration-150 inline-block"
+                    >
+                      {repo.full_name}
+                      <span className="sr-only"> (opens in new tab)</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </TerminalFrame>
+          </details>
         </section>
       )}
 
-      <section className="mb-12 max-w-3xl">
-        <h2 className="font-display text-xl font-bold text-text mb-4">🐞 Manual Bugs Log</h2>
-        <TerminalFrame label="Bugs I've filed" variant="quiet">
-          <div className="space-y-4 text-sm">
-            {manualBugs.map((bug, index) => (
-              <div key={index} className="hover:translate-x-1 transition-transform duration-150">
-                <p className="font-semibold text-text">{bug.title}</p>
-                <p className="text-muted text-xs mt-1">Why: {bug.why}</p>
-                <p className="text-muted text-xs">Status: {bug.status}</p>
-                {bug.link && (
-                  <a
-                    href={bug.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-accent hover:opacity-80 hover:underline text-xs"
-                  >
-                    View Report
-                    <span className="sr-only"> (opens in new tab)</span>
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-        </TerminalFrame>
+      <section className="mb-12 max-w-3xl" id="bugs-log">
+        <details className="group">
+          <summary className="flex items-center gap-2 cursor-pointer list-none font-display text-xl font-bold text-text mb-4 hover:text-accent transition-colors duration-150 [&::-webkit-details-marker]:hidden rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2">
+            <span className="text-muted transition-transform duration-150 group-open:rotate-90" aria-hidden="true">▸</span>
+            🐞 Manual Bugs Log
+          </summary>
+          <TerminalFrame label="Bugs I've filed" variant="quiet">
+            <div className="space-y-4 text-sm">
+              {manualBugs.map((bug, index) => (
+                <div key={index} className="hover:translate-x-1 transition-transform duration-150">
+                  <p className="font-semibold text-text">{bug.title}</p>
+                  <p className="text-muted text-xs mt-1">Why: {bug.why}</p>
+                  <p className="text-muted text-xs">Status: {bug.status}</p>
+                  {bug.link && (
+                    <a
+                      href={bug.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-accent hover:opacity-80 hover:underline text-xs"
+                    >
+                      View Report
+                      <span className="sr-only"> (opens in new tab)</span>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </TerminalFrame>
+        </details>
       </section>
 
       <ClosingCTA />
