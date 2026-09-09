@@ -1,5 +1,6 @@
 // components/CaseStudy.js
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Layout from './Layout';
 import SeoHead from './SeoHead';
@@ -21,13 +22,35 @@ function Section({ title, items }) {
   );
 }
 
+// A small number of real product screenshots — not a gallery. Only renders
+// when a case study opts in via an optional `media` field (undefined for
+// every case study but PilotCraft), so this never changes anything about
+// the other six.
+function CaseStudyMedia({ src, width, height, alt, label, caption }) {
+  return (
+    <figure className="my-8">
+      <div className="rounded-lg border border-border overflow-hidden bg-surface">
+        <Image src={src} width={width} height={height} alt={alt} className="w-full h-auto" />
+      </div>
+      <figcaption className="mt-3 text-sm">
+        <span className="font-display font-semibold text-text">{label}:</span>{' '}
+        <span className="text-muted">{caption}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
 // The existing recruiter/product-level case study — unchanged from before
 // the mode selector existed. Extracted so it can render either on its own
 // (every case study without a simple explanation) or below the selector
-// (PilotCraft), without duplicating this markup between the two.
-function Overview({ stack, problem, approach, whatBroke, outcome, scope }) {
+// (PilotCraft), without duplicating this markup between the two. `media`
+// is optional and, when present, places up to three screenshots at fixed,
+// named slots next to the sections they illustrate.
+function Overview({ stack, problem, approach, whatBroke, outcome, scope, media }) {
   return (
     <>
+      {media?.hero && <CaseStudyMedia {...media.hero} />}
+
       <section className="mb-8">
         <h2 className="font-display text-lg font-bold text-text mb-3">Stack</h2>
         <TerminalFrame label="Stack">
@@ -44,8 +67,11 @@ function Overview({ stack, problem, approach, whatBroke, outcome, scope }) {
 
       <Section title="The problem" items={problem} />
       <Section title="The approach" items={approach} />
+      {media?.afterApproach && <CaseStudyMedia {...media.afterApproach} />}
+
       <Section title="What broke (and how it got fixed)" items={whatBroke} />
       <Section title="Outcome" items={outcome} />
+      {media?.afterOutcome && <CaseStudyMedia {...media.afterOutcome} />}
 
       <section className="mb-12">
         <h2 className="font-display text-lg font-bold text-text mb-3">Honest scope</h2>
@@ -116,7 +142,7 @@ function repoLabel(repoUrl) {
 }
 
 export default function CaseStudy({ study }) {
-  const { slug, title, subtitle, tagline, repoUrl, devpostUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope } = study;
+  const { slug, title, subtitle, tagline, repoUrl, devpostUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope, media } = study;
   const showSelector = hasSimpleExplanation(study);
   const [mode, setMode] = useState(DEFAULT_MODE);
 
@@ -177,11 +203,11 @@ export default function CaseStudy({ study }) {
             </div>
 
             <div hidden={mode !== 'overview'}>
-              <Overview stack={stack} problem={problem} approach={approach} whatBroke={whatBroke} outcome={outcome} scope={scope} />
+              <Overview stack={stack} problem={problem} approach={approach} whatBroke={whatBroke} outcome={outcome} scope={scope} media={media} />
             </div>
           </>
         ) : (
-          <Overview stack={stack} problem={problem} approach={approach} whatBroke={whatBroke} outcome={outcome} scope={scope} />
+          <Overview stack={stack} problem={problem} approach={approach} whatBroke={whatBroke} outcome={outcome} scope={scope} media={media} />
         )}
       </div>
 
