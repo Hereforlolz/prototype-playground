@@ -16,13 +16,16 @@ const LOG_ENTRIES = [
   { date: '2025-06-26', level: 'PERF', msg: 'Firestore logging delayed under heavy intake; optimized batch writes.' },
 ];
 
+// Colors are drawn from the site's own palette instead of an arbitrary set
+// of hues: red flags a problem, the site's accent marks a resolved one, and
+// everything else is a neutral process note rather than a severity signal.
 const LEVEL_COLOR = {
-  BUG: 'text-pink-500',
+  BUG: 'text-red-500',
   FATAL: 'text-red-500',
-  PATCH: 'text-purple-400',
-  PERF: 'text-blue-400',
-  DEBUG: 'text-yellow-400',
-  FIXED: 'text-green-400',
+  PATCH: 'text-muted',
+  PERF: 'text-muted',
+  DEBUG: 'text-muted',
+  FIXED: 'text-accent',
 };
 
 export default function Logs() {
@@ -48,7 +51,7 @@ export default function Logs() {
             {LOG_ENTRIES.map((entry, i) => (
               <p key={i} className="text-muted hover:translate-x-1 transition-transform duration-150">
                 <span className="text-muted">[{entry.date}]</span>{' '}
-                <span className={`font-semibold ${LEVEL_COLOR[entry.level] || 'text-slate-400'}`}>
+                <span className={`font-semibold ${LEVEL_COLOR[entry.level] || 'text-muted'}`}>
                   [{entry.level}]
                 </span>{' '}
                 {entry.msg}

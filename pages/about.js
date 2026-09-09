@@ -22,14 +22,14 @@ export default function About() {
           pressure-tested — AI or otherwise — I&apos;d like to hear about it.
         </p>
 
-        <p className="text-xs text-accent font-mono font-semibold tracking-wide uppercase mb-1">
+        <p className="text-xs text-accent font-mono font-bold tracking-wide uppercase mb-1">
           Status
         </p>
         <p className="mb-4 text-muted text-sm">
           {LOCATION} — {RELOCATION.toLowerCase()}. {WORK_AUTHORIZATION}.
         </p>
 
-        <p className="text-xs text-accent font-mono font-semibold tracking-wide uppercase mb-3">
+        <p className="text-xs text-accent font-mono font-bold tracking-wide uppercase mb-3">
           Bio
         </p>
         <p className="mb-4 text-muted">
