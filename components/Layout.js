@@ -1,5 +1,6 @@
 // components/Layout.js
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { safeTrack } from '../lib/analytics';
@@ -24,6 +25,14 @@ const CONTACT_LINKS = [
 function SidebarContent({ pathname }) {
   return (
     <>
+      <Image
+        src="/nidhi-riley-hero.png"
+        alt="Illustrated portrait of Nidhi smiling and holding her dog Riley, both wearing cozy sweaters"
+        width={1122}
+        height={1402}
+        priority
+        className="w-[200px] h-auto mb-4"
+      />
       <Link href="/" className="block w-fit">
         <p className="font-display text-xl sm:text-2xl font-bold text-text tracking-tight hover:text-accent transition-colors duration-150">
           Nidhi Vedartham
