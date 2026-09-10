@@ -24,8 +24,8 @@ const WORK_PATTERN = [
     detail: "Test outputs and failure modes. If the evidence doesn't support a claim, qualify it, revise it, or remove it.",
   },
   {
-    step: 'Leave the next decision easier',
-    detail: 'Capture the reasoning, limitations, criteria, and next steps so someone else can understand what was learned and decide what to do next.',
+    step: 'Make the next decision easier',
+    detail: 'Document the reasoning, limitations, and next steps so someone else can act without retracing the work.',
   },
 ];
 
@@ -49,7 +49,7 @@ export default function About() {
             <div className="w-[140px] sm:w-[160px] aspect-[4/5] rounded-xl border border-border bg-surface-alt flex items-center justify-center overflow-hidden">
               <Image
                 src="/brand/reactions/nidhi-wave.png"
-                alt="Illustrated portrait of Nidhi waving, standing in for a real photo"
+                alt="Illustrated portrait of Nidhi waving"
                 width={155}
                 height={178}
                 priority
@@ -126,10 +126,10 @@ export default function About() {
 
           <TerminalFrame label="AI adoption & prototyping">
             <p className="text-muted text-sm mb-2">
-              Benchmarking prompt-engineering practices and building agent infrastructure — seeing how far these
-              tools push before they (or I) break. As part of Ivani&apos;s social-media marketing team, I built 7
-              interactive Sensify product demos in 3 weeks using AI coding agents and a 19-check Playwright audit,
-              then presented them to the C-suite.
+              I benchmark prompt-engineering approaches and build agent infrastructure to test where AI workflows
+              are reliable, where they fail, and what evidence is still missing. As part of Ivani&apos;s
+              social-media marketing team, I built 7 interactive Sensify product demos in 3 weeks using AI coding
+              agents and a 19-check Playwright audit, then presented them to the C-suite.
             </p>
             <p className="text-muted text-sm">
               Outside of work:{' '}
