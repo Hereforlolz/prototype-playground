@@ -8,6 +8,7 @@ import TerminalFrame from './TerminalFrame';
 import ClosingCTA from './ClosingCTA';
 import { safeTrack } from '../lib/analytics';
 import { DEFAULT_MODE, hasSimpleExplanation, resolveExplanationMode } from '../lib/case-study-explanations';
+import { repoLabel, hasAnyCaseStudyLink } from '../lib/case-study-links';
 
 function Section({ title, items }) {
   return (
@@ -130,17 +131,6 @@ function ExplanationSelector({ mode, onSelect }) {
   );
 }
 
-function repoLabel(repoUrl) {
-  try {
-    const host = new URL(repoUrl).hostname;
-    if (host.includes('gitlab')) return 'View on GitLab';
-    if (host.includes('github')) return 'View on GitHub';
-  } catch {
-    // fall through to the generic label below
-  }
-  return 'View repository';
-}
-
 export default function CaseStudy({ study }) {
   const { slug, title, subtitle, tagline, repoUrl, devpostUrl, linkedinUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope, media } = study;
   const showSelector = hasSimpleExplanation(study);
@@ -170,40 +160,44 @@ export default function CaseStudy({ study }) {
         <p className="text-muted mb-1">{subtitle}</p>
         <p className="text-muted text-xs italic mb-6">{tagline}</p>
 
-        <div className="flex flex-wrap gap-3 mb-8 text-sm">
-          <a
-            href={repoUrl}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => safeTrack(analyticsEvent, { source: 'case_study' })}
-            className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
-          >
-            {repoLabel(repoUrl)}
-            <span className="sr-only"> (opens in new tab)</span>
-          </a>
-          {devpostUrl && (
-            <a
-              href={devpostUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
-            >
-              View on Devpost
-              <span className="sr-only"> (opens in new tab)</span>
-            </a>
-          )}
-          {linkedinUrl && (
-            <a
-              href={linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
-            >
-              LinkedIn article
-              <span className="sr-only"> (opens in new tab)</span>
-            </a>
-          )}
-        </div>
+        {hasAnyCaseStudyLink(study) && (
+          <div className="flex flex-wrap gap-3 mb-8 text-sm">
+            {repoUrl && (
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => safeTrack(analyticsEvent, { source: 'case_study' })}
+                className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
+              >
+                {repoLabel(repoUrl)}
+                <span className="sr-only"> (opens in new tab)</span>
+              </a>
+            )}
+            {devpostUrl && (
+              <a
+                href={devpostUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
+              >
+                View on Devpost
+                <span className="sr-only"> (opens in new tab)</span>
+              </a>
+            )}
+            {linkedinUrl && (
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
+              >
+                LinkedIn article
+                <span className="sr-only"> (opens in new tab)</span>
+              </a>
+            )}
+          </div>
+        )}
 
         {showSelector ? (
           <>

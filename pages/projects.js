@@ -88,6 +88,11 @@ export default function Projects({ repos, githubUnavailable }) {
             {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
             projects above.
           </p>
+          <p className="text-sm mt-3">
+            <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
+              Read the prompt-adoption case study →
+            </Link>
+          </p>
         </TerminalFrame>
       </section>
 
