@@ -1,7 +1,7 @@
 [
   {
     "title": "Critical persistent TypeError in FunctionTool init",
-    "why": "Breaks multi-agent orchestration — severe runtime bug.",
+    "why": "Blocked multi-agent orchestration until worked around; reported for maintainer review.",
     "status": "✅ Reported",
     "link": "https://github.com/google/adk-docs/issues/826"
   },
