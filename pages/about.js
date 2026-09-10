@@ -131,6 +131,11 @@ export default function About() {
               social-media marketing team, I built 7 interactive Sensify product demos in 3 weeks using AI coding
               agents and a 19-check Playwright audit, then presented them to the C-suite.
             </p>
+            <p className="text-sm mb-2">
+              <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
+                Read the prompt-adoption case study →
+              </Link>
+            </p>
             <p className="text-muted text-sm">
               Outside of work:{' '}
               <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
