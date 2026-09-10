@@ -9,7 +9,7 @@
     "title": "ADK documentation inconsistencies for FunctionTool",
     "why": "Causes confusion and misuse, contributing to the TypeError.",
     "status": "✅ Reported",
-    "link": "https://github.com/google/adk-python/issues/1594"
+    "link": "https://github.com/google/adk-docs/issues/473"
   },
   {
     "title": "Google ADK version incompatibility with Python 3.13",
@@ -28,12 +28,6 @@
     "why": "Related to #826 but worth tracking as a separate edge case if you find more patterns.",
     "status": "🚫 Not Reported",
     "link": ""
-  },
-  {
-    "title": "Feature request: More detailed error messages for FunctionTool failures",
-    "why": "Current error messages are cryptic and hinder debugging.",
-    "status": "✅ Reported",
-    "link": "https://github.com/google/adk-python/issues/1595"
   },
   {
     "title": "Inconsistent or unclear rate limit errors in Assistant API",
