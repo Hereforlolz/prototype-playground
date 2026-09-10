@@ -4,9 +4,8 @@ import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 
-// Five project-backed lessons, each traceable to a specific case study's
-// own problem/approach/whatBroke/outcome text (see lib/case-studies.js).
-// No claim here goes beyond what those case studies already state.
+// Five evidence-backed lessons, traceable to the linked case studies
+// and, where noted, a public portfolio correction.
 const LESSONS = [
   {
     id: 'validated',
@@ -30,7 +29,7 @@ const LESSONS = [
     receipts: [
       { label: 'PilotCraft', href: '/projects/pilotcraft' },
       { label: 'Therapist Dashboard', href: '/projects/therapist-dashboard' },
-      { label: 'PR #40 (smaller, supporting)', href: 'https://github.com/Hereforlolz/prototype-playground/pull/40', external: true },
+      { label: 'About-page correction (PR #40)', href: 'https://github.com/Hereforlolz/prototype-playground/pull/40', external: true },
     ],
   },
   {
@@ -121,7 +120,7 @@ export default function Logs() {
         <div className="space-y-6">
           {LESSONS.map((lesson, i) => (
             <TerminalFrame key={lesson.id} label={`insight-${String(i + 1).padStart(2, '0')}.log`} variant="featured">
-              <p className="font-display font-semibold text-text mb-3">{lesson.title}</p>
+              <h2 className="font-display font-semibold text-text mb-3">{lesson.title}</h2>
 
               <p className="text-xs text-accent font-mono font-bold tracking-wide uppercase mb-1">
                 What changed my mind
