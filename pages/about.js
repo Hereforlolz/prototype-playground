@@ -117,10 +117,10 @@ export default function About() {
           <TerminalFrame label="Engineering & systems">
             <p className="text-muted text-sm">
               Software/Electrical Engineer at Ivani (Jan 2018–present), bridging hardware, embedded software, and
-              data engineering for wireless IoT systems — building the IoT data pipeline end to end from edge
-              collection through cloud ingestion, and shipping the applied-math-and-ML algorithms (embedded C and
-              Python) that run on top of it. I also designed and run the onboarding program for new engineers on
-              the team.
+              data engineering for wireless IoT systems — contributing to the design and maintenance of the IoT data
+              pipeline (edge collection through cloud ingestion), and building the applied-math-and-ML algorithms
+              (embedded C and Python) that run on top of it. I also designed and run the onboarding program for new
+              engineers on the team.
             </p>
           </TerminalFrame>
 

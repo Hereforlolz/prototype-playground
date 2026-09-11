@@ -4,7 +4,7 @@ Nidhi Vedartham's recruiter-facing portfolio for AI enablement, rapid
 prototyping, product experimentation, and lessons learned from building
 with emerging AI tools.
 
-**Live:** https://prototype-playground.vercel.app
+**Live:** https://prototype-playground-vert.vercel.app
 
 ## What the site demonstrates
 
@@ -103,6 +103,8 @@ pages/
   projects/compassionateconnect.js — CompassionateConnect AI case study
   projects/greengrid.js            — GreenGrid AI case study
   projects/therapist-dashboard.js  — AI-Powered Therapist Dashboard case study
+  projects/pilotcraft.js           — PilotCraft case study
+  projects/prompt-engineering-adoption.js — Prompt Engineering Adoption case study
   logs.js                          — Lessons Learned
   about.js                         — About
 bugs.json                — manually curated external bug reports
@@ -112,7 +114,7 @@ public/
 
 ## Deployment
 
-The source repository is private; the Vercel deployment is public. Every
+The source repository and the Vercel deployment are both public. Every
 pull request gets its own Vercel preview URL, and merges to `main` deploy
 straight to the production portfolio above.
 
@@ -139,16 +141,18 @@ straight to the production portfolio above.
   [`lib/analytics.js`](lib/analytics.js), which never blocks navigation
   if tracking fails
 - Case studies for TeamTrail, Qwen MemoryAgent, Dead Code Finder,
-  CompassionateConnect AI, GreenGrid AI, and the AI-Powered Therapist
-  Dashboard (`/projects/teamtrail`, `/projects/qwen-memoryagent`,
+  CompassionateConnect AI, GreenGrid AI, the AI-Powered Therapist
+  Dashboard, PilotCraft, and Prompt Engineering Adoption
+  (`/projects/teamtrail`, `/projects/qwen-memoryagent`,
   `/projects/dead-code-finder`, `/projects/compassionateconnect`,
-  `/projects/greengrid`, `/projects/therapist-dashboard`) — problem,
-  approach, what broke and how it got fixed, outcome, and an honest
-  scope note, all sourced from the projects' own repo READMEs — see
-  [`lib/case-studies.js`](lib/case-studies.js). The Therapist Dashboard
-  case study was corrected after an initial pass overstated its
-  security/validation posture ("HIPAA-aligned," "piloted") — see that
-  file's top-of-entry comment for what changed and why.
+  `/projects/greengrid`, `/projects/therapist-dashboard`,
+  `/projects/pilotcraft`, `/projects/prompt-engineering-adoption`) —
+  problem, approach, what broke and how it got fixed, outcome, and an
+  honest scope note, all sourced from the projects' own repo READMEs —
+  see [`lib/case-studies.js`](lib/case-studies.js). The Therapist
+  Dashboard case study was corrected after an initial pass overstated
+  its security/validation posture ("HIPAA-aligned," "piloted") — see
+  that file's top-of-entry comment for what changed and why.
 - Work-authorization / location wording (H-1B transfer status and
   relocation openness), shown in the sidebar on every page and on About —
   see [`lib/status.js`](lib/status.js)
