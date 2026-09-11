@@ -4,7 +4,7 @@ Nidhi Vedartham's recruiter-facing portfolio for AI enablement, rapid
 prototyping, product experimentation, and lessons learned from building
 with emerging AI tools.
 
-**Live:** https://prototype-playground.vercel.app
+**Live:** https://prototype-playground-vert.vercel.app
 
 ## What the site demonstrates
 
