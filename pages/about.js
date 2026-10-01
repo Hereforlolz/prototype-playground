@@ -34,7 +34,7 @@ export default function About() {
     <Layout>
       <SeoHead
         title="About — Sreenidhi Vedartham Portfolio"
-        description="Nidhi — software/electrical engineer with 8+ years in IoT/embedded systems, cross-team technical strategy, and applied AI prototyping."
+        description="Nidhi — software/electrical engineer with 8+ years building smart-device systems, helping teams make technical decisions, and testing AI tools in practice."
         path="/about"
       />
 
@@ -60,8 +60,8 @@ export default function About() {
 
           <div className="min-w-0">
             <p className="text-muted mb-3">
-              Hi, I&apos;m Nidhi — a software and electrical engineer who likes finding where systems break, from
-              embedded IoT hardware to AI workflows, and figuring out what actually fixes it. I build fast, document
+              Hi, I&apos;m Nidhi — a software and electrical engineer who likes finding where things break, from
+              smart devices to AI tools, and figuring out what actually fixes it. I build fast, document
               what goes wrong along the way instead of smoothing it over, and adjust from there.
             </p>
             <p className="text-muted mb-3">
@@ -116,20 +116,19 @@ export default function About() {
         <div className="grid sm:grid-cols-3 gap-4 items-start">
           <TerminalFrame label="Engineering & systems">
             <p className="text-muted text-sm">
-              Software/Electrical Engineer at Ivani (Jan 2018–present), bridging hardware, embedded software, and
-              data engineering for wireless IoT systems — contributing to the design and maintenance of the IoT data
-              pipeline (edge collection through cloud ingestion), and building the applied-math-and-ML algorithms
-              (embedded C and Python) that run on top of it. I also designed and run the onboarding program for new
-              engineers on the team.
+              Software/Electrical Engineer at Ivani (Jan 2018–present), working across hardware, device software, and
+              data for wireless IoT systems. I helped design and maintain the system that carries data from the
+              devices to the cloud, and built the math and machine-learning code that makes sense of it. I also
+              designed and run the onboarding program for new engineers on the team.
             </p>
           </TerminalFrame>
 
           <TerminalFrame label="AI adoption & prototyping">
             <p className="text-muted text-sm mb-2">
-              I benchmark prompt-engineering approaches and build agent infrastructure to test where AI workflows
-              are reliable, where they fail, and what evidence is still missing. As part of Ivani&apos;s
-              social-media marketing team, I built 7 interactive Sensify product demos in 3 weeks using AI coding
-              agents and a 19-check Playwright audit, then presented them to the C-suite.
+              I test where AI tools are reliable, where they fail, and what evidence is still missing, and I turn what
+              I learn into guidance people can use. With Ivani&apos;s social-media marketing team, I built 7 interactive
+              Sensify product demos in 3 weeks using AI coding tools and an automated 19-point quality check, then
+              presented them to the C-suite.
             </p>
             <p className="text-sm mb-2">
               <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
@@ -139,15 +138,15 @@ export default function About() {
             <p className="text-muted text-sm">
               Outside of work:{' '}
               <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-                a Slack onboarding agent
+                a Slack helper for new hires
                 <span className="sr-only"> (opens in new tab)</span>
               </a>,{' '}
               <a href="https://devpost.com/software/track-1-qwen-memoryagent" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-                a memory system on pgvector
+                an AI memory that knows what to forget
                 <span className="sr-only"> (opens in new tab)</span>
               </a>, and{' '}
               <a href="https://devpost.com/software/dead-code-finder" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-                a knowledge-graph bug finder
+                a tool that finds unused code
                 <span className="sr-only"> (opens in new tab)</span>
               </a>{' '}
               — plus a habit of writing up what broke on{' '}

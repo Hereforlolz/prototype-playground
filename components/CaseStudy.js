@@ -52,6 +52,14 @@ function Overview({ stack, problem, approach, whatBroke, outcome, scope, media }
     <>
       {media?.hero && <CaseStudyMedia {...media.hero} />}
 
+      <Section title="The problem" items={problem} />
+      <Section title="The approach" items={approach} />
+      {media?.afterApproach && <CaseStudyMedia {...media.afterApproach} />}
+
+      <Section title="What broke (and how it got fixed)" items={whatBroke} />
+      <Section title="Outcome" items={outcome} />
+      {media?.afterOutcome && <CaseStudyMedia {...media.afterOutcome} />}
+
       <section className="mb-8">
         <h2 className="font-display text-lg font-bold text-text mb-3">Stack</h2>
         <TerminalFrame label="Stack">
@@ -65,14 +73,6 @@ function Overview({ stack, problem, approach, whatBroke, outcome, scope, media }
           </dl>
         </TerminalFrame>
       </section>
-
-      <Section title="The problem" items={problem} />
-      <Section title="The approach" items={approach} />
-      {media?.afterApproach && <CaseStudyMedia {...media.afterApproach} />}
-
-      <Section title="What broke (and how it got fixed)" items={whatBroke} />
-      <Section title="Outcome" items={outcome} />
-      {media?.afterOutcome && <CaseStudyMedia {...media.afterOutcome} />}
 
       <section className="mb-12">
         <h2 className="font-display text-lg font-bold text-text mb-3">Honest scope</h2>
@@ -134,7 +134,8 @@ function ExplanationSelector({ mode, onSelect }) {
 export default function CaseStudy({ study }) {
   const { slug, title, subtitle, tagline, repoUrl, devpostUrl, linkedinUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope, media } = study;
   const showSelector = hasSimpleExplanation(study);
-  const [mode, setMode] = useState(DEFAULT_MODE);
+  // Lead with the plain-language view when one exists; Overview is one click away.
+  const [mode, setMode] = useState(showSelector ? 'simple' : DEFAULT_MODE);
 
   function selectMode(requestedMode) {
     const resolved = resolveExplanationMode(study, requestedMode);
@@ -146,7 +147,7 @@ export default function CaseStudy({ study }) {
   return (
     <Layout>
       <SeoHead
-        title={`${title} case study — Nidhi Vedartham`}
+        title={`${title} case study — Sreenidhi Vedartham Portfolio`}
         description={`${subtitle} — problem, approach, what broke, and honest scope.`}
         path={`/projects/${slug}`}
       />
