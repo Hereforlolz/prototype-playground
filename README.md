@@ -1,4 +1,4 @@
-# Prototype Playground
+# Sreenidhi Vedartham Portfolio
 
 Nidhi Vedartham's recruiter-facing portfolio for AI enablement, rapid
 prototyping, product experimentation, and lessons learned from building

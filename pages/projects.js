@@ -22,17 +22,20 @@ export default function Projects({ repos, githubUnavailable }) {
   return (
     <Layout>
       <SeoHead
-        title="Projects & Experiments — Nidhi Vedartham"
+        title="Projects & Experiments — Sreenidhi Vedartham Portfolio"
         description="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
         path="/projects"
       />
       <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-4">
         Projects &amp; Experiments
       </h1>
+      <p className="text-muted text-sm mb-6 max-w-prose">
+        What each project does for people comes first. The tools used are listed at the end of each description.
+      </p>
 
       <nav aria-label="Jump to section" className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted mb-8">
-        <a href="#highlights" className="hover:text-accent transition-colors duration-150">Highlights</a>
         <a href="#impact" className="hover:text-accent transition-colors duration-150">Impact</a>
+        <a href="#highlights" className="hover:text-accent transition-colors duration-150">Highlights</a>
         {caseStudies.length > 0 && (
           <a href="#case-studies" className="hover:text-accent transition-colors duration-150">Case Studies</a>
         )}
@@ -53,6 +56,21 @@ export default function Projects({ repos, githubUnavailable }) {
           Live GitHub data temporarily unavailable — showing project info without it.
         </p>
       )}
+
+      <section className="mb-12 max-w-3xl" id="impact">
+        <TerminalFrame label="AI adoption impact" variant="featured">
+          <p className="text-text font-medium">{METRIC_LINE}</p>
+          <p className="text-muted text-xs mt-3 italic">
+            {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
+            projects below.
+          </p>
+          <p className="text-sm mt-3">
+            <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
+              Read the prompt-adoption case study →
+            </Link>
+          </p>
+        </TerminalFrame>
+      </section>
 
       <section className="mb-12 max-w-3xl" id="highlights">
         <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
@@ -79,21 +97,6 @@ export default function Projects({ repos, githubUnavailable }) {
             </TerminalFrame>
           ))}
         </div>
-      </section>
-
-      <section className="mb-12 max-w-3xl" id="impact">
-        <TerminalFrame label="AI adoption impact" variant="featured">
-          <p className="text-text font-medium">{METRIC_LINE}</p>
-          <p className="text-muted text-xs mt-3 italic">
-            {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
-            projects above.
-          </p>
-          <p className="text-sm mt-3">
-            <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
-              Read the prompt-adoption case study →
-            </Link>
-          </p>
-        </TerminalFrame>
       </section>
 
       {caseStudies.length > 0 && (

@@ -33,7 +33,7 @@ export default function About() {
   return (
     <Layout>
       <SeoHead
-        title="About — Nidhi Vedartham"
+        title="About — Sreenidhi Vedartham Portfolio"
         description="Nidhi — software/electrical engineer with 8+ years in IoT/embedded systems, cross-team technical strategy, and applied AI prototyping."
         path="/about"
       />
