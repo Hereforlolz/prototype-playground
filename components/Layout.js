@@ -35,7 +35,7 @@ function SidebarContent({ pathname }) {
       />
       <Link href="/" className="block w-fit">
         <p className="font-display text-xl sm:text-2xl font-bold text-text tracking-tight hover:text-accent transition-colors duration-150">
-          Nidhi Vedartham
+          Sreenidhi Vedartham
         </p>
       </Link>
       <p className="text-sm text-muted mt-1">
@@ -110,7 +110,7 @@ export default function Layout({ children }) {
 
       <div className="lg:hidden flex items-center justify-between p-4 border-b border-border">
         <Link href="/" className="font-display font-bold text-text">
-          Nidhi Vedartham
+          Sreenidhi Vedartham
         </Link>
         <button
           type="button"

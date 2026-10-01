@@ -3,14 +3,14 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
-import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE } from '../lib/homepage-content';
+import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE, START_HERE } from '../lib/homepage-content';
 import { PERSON_JSON_LD } from '../lib/person';
 
 export default function Home() {
   return (
     <Layout>
       <SeoHead
-        title="Nidhi Vedartham"
+        title="Sreenidhi Vedartham Portfolio"
         description="Software/electrical engineer working across embedded IoT, technical strategy, and applied AI — practical prototypes and honest write-ups of what breaks."
         path="/"
         jsonLd={PERSON_JSON_LD}
@@ -37,6 +37,23 @@ export default function Home() {
             <p className="text-muted text-xs mt-2">{METRIC_DISCLOSURE}</p>
           </details>
         </div>
+
+        <section className="mb-10 max-w-prose" aria-labelledby="start-here">
+          <h2 id="start-here" className="font-display text-lg font-bold text-text mb-3">Start here</h2>
+          <ul className="space-y-3 text-sm">
+            {START_HERE.map(({ href, title, detail }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="font-display font-semibold text-accent hover:opacity-80 underline"
+                >
+                  {title}
+                </Link>
+                <p className="text-muted mt-1">{detail}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <nav className="flex flex-wrap gap-3 mb-10">
           <Link

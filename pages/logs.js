@@ -105,7 +105,7 @@ export default function Logs() {
   return (
     <Layout>
       <SeoHead
-        title="Lessons Learned — Nidhi Vedartham"
+        title="Lessons Learned — Sreenidhi Vedartham Portfolio"
         description="Five project-backed lessons on how building and testing AI and embedded systems changed my judgment — with the receipts."
         path="/logs"
       />
