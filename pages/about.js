@@ -116,7 +116,7 @@ export default function About() {
         <div className="grid sm:grid-cols-3 gap-4 items-start">
           <TerminalFrame label="Engineering & systems">
             <p className="text-muted text-sm">
-              Software/Electrical Engineer at Ivani (Jan 2018–present), working across hardware, device software, and
+              Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, device software, and
               data for wireless IoT systems. I helped design and maintain the system that carries data from the
               devices to the cloud, and built the math and machine-learning code that makes sense of it. I also
               designed and run the onboarding program for new engineers on the team.
