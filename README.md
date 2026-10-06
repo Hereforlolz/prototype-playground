@@ -108,8 +108,8 @@ pages/
   logs.js                          — Lessons Learned
   about.js                         — About
 bugs.json                — manually curated external bug reports
-public/
-  Sreenidhi-Vedartham-Resume.pdf
+public/                  — static assets (résumé PDF intentionally NOT served)
+private/                 — gitignored local résumé copy, sent to requesters by hand
 ```
 
 ## Deployment
