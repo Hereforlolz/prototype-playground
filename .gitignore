@@ -49,3 +49,6 @@ desktop.ini
 # --- Misc caches ---
 .eslintcache
 .cache/
+
+# --- Private files (never commit) ---
+private/
