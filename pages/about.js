@@ -245,10 +245,14 @@ export default function About() {
               the Facebook community
               <span className="sr-only"> (opens in new tab)</span>
             </a>,{' '}
-          <a href="https://marshallnewsmessenger.com/2019/03/11/embark-women-creates-a-network-of-mentors-to-help-professional-women-grow/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-              Marshall News Messenger coverage of the mentor network
+          <a href="https://tylerpaper.com/2019/03/01/embark-women-creates-a-network-of-mentors-to-help-professional-women-grow/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              Tyler Morning Telegraph coverage of the mentor network
               <span className="sr-only"> (opens in new tab)</span>
-            </a>, and{' '}
+            </a>, <a href="https://www.geddieconnections.com/2017/07/01/diverse-women-are-building-better-communities/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              a profile of its founders
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>,{' '}
+          and{' '}
           <a href="https://www.womenize.net/2021/03/03/sreenidhi-narayanan-%E2%94%82-womenize-inspiring-stories/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
               an interview on Womenize!
               <span className="sr-only"> (opens in new tab)</span>
