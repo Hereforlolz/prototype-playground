@@ -28,11 +28,6 @@ Current behavior worth calling out on `/projects`:
 - Curated project cards are static content and stay visible even if
   GitHub is unreachable or rate-limited — see
   [`lib/projects-data.js`](lib/projects-data.js).
-- `lib/projects-data.js` fetches each curated repo's open GitHub issues
-  (GitHub's issues API also returns open pull requests, undistinguished),
-  but nothing from that fetch is currently rendered — cards are static
-  text only. Removed as UI clutter; the fetch and its tests stay, since a
-  future page could reasonably surface it.
 - A few curated projects describe private repos. Their name and
   description are intentionally public, but they never link to a
   repository a visitor can't actually open.
@@ -70,11 +65,9 @@ The in-memory rate limiter only works per serverless instance, so it is best eff
 - Curated portfolio content (project names, descriptions, links) is static
   data, not fetched from any API — see the `HIGHLIGHTS` array in
   [`lib/projects-data.js`](lib/projects-data.js).
-- The only GitHub calls made are two public, unauthenticated endpoints —
-  listing a user's public repos, and each curated repo's open issues
-  (which GitHub's API mixes with open pull requests) — no token, no
-  elevated access, for either. Neither result is currently rendered
-  anywhere on the site; see the "Pages" section above.
+- The only GitHub call made is one public, unauthenticated request that
+  lists the user's public repos (rendered under "All Repos" on `/projects`) —
+  no token, no elevated access.
 - Anything private is filtered out before it reaches page props, as an
   explicit check independent of what the endpoint itself guarantees.
 - A GitHub outage or rate limit never removes curated project cards —
