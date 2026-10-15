@@ -96,6 +96,7 @@ lib/
   case-studies.js        — full case-study content for the flagship projects
   status.js              — work-authorization and location wording, shared sitewide
   request.js             — request-form validation, honeypot, and rate limiter
+  background.js         — About page: earlier role, education, AWS certification, languages
   ivani-work.js          — About page: more Ivani work
   zero-gravity.js        — About page: Zero-Gravity Thinker copy
   person.js              — Person JSON-LD for the homepage

@@ -6,6 +6,7 @@ import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
 import { IVANI_WORK } from '../lib/ivani-work';
+import { EARLIER_ROLE, EDUCATION, CERTIFICATIONS, LANGUAGES, TECHNICAL_ACTIVITIES } from '../lib/background';
 import { ZG_INTRO, ZG_IS, ZG_IS_NOT, ZG_PRACTICES } from '../lib/zero-gravity';
 
 // The four-phase approach behind the work on this site: understand the
@@ -249,6 +250,53 @@ export default function About() {
               <span className="sr-only"> (opens in new tab)</span>
             </a>.
         </p>
+      </section>
+
+      {/* 5. Background */}
+      <section id="background" className="mt-12 max-w-4xl scroll-mt-8">
+        <h2 className="font-display text-xl font-bold text-text mb-1">Background</h2>
+        <p className="text-muted text-sm mb-4">Before Ivani, plus education, certifications, and the rest.</p>
+        <div className="grid sm:grid-cols-2 gap-4 items-start">
+          <TerminalFrame label={`${EARLIER_ROLE.title} (${EARLIER_ROLE.dates})`}>
+            <ul className="space-y-2 text-muted text-sm list-disc list-inside">
+              {EARLIER_ROLE.items.map(item => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </TerminalFrame>
+          <div className="space-y-4">
+            <TerminalFrame label="Education">
+              <ul className="space-y-2 text-muted text-sm">
+                {EDUCATION.map(({ degree, school, years }) => (
+                  <li key={degree}>
+                    <span className="text-text font-medium">{degree}</span>, {school} ({years})
+                  </li>
+                ))}
+              </ul>
+            </TerminalFrame>
+            <TerminalFrame label="Certification">
+              <ul className="space-y-2 text-muted text-sm">
+                {CERTIFICATIONS.map(({ name, issuer, issued, expires, href }) => (
+                  <li key={name}>
+                    <a href={href} target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline font-medium">
+                      {name}
+                      <span className="sr-only"> (opens in new tab)</span>
+                    </a>
+                    , {issuer}. Issued {issued}, expires {expires}. Verifiable on Credly.
+                  </li>
+                ))}
+              </ul>
+            </TerminalFrame>
+            <TerminalFrame label="Languages & activity">
+              <p className="text-muted text-sm mb-2">{LANGUAGES.join(' · ')}</p>
+              <ul className="space-y-1 text-muted text-sm list-disc list-inside">
+                {TECHNICAL_ACTIVITIES.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </TerminalFrame>
+          </div>
+        </div>
       </section>
 
       {/* 6. Contact / recruiter CTA */}
