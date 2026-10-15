@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
+import { AVAILABILITY } from '../lib/status';
 import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE, START_HERE } from '../lib/homepage-content';
 import { PERSON_JSON_LD } from '../lib/person';
 
@@ -20,7 +21,8 @@ export default function Home() {
           {HEADLINE}
         </h1>
 
-        <p className="text-muted mb-6 max-w-prose">{SUBTEXT}</p>
+        <p className="text-muted mb-3 max-w-prose">{SUBTEXT}</p>
+        <p className="text-text text-sm font-medium mb-6 max-w-prose">{AVAILABILITY}</p>
 
         <ul className="text-sm text-muted space-y-2 mb-6 max-w-prose list-disc list-inside">
           {PROOF_POINTS.map(point => (

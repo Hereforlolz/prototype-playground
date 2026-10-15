@@ -20,7 +20,7 @@ with emerging AI tools.
 - `/projects` — Projects & Experiments. Curated, hand-written project cards.
 - `/logs` — Lessons Learned. A running record of real bugs, misfires, and
   what came out of them.
-- `/about` — About. How I work, the Zero-Gravity Thinker role, more Ivani work, and Embark Women.
+- `/about` — About. How I work, leadership & mentoring, the Zero-Gravity Thinker role, engineering at Ivani, AI adoption, and Embark Women.
 - `/contact` — One form for requesting the résumé or starting a role conversation (`?type=resume` or `?type=role` pre-selects a tab). Submissions go through `/api/request`.
 - `/experiments/<slug>` — Five playful browser tools, rendered from `content/experiments/*.html`. They call model providers straight from the visitor's browser with the visitor's own API key.
 
@@ -101,7 +101,8 @@ lib/
   status.js              — work-authorization and location wording, shared sitewide
   request.js             — request-form validation, honeypot, and rate limiter
   background.js          — About page: earlier role, education, AWS certification, languages
-  ivani-work.js          — About page: more Ivani work
+  ivani-work.js          — About page: engineering at Ivani
+  leadership.js          — About page: leadership & mentoring cards and the Embark Women section
   zero-gravity.js        — About page: Zero-Gravity Thinker copy
   theme-script.js       — inline theme no-flash snippet (hashed into the CSP)
   person.js              — Person JSON-LD for the homepage
