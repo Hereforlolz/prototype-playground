@@ -224,12 +224,15 @@ export default function About() {
           programs serving 500+ participants (counted conservatively), grew the community to 800+ members on
           Facebook, and recruited and supported 150+ members with personalized career and business guidance.
           Owned the work end to end: speakers and sponsors, promotion, registration, venues and volunteers, recaps,
-          and the WordPress/Wix, Meetup, Eventbrite, and Mailchimp tooling behind it.
+          and the WordPress/Wix, Meetup, Eventbrite, Mailchimp, Google Forms, Canva, and scheduling tools
+          (Hootsuite, Buffer, Sprout Social) behind it.
         </p>
         <p className="text-muted mt-3">
           Programs were built to be easy to join: free or low-cost options, flexible schedules, and attention to
           transportation, childcare, disability, and cultural needs. Speakers and stories prioritized women and
           underrepresented voices, and members&apos; photos and stories were shared only with consent.
+          Interviews and member feedback shaped what we programmed next, and a partnership with Coffee Outside
+          supported the community, including podcast and livestream production at a community lab.
         </p>
         <p className="text-muted text-sm mt-3">
           Public record:{' '}
