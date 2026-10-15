@@ -17,7 +17,8 @@ with emerging AI tools.
 ## Pages
 
 - `/` — Home. Positioning and plain-language entry points into the rest of the site.
-- `/projects` — Projects & Experiments. Curated, hand-written project cards.
+- `/projects` — Projects. Curated, hand-written project cards, with PilotCraft's live demo linked first.
+- `/playground` — Playground. The five playful browser tools, with the AI Pitch Deck Generator highlighted and how to try each one.
 - `/logs` — Lessons Learned. A running record of real bugs, misfires, and
   what came out of them.
 - `/about` — About. How I work, leadership & mentoring, the Zero-Gravity Thinker role, engineering at Ivani, AI adoption, and Embark Women.

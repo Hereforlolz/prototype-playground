@@ -132,7 +132,7 @@ function ExplanationSelector({ mode, onSelect }) {
 }
 
 export default function CaseStudy({ study }) {
-  const { slug, title, subtitle, tagline, repoUrl, devpostUrl, linkedinUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope, media } = study;
+  const { slug, title, subtitle, tagline, repoUrl, liveUrl, devpostUrl, linkedinUrl, analyticsEvent, stack, problem, approach, whatBroke, outcome, scope, media } = study;
   const showSelector = hasSimpleExplanation(study);
   // Lead with the plain-language view when one exists; Overview is one click away.
   const [mode, setMode] = useState(showSelector ? 'simple' : DEFAULT_MODE);
@@ -153,7 +153,7 @@ export default function CaseStudy({ study }) {
       />
       <div className="max-w-3xl">
         <p className="text-sm mb-2">
-          <Link href="/projects" className="text-accent hover:opacity-80 underline">← Back to Projects &amp; Experiments</Link>
+          <Link href="/projects" className="text-accent hover:opacity-80 underline">← Back to Projects</Link>
         </p>
         <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-2">
           {title}
@@ -163,6 +163,18 @@ export default function CaseStudy({ study }) {
 
         {hasAnyCaseStudyLink(study) && (
           <div className="flex flex-wrap gap-3 mb-8 text-sm">
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => safeTrack(analyticsEvent, { source: 'case_study_live_demo' })}
+                className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
+              >
+                Try the live demo
+                <span className="sr-only"> (opens in new tab)</span>
+              </a>
+            )}
             {repoUrl && (
               <a
                 href={repoUrl}

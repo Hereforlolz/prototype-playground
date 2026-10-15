@@ -8,7 +8,8 @@ import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
 import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
-  { href: '/projects', label: 'Projects & Experiments' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/playground', label: 'Playground' },
   { href: '/logs', label: 'Lessons Learned' },
   { href: '/about', label: 'About' },
 ];

@@ -60,8 +60,17 @@ const BACK_LINK_STYLE = {
   textDecoration: 'none',
 };
 
+const INTRO_STYLE = {
+  padding: '48px 16px 12px',
+  fontSize: '14px',
+  lineHeight: 1.5,
+  fontFamily: 'sans-serif',
+  color: '#333',
+  background: '#f4f4f4',
+};
+
 export default function Experiment({ slug, style, body, script }) {
-  const { title, description } = EXPERIMENTS[slug];
+  const { title, description, intro, howToTry } = EXPERIMENTS[slug];
   const injectedRef = useRef(false);
 
   useEffect(() => {
@@ -82,9 +91,12 @@ export default function Experiment({ slug, style, body, script }) {
       <style dangerouslySetInnerHTML={{ __html: style }} />
       {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- deliberately a
           full page load, not client-side routing: see the file header. */}
-      <a href="/projects" style={BACK_LINK_STYLE}>
-        ← Projects &amp; Experiments
+      <a href="/playground" style={BACK_LINK_STYLE}>
+        ← Playground
       </a>
+      <div style={INTRO_STYLE}>
+        <strong>{title}.</strong> {intro} {howToTry}
+      </div>
       <div dangerouslySetInnerHTML={{ __html: body }} />
     </>
   );
