@@ -16,9 +16,8 @@ const NAV_LINKS = [
 // Terse sidebar labels, sourced from the shared CTA data so hrefs/events
 // stay in sync with the closing CTA — only the visible label differs here.
 const CONTACT_LINKS = [
-  { href: CTA_ACTIONS.discussRole.href, label: 'Email', event: CTA_ACTIONS.discussRole.event },
+  { href: CTA_ACTIONS.contact.href, label: 'Contact', event: CTA_ACTIONS.contact.event },
   { href: CTA_ACTIONS.linkedin.href, label: 'LinkedIn', event: CTA_ACTIONS.linkedin.event },
-  { href: CTA_ACTIONS.resume.href, label: 'Resume', event: CTA_ACTIONS.resume.event },
 ];
 
 function SidebarContent({ pathname }) {

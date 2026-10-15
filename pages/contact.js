@@ -7,13 +7,13 @@ import { safeTrack } from '../lib/analytics';
 
 const COPY = {
   resume: {
-    heading: 'Request my résumé',
+    label: 'Request résumé',
     intro: 'Leave your email and I’ll send my résumé over personally. I keep it off the public site to protect my contact details.',
     button: 'Request résumé',
     event: 'resume_request',
   },
   role: {
-    heading: 'Discuss a role',
+    label: 'Discuss a role',
     intro: 'Tell me a bit about the role or problem and where to reach you. I’ll reply from my own inbox.',
     button: 'Send message',
     event: 'role_request',
@@ -22,7 +22,10 @@ const COPY = {
 
 export default function Contact() {
   const { query } = useRouter();
-  const type = query.type === 'role' ? 'role' : 'resume';
+  // One page for both requests: the link's ?type= pre-selects a tab, and the
+  // visitor can switch between them without leaving the form.
+  const [picked, setPicked] = useState(null);
+  const type = picked || (query.type === 'resume' ? 'resume' : 'role');
   const copy = COPY[type];
 
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
@@ -71,8 +74,25 @@ export default function Contact() {
       />
       <div className="max-w-xl">
         <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-3">
-          {copy.heading}
+          Get in touch
         </h1>
+        <div role="group" aria-label="What would you like?" className="flex flex-wrap gap-2 mb-3 text-sm">
+          {Object.entries(COPY).map(([key, { label }]) => (
+            <button
+              key={key}
+              type="button"
+              aria-pressed={type === key}
+              onClick={() => setPicked(key)}
+              className={`font-display font-semibold px-4 py-2 rounded-md border transition-colors duration-150 ${
+                type === key
+                  ? 'bg-accent text-surface border-accent'
+                  : 'border-border text-text hover:border-accent hover:text-accent'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
         <p className="text-muted text-sm mb-6">{copy.intro}</p>
 
         {status === 'sent' ? (
