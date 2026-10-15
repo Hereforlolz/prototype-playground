@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
@@ -45,7 +46,19 @@ export default function About() {
           About
         </h1>
 
-        <div>
+        <div className="flex flex-col sm:flex-row gap-6 items-start">
+          <div className="shrink-0 self-center sm:self-start">
+            <Image
+              src="/profile.jpg"
+              alt="Portrait of Sreenidhi Vedartham, smiling, in a black sleeveless top"
+              width={2448}
+              height={3264}
+              sizes="(min-width: 640px) 160px, 140px"
+              priority
+              className="w-[140px] sm:w-[160px] aspect-[4/5] rounded-xl border border-border object-cover object-[50%_35%]"
+            />
+          </div>
+
           <div className="min-w-0">
             <p className="text-muted mb-3">
               Hi, I&apos;m Nidhi — a software and electrical engineer who likes finding where things break, from
