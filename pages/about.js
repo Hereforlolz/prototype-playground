@@ -7,7 +7,7 @@ import ClosingCTA from '../components/ClosingCTA';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION, AVAILABILITY } from '../lib/status';
 import { IVANI_WORK } from '../lib/ivani-work';
 import { EARLIER_ROLE, EDUCATION, CERTIFICATIONS, LANGUAGES, TECHNICAL_ACTIVITIES } from '../lib/background';
-import { LEADERSHIP, EMBARK } from '../lib/leadership';
+import { LEADERSHIP, EMBARK, EMBARK_PHOTOS, EMBARK_LOGO } from '../lib/leadership';
 import { ZG_INTRO, ZG_IS, ZG_IS_NOT, ZG_PRACTICES } from '../lib/zero-gravity';
 
 // The four-phase approach behind the work on this site: understand the
@@ -222,12 +222,29 @@ export default function About() {
 
       {/* 4. Embark Women */}
       <section id="embark-women" className="mt-12 max-w-2xl scroll-mt-8">
-        <h2 className="font-display text-xl font-bold text-text mb-4">🌱 Embark Women (2017–2022)</h2>
+        <div className="flex items-center gap-3 mb-4">
+          <Image
+            src={EMBARK_LOGO.src}
+            alt={EMBARK_LOGO.alt}
+            width={EMBARK_LOGO.width}
+            height={EMBARK_LOGO.height}
+            className="w-14 h-14 rounded-md"
+          />
+          <h2 className="font-display text-xl font-bold text-text">Embark Women (2017–2022)</h2>
+        </div>
         {EMBARK.map((paragraph, i) => (
           <p key={paragraph} className={`text-muted${i > 0 ? ' mt-3' : ''}`}>
             {paragraph}
           </p>
         ))}
+        <div className="grid sm:grid-cols-3 gap-4 mt-6 items-start">
+          {EMBARK_PHOTOS.map(({ src, width, height, alt, caption }) => (
+            <figure key={src}>
+              <Image src={src} alt={alt} width={width} height={height} sizes="(min-width: 640px) 240px, 100vw" className="rounded-md border border-border w-full h-auto" />
+              <figcaption className="text-muted text-xs mt-1">{caption}</figcaption>
+            </figure>
+          ))}
+        </div>
         <p className="text-muted text-sm mt-3">
           Public record:{' '}
           <a href="https://www.facebook.com/groups/EmbarkWomen/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
@@ -239,6 +256,14 @@ export default function About() {
               <span className="sr-only"> (opens in new tab)</span>
             </a>, <a href="https://www.geddieconnections.com/2017/07/01/diverse-women-are-building-better-communities/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
               a profile of its founders
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>,{' '}
+          <a href="https://www.kltv.com/story/37683871/2018-evolve-womens-conferences-2018-celebration-of-women/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              KLTV coverage of the 2018 Evolve Women&apos;s Conference
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>,{' '}
+          <a href="https://tylerpaper.com/2018/03/08/evolve-womens-conference-promotes-support-and-collaboration-on-international-womans-day/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              Tyler Morning Telegraph coverage of the same conference
               <span className="sr-only"> (opens in new tab)</span>
             </a>,{' '}
           and{' '}
