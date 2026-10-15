@@ -4,9 +4,10 @@ import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
-import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
+import { LOCATION, RELOCATION, WORK_AUTHORIZATION, AVAILABILITY } from '../lib/status';
 import { IVANI_WORK } from '../lib/ivani-work';
 import { EARLIER_ROLE, EDUCATION, CERTIFICATIONS, LANGUAGES, TECHNICAL_ACTIVITIES } from '../lib/background';
+import { LEADERSHIP, EMBARK } from '../lib/leadership';
 import { ZG_INTRO, ZG_IS, ZG_IS_NOT, ZG_PRACTICES } from '../lib/zero-gravity';
 
 // The four-phase approach behind the work on this site: understand the
@@ -37,7 +38,7 @@ export default function About() {
     <Layout>
       <SeoHead
         title="About — Sreenidhi Vedartham Portfolio"
-        description="Nidhi — software/electrical engineer with 8+ years building smart-device systems, helping teams make technical decisions, and testing AI tools in practice."
+        description="Sreenidhi — software/electrical engineer with 8+ years building smart-device systems, leading community programs, helping engineering teams, and testing AI tools in practice."
         path="/about"
       />
 
@@ -62,13 +63,12 @@ export default function About() {
 
           <div className="min-w-0">
             <p className="text-muted mb-3">
-              Hi, I&apos;m Nidhi — a software and electrical engineer who likes finding where things break, from
-              smart devices to AI tools, and figuring out what actually fixes it. I build fast, document
-              what goes wrong along the way instead of smoothing it over, and adjust from there.
+              Hi, I&apos;m Sreenidhi. I&apos;m a software and electrical engineer, and I also build and lead
+              community programs. I like finding where things break, from smart devices to AI tools, and working
+              with people to figure out what actually fixes it. I build fast, write down what goes wrong along the
+              way instead of smoothing it over, and adjust from there.
             </p>
-            <p className="text-muted mb-3">
-              If you have a system you want pressure-tested — AI or otherwise — I&apos;d like to hear about it.
-            </p>
+            <p className="text-text text-sm font-medium mb-3">{AVAILABILITY}</p>
             <p className="text-muted text-xs">
               {LOCATION} — {RELOCATION.toLowerCase()}. {WORK_AUTHORIZATION}.
             </p>
@@ -100,71 +100,25 @@ export default function About() {
         </TerminalFrame>
       </section>
 
-      {/* 3. Where this shows up */}
-      <section className="mt-12 max-w-4xl">
-        <h2 className="font-display text-xl font-bold text-text mb-1">Where this shows up</h2>
+      {/* 3. Leadership & mentoring */}
+      <section id="leadership" className="mt-12 max-w-4xl scroll-mt-8">
+        <h2 className="font-display text-xl font-bold text-text mb-1">Leadership &amp; mentoring</h2>
         <p className="text-muted text-sm mb-4">
-          I bring the same systems-first approach and evidence discipline to engineering, AI experimentation, and
-          community work.
+          Organizing access to coaching, working through problems with engineers, and improving how a team works
+          are three different jobs. Here is each one, with what I did and didn&apos;t do.
         </p>
-        <div className="grid sm:grid-cols-3 gap-4 items-start">
-          <TerminalFrame label="Engineering & systems">
-            <p className="text-muted text-sm">
-              Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, firmware, device software, and
-              data for wireless IoT systems (OpenThread, with ESP32, Nordic, and SiLabs chips). I helped design and maintain the system that carries data from the
-              devices to the cloud, and built the math and machine-learning code that makes sense of it. I also
-              designed the merge request checklist the CTO adopted company-wide, and ran a cross-team engineering coaching program for 4+ years.
-            </p>
-          </TerminalFrame>
-
-          <TerminalFrame label="AI adoption & prototyping">
-            <p className="text-muted text-sm mb-2">
-              I test where AI tools are reliable, where they fail, and what evidence is still missing, and I turn what
-              I learn into guidance people can use. As a contributor on Ivani&apos;s social-media marketing team, I specced and iterated a six-variant
-              Sensify scrollytelling demo through rounds of C-suite feedback, reframing it around what partners
-              needed to understand.
-            </p>
-            <p className="text-sm mb-2">
-              <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
-                Read the prompt-adoption case study →
-              </Link>
-            </p>
-            <p className="text-muted text-sm">
-              Outside of work:{' '}
-              <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-                a Slack helper for new hires
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>,{' '}
-              <a href="https://devpost.com/software/track-1-qwen-memoryagent" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-                an AI memory that knows what to forget
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>, and{' '}
-              <a href="https://devpost.com/software/dead-code-finder" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-                a tool that finds unused code
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>{' '}
-              — plus a habit of writing up what broke on{' '}
-              <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-                dev.to
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>. More on{' '}
-              <Link href="/projects" className="text-accent hover:opacity-80 underline">Projects &amp; Experiments</Link>.
-            </p>
-          </TerminalFrame>
-
-          <TerminalFrame label="Community & communication">
-            <p className="text-muted text-sm">
-              Internally, a role called Zero-Gravity Thinker: embedding with teams as an outside perspective,
-              running rubber-ducking and brainstorming sessions, and bridging stakeholders and engineering so
-              misunderstandings get caught before they become friction. Outside engineering, that same instinct for
-              translating between technical and non-technical audiences built{' '}
-              <a href="#embark-women" className="text-accent hover:opacity-80 underline">Embark Women</a>.
-            </p>
-          </TerminalFrame>
+        <div className="grid sm:grid-cols-2 gap-4 items-start">
+          {LEADERSHIP.map(({ label, text, href, link }) => (
+            <TerminalFrame key={label} label={label}>
+              <p className="text-muted text-sm">{text}</p>
+              {href && (
+                <p className="text-sm mt-2">
+                  <a href={href} className="text-accent hover:opacity-80 underline">{link}</a>
+                </p>
+              )}
+            </TerminalFrame>
+          ))}
         </div>
-        <p className="text-text text-sm font-medium mt-6">
-          The setting changes; the pattern doesn&apos;t.
-        </p>
       </section>
 
       {/* 3a. Zero-Gravity Thinker */}
@@ -198,9 +152,17 @@ export default function About() {
 
       {/* 3b. More from Ivani */}
       <section className="mt-12 max-w-4xl">
-        <h2 className="font-display text-xl font-bold text-text mb-1">More from my time at Ivani</h2>
+        <h2 className="font-display text-xl font-bold text-text mb-1">Engineering at Ivani</h2>
+        <p className="text-muted text-sm mb-2">
+          Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, firmware, device
+          software, and data for wireless IoT systems (OpenThread, with ESP32, Nordic, and SiLabs chips). I helped
+          design and maintain the system that carries data from the devices to the cloud, and I contributed to the
+          math and machine-learning code that makes sense of it.
+        </p>
         <p className="text-muted text-sm mb-4">
-          The day job had more range than one job title suggests. Here is what else I did, in plain terms.
+          Detailed performance results for the detection work are confidential, so there are no accuracy or latency
+          numbers here. The 1,000+ node figure is the size of the deployment I helped flash and provision. It is not
+          a result, and I didn&apos;t own the whole deployment.
         </p>
         <div className="grid sm:grid-cols-2 gap-4 items-start">
           {IVANI_WORK.map(({ group, items }) => (
@@ -215,25 +177,57 @@ export default function About() {
         </div>
       </section>
 
+      {/* 3c. AI adoption */}
+      <section id="ai-adoption" className="mt-12 max-w-3xl scroll-mt-8">
+        <h2 className="font-display text-xl font-bold text-text mb-1">AI adoption &amp; prototyping</h2>
+        <p className="text-muted text-sm mb-2">
+          I test where AI tools are reliable, where they fail, and what evidence is still missing, then turn what I
+          learn into guidance people can use. My prompt guidance spread across the engineering team (about 10
+          people) in about two weeks. Internal estimates from before-and-after comparisons: about 50% less rework
+          and about 8 minutes saved per engineering query. Those are directional estimates, not independently
+          validated research.
+        </p>
+        <p className="text-sm mb-3">
+          <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
+            Read the prompt-adoption case study →
+          </Link>
+        </p>
+        <p className="text-muted text-sm mb-2">
+          As a contributor on Ivani&apos;s social-media marketing team, I specced and iterated a six-variant Sensify
+          scrollytelling demo through rounds of C-suite feedback, reframing it around what partners needed to
+          understand.
+        </p>
+        <p className="text-muted text-sm">
+          Outside of work:{' '}
+          <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            a Slack helper for new hires
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>,{' '}
+          <a href="https://devpost.com/software/track-1-qwen-memoryagent" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            an AI memory that knows what to forget
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>, and{' '}
+          <a href="https://devpost.com/software/dead-code-finder" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            a tool that finds unused code
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>{' '}
+          — plus a habit of writing up what broke on{' '}
+          <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            dev.to
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>. More on{' '}
+          <Link href="/projects" className="text-accent hover:opacity-80 underline">Projects &amp; Experiments</Link>.
+        </p>
+      </section>
+
       {/* 4. Embark Women */}
       <section id="embark-women" className="mt-12 max-w-2xl scroll-mt-8">
         <h2 className="font-display text-xl font-bold text-text mb-4">🌱 Embark Women (2017–2022)</h2>
-        <p className="text-muted">
-          Co-founder and CEO of Embark Women, a community built to expand professional opportunity, mentorship, and
-          connection for women in Tyler, TX, with a no-selling policy to keep it relationship-focused. Ran 20+
-          programs serving 500+ participants (counted conservatively), grew the community to 800+ members on
-          Facebook, and recruited and supported 150+ members with personalized career and business guidance.
-          Owned the work end to end: speakers and sponsors, promotion, registration, venues and volunteers, recaps,
-          and the WordPress/Wix, Meetup, Eventbrite, Mailchimp, Google Forms, Canva, and scheduling tools
-          (Hootsuite, Buffer, Sprout Social) behind it.
-        </p>
-        <p className="text-muted mt-3">
-          Programs were built to be easy to join: free or low-cost options, flexible schedules, and attention to
-          transportation, childcare, disability, and cultural needs. Speakers and stories prioritized women and
-          underrepresented voices, and members&apos; photos and stories were shared only with consent.
-          Interviews and member feedback shaped what we programmed next, and a partnership with Coffee Outside
-          supported the community, including podcast and livestream production at a community lab.
-        </p>
+        {EMBARK.map((paragraph, i) => (
+          <p key={paragraph} className={`text-muted${i > 0 ? ' mt-3' : ''}`}>
+            {paragraph}
+          </p>
+        ))}
         <p className="text-muted text-sm mt-3">
           Public record:{' '}
           <a href="https://www.facebook.com/groups/EmbarkWomen/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
