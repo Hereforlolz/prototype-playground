@@ -234,6 +234,30 @@ export default function About() {
           Owned the work end to end: speakers and sponsors, promotion, registration, venues and volunteers, recaps,
           and the WordPress/Wix, Meetup, Eventbrite, and Mailchimp tooling behind it.
         </p>
+        <p className="text-muted mt-3">
+          Programs were built to be easy to join: free or low-cost options, flexible schedules, and attention to
+          transportation, childcare, disability, and cultural needs. Speakers and stories prioritized women and
+          underrepresented voices, and members&apos; photos and stories were shared only with consent.
+        </p>
+        <p className="text-muted text-sm mt-3">
+          Public record:{' '}
+          <a href="https://www.facebook.com/groups/EmbarkWomen/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              the Facebook community
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>,{' '}
+          <a href="https://tylerpaper.com/2019/03/01/embark-women-creates-a-network-of-mentors-to-help-professional-women-grow/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              Tyler Morning Telegraph coverage of the mentor network
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>, <a href="https://www.geddieconnections.com/2017/07/01/diverse-women-are-building-better-communities/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              a profile of its founders
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>,{' '}
+          and{' '}
+          <a href="https://www.womenize.net/2021/03/03/sreenidhi-narayanan-%E2%94%82-womenize-inspiring-stories/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+              an interview on Womenize!
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>.
+        </p>
       </section>
 
       {/* 5. Small human element */}
