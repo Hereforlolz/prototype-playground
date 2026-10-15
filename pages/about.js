@@ -5,6 +5,7 @@ import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
+import { IVANI_WORK } from '../lib/ivani-work';
 
 // The four-phase approach behind the work on this site: understand the
 // real system, build enough to expose what's actually true, separate
@@ -171,6 +172,25 @@ export default function About() {
         <p className="text-text text-sm font-medium mt-6">
           The setting changes; the pattern doesn&apos;t.
         </p>
+      </section>
+
+      {/* 3b. More from Ivani */}
+      <section className="mt-12 max-w-4xl">
+        <h2 className="font-display text-xl font-bold text-text mb-1">More from my time at Ivani</h2>
+        <p className="text-muted text-sm mb-4">
+          The day job had more range than one job title suggests. Here is what else I did, in plain terms.
+        </p>
+        <div className="grid sm:grid-cols-3 gap-4 items-start">
+          {IVANI_WORK.map(({ group, items }) => (
+            <TerminalFrame key={group} label={group}>
+              <ul className="space-y-2 text-muted text-sm list-disc list-inside">
+                {items.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </TerminalFrame>
+          ))}
+        </div>
       </section>
 
       {/* 4. Embark Women */}
