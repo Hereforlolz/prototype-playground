@@ -6,6 +6,7 @@ import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION } from '../lib/status';
 import { IVANI_WORK } from '../lib/ivani-work';
+import { ZG_INTRO, ZG_IS, ZG_IS_NOT, ZG_PRACTICES } from '../lib/zero-gravity';
 
 // The four-phase approach behind the work on this site: understand the
 // real system, build enough to expose what's actually true, separate
@@ -172,6 +173,35 @@ export default function About() {
         <p className="text-text text-sm font-medium mt-6">
           The setting changes; the pattern doesn&apos;t.
         </p>
+      </section>
+
+      {/* 3a. Zero-Gravity Thinker */}
+      <section id="zero-gravity" className="mt-12 max-w-3xl scroll-mt-8">
+        <h2 className="font-display text-xl font-bold text-text mb-1">Zero-Gravity Thinker</h2>
+        <p className="text-muted text-sm mb-4">{ZG_INTRO}</p>
+        <div className="grid sm:grid-cols-2 gap-4 items-start mb-4">
+          <TerminalFrame label="What it is">
+            <ul className="space-y-2 text-muted text-sm list-disc list-inside">
+                {ZG_IS.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+            </ul>
+          </TerminalFrame>
+          <TerminalFrame label="What it is not">
+            <ul className="space-y-2 text-muted text-sm list-disc list-inside">
+                {ZG_IS_NOT.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+            </ul>
+          </TerminalFrame>
+        </div>
+        <TerminalFrame label="How I do it">
+          <ul className="space-y-2 text-muted text-sm list-disc list-inside">
+                {ZG_PRACTICES.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+          </ul>
+        </TerminalFrame>
       </section>
 
       {/* 3b. More from Ivani */}
