@@ -110,8 +110,8 @@ export default function About() {
         <div className="grid sm:grid-cols-3 gap-4 items-start">
           <TerminalFrame label="Engineering & systems">
             <p className="text-muted text-sm">
-              Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, device software, and
-              data for wireless IoT systems. I helped design and maintain the system that carries data from the
+              Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, firmware, device software, and
+              data for wireless IoT systems (OpenThread, with ESP32, Nordic, and SiLabs chips). I helped design and maintain the system that carries data from the
               devices to the cloud, and built the math and machine-learning code that makes sense of it. I also
               designed the merge request checklist the CTO adopted company-wide, and ran a cross-team engineering coaching program for 4+ years.
             </p>
@@ -202,7 +202,7 @@ export default function About() {
         <p className="text-muted text-sm mb-4">
           The day job had more range than one job title suggests. Here is what else I did, in plain terms.
         </p>
-        <div className="grid sm:grid-cols-3 gap-4 items-start">
+        <div className="grid sm:grid-cols-2 gap-4 items-start">
           {IVANI_WORK.map(({ group, items }) => (
             <TerminalFrame key={group} label={group}>
               <ul className="space-y-2 text-muted text-sm list-disc list-inside">
