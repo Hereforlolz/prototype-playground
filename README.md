@@ -59,6 +59,12 @@ npm run build   # production build
 
 The site itself needs no environment variables. The contact form's API route (`pages/api/request.js`) needs server-side `RESEND_API_KEY` and `NOTIFY_EMAIL`, and optionally `RESEND_FROM` — see `.env.example`. Without them the route returns a 503 and the form shows a fallback message. Set them in Vercel project settings, never in the repo.
 
+### Contact form spam protection
+
+`/api/request` quietly drops (returns fake success, sends nothing) submissions that fill the hidden `website` field, post faster than 3 seconds after the form rendered (the browser sends `elapsedMs`), or put more than one link in the name or message. Line breaks in the name are collapsed so they can't forge email lines.
+
+The in-memory rate limiter only works per serverless instance, so it is best effort. For a real limit, add a Vercel Firewall rate-limit rule: Project → Firewall → Rules → path equals `/api/request`, 5 requests per 10 minutes per IP, action Deny (or Challenge).
+
 ## Architecture and privacy
 
 - Curated portfolio content (project names, descriptions, links) is static
