@@ -179,7 +179,7 @@ export default function About() {
         <p className="text-muted">
           Co-founder and CEO of Embark Women, a grassroots organization supporting young women entrepreneurs and
           students in Tyler, TX. Ran 20+ events — webinars, hands-on workshops, live networking meetups — serving
-          500+ participants, and personally recruited and mentored 150+ members with career and business guidance.
+          500+ participants, and built a community of 800+ members, 150+ of whom I personally recruited and mentored with career and business guidance.
           Owned delivery end to end: sponsorships, branded decks and marketing assets, the WordPress/Wix sites, and
           analytics dashboards across HubSpot, Google Analytics, and Facebook tools.
         </p>
