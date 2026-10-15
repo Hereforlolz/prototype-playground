@@ -16,18 +16,18 @@ import {
 
 export default function Projects({ repos, githubUnavailable }) {
   const highlighted = buildHighlightedProjects(repos);
-  const { flagship, caseStudies, experiments, inProgress } = splitHighlightedProjects(highlighted);
+  const { flagship, caseStudies, inProgress } = splitHighlightedProjects(highlighted);
   const rest = buildOtherRepos(repos);
 
   return (
     <Layout>
       <SeoHead
-        title="Projects & Experiments — Sreenidhi Vedartham Portfolio"
+        title="Projects — Sreenidhi Vedartham Portfolio"
         description="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
         path="/projects"
       />
       <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-4">
-        Projects &amp; Experiments
+        Projects
       </h1>
       <p className="text-muted text-sm mb-6 max-w-prose">
         What each project does for people comes first. The tools used are listed at the end of each description.
@@ -39,9 +39,7 @@ export default function Projects({ repos, githubUnavailable }) {
         {caseStudies.length > 0 && (
           <a href="#case-studies" className="hover:text-accent transition-colors duration-150">Case Studies</a>
         )}
-        {experiments.length > 0 && (
-          <a href="#experiments" className="hover:text-accent transition-colors duration-150">Experiments</a>
-        )}
+        <Link href="/playground" className="hover:text-accent transition-colors duration-150">Playground</Link>
         {inProgress.length > 0 && (
           <a href="#in-progress" className="hover:text-accent transition-colors duration-150">In Progress</a>
         )}
@@ -106,7 +104,7 @@ export default function Projects({ repos, githubUnavailable }) {
             Additional working builds with detailed write-ups covering the problem, decisions, results, and limitations.
           </p>
           <div className="space-y-4">
-            {caseStudies.map(({ name, title, url, blurb, analyticsEvent, caseStudyHref }) => (
+            {caseStudies.map(({ name, title, url, liveUrl, blurb, analyticsEvent, caseStudyHref }) => (
               <TerminalFrame key={name} label={name}>
                 <a
                   href={url}
@@ -119,55 +117,35 @@ export default function Projects({ repos, githubUnavailable }) {
                   <span className="sr-only"> (opens in new tab)</span>
                 </a>
                 <p className="text-muted text-sm mt-2">{blurb}</p>
-                {caseStudyHref && (
-                  <Link href={caseStudyHref} className="text-accent text-sm hover:opacity-80 underline inline-block mt-2">
-                    Read the case study →
-                  </Link>
-                )}
+                <div className="flex flex-wrap gap-x-4 mt-2 text-sm">
+                  {liveUrl && (
+                    <a
+                      href={liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => safeTrack(analyticsEvent || 'project_link_click', { project: name, source: 'live_demo' })}
+                      className="text-accent hover:opacity-80 underline"
+                    >
+                      Try the live demo →
+                      <span className="sr-only"> (opens in new tab)</span>
+                    </a>
+                  )}
+                  {caseStudyHref && (
+                    <Link href={caseStudyHref} className="text-accent hover:opacity-80 underline">
+                      Read the case study →
+                    </Link>
+                  )}
+                </div>
               </TerminalFrame>
             ))}
           </div>
         </section>
       )}
 
-      {experiments.length > 0 && (
-        <section className="mb-12 max-w-3xl" id="experiments">
-          <h2 className="font-display text-lg font-bold text-muted mb-1">🧪 Experiments</h2>
-          <p className="text-muted text-sm mb-4">
-            Smaller, single-purpose AI tools — real and working, but secondary to the flagship builds above.
-          </p>
-          <div className="space-y-3">
-            {experiments.map(({ name, title, url, demoHref, blurb }) => (
-              <TerminalFrame key={name} label={name}>
-                {url ? (
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() => safeTrack('project_link_click', { project: name })}
-                    className="font-display font-medium text-sm text-text hover:text-accent transition-colors duration-150 inline-block"
-                  >
-                    {title}
-                    <span className="sr-only"> (opens in new tab)</span>
-                  </a>
-                ) : (
-                  <p className="font-display font-medium text-sm text-text inline-block">{title}</p>
-                )}
-                <p className="text-muted text-xs mt-2">{blurb}</p>
-                {demoHref && (
-                  <a
-                    href={demoHref}
-                    onClick={() => safeTrack('experiment_demo_click', { project: name })}
-                    className="text-accent text-xs hover:opacity-80 underline inline-block mt-2"
-                  >
-                    Try it live →
-                  </a>
-                )}
-              </TerminalFrame>
-            ))}
-          </div>
-        </section>
-      )}
+      <p className="text-muted text-sm mb-12 max-w-3xl" id="experiments">
+        Looking for the smaller, playful tools? They live on the{' '}
+        <Link href="/playground" className="text-accent hover:opacity-80 underline">Playground</Link>.
+      </p>
 
       {inProgress.length > 0 && (
         <section className="mb-12 max-w-3xl" id="in-progress">
