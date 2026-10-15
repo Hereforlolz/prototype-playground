@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
@@ -46,20 +45,7 @@ export default function About() {
           About
         </h1>
 
-        <div className="flex flex-col sm:flex-row gap-6 items-start">
-          <div className="shrink-0 self-center sm:self-start">
-            <div className="w-[140px] sm:w-[160px] aspect-[4/5] rounded-xl border border-border bg-surface-alt flex items-center justify-center overflow-hidden">
-              <Image
-                src="/brand/reactions/nidhi-wave.png"
-                alt="Illustrated portrait of Nidhi waving"
-                width={155}
-                height={178}
-                priority
-                className="max-w-[72%] h-auto"
-              />
-            </div>
-          </div>
-
+        <div>
           <div className="min-w-0">
             <p className="text-muted mb-3">
               Hi, I&apos;m Nidhi — a software and electrical engineer who likes finding where things break, from
@@ -79,14 +65,6 @@ export default function About() {
       {/* 2. How I work */}
       <section className="mt-12 max-w-3xl">
         <div className="flex items-center gap-3 mb-1">
-          <Image
-            src="/brand/reactions/nidhi-thinking.png"
-            alt=""
-            aria-hidden="true"
-            width={131}
-            height={178}
-            className="w-8 h-auto shrink-0"
-          />
           <h2 className="font-display text-xl font-bold text-text">How I work</h2>
         </div>
         <p className="text-muted text-sm mb-4">A pattern I&apos;ve noticed in how I work:</p>
@@ -259,18 +237,6 @@ export default function About() {
             </a>.
         </p>
       </section>
-
-      {/* 5. Small human element */}
-      <div className="mt-10 max-w-2xl flex items-center gap-3">
-        <Image
-          src="/brand/reactions/nidhi-riley-work-together.png"
-          alt="Illustration of Nidhi working at a laptop with her dog Riley"
-          width={173}
-          height={179}
-          className="w-12 h-auto shrink-0"
-        />
-        <p className="text-muted text-xs italic">Riley — occasional co-worker, permanent scene-stealer.</p>
-      </div>
 
       {/* 6. Contact / recruiter CTA */}
       <div className="mt-12 max-w-2xl">
