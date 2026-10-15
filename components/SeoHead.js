@@ -3,12 +3,12 @@
 // Shared <Head> for every page: renders the title/description tag plus
 // the matching Open Graph and Twitter Card tags from the same title and
 // description, so a link pasted into an email or LinkedIn DM gets a real
-// preview instead of a bare URL. No og:image/twitter:image yet — see
-// lib/seo.js for why. Pass jsonLd (a plain object) to also emit a
+// preview instead of a bare URL. og:image/twitter:image use the
+// shared profile crop from lib/seo.js. Pass jsonLd (a plain object) to also emit a
 // <script type="application/ld+json"> block — used on the homepage for
 // Person structured data.
 import Head from 'next/head';
-import { SITE_URL } from '../lib/seo';
+import { SITE_URL, OG_IMAGE } from '../lib/seo';
 
 export default function SeoHead({ title, description, path, jsonLd }) {
   const url = `${SITE_URL}${path}`;
@@ -21,9 +21,11 @@ export default function SeoHead({ title, description, path, jsonLd }) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
+      <meta property="og:image" content={OG_IMAGE} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={OG_IMAGE} />
       {jsonLd && (
         <script
           type="application/ld+json"
