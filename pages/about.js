@@ -119,16 +119,16 @@ export default function About() {
               Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, device software, and
               data for wireless IoT systems. I helped design and maintain the system that carries data from the
               devices to the cloud, and built the math and machine-learning code that makes sense of it. I also
-              designed and run the onboarding program for new engineers on the team.
+              designed the merge request checklist the CTO adopted company-wide, and ran a cross-team engineering coaching program for 4+ years.
             </p>
           </TerminalFrame>
 
           <TerminalFrame label="AI adoption & prototyping">
             <p className="text-muted text-sm mb-2">
               I test where AI tools are reliable, where they fail, and what evidence is still missing, and I turn what
-              I learn into guidance people can use. With Ivani&apos;s social-media marketing team, I built 7 interactive
-              Sensify product demos in 3 weeks using AI coding tools and an automated 19-point quality check, then
-              presented them to the C-suite.
+              I learn into guidance people can use. As a contributor on Ivani&apos;s social-media marketing team, I specced and iterated a six-variant
+              Sensify scrollytelling demo through rounds of C-suite feedback, reframing it around what partners
+              needed to understand.
             </p>
             <p className="text-sm mb-2">
               <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
@@ -177,11 +177,12 @@ export default function About() {
       <section id="embark-women" className="mt-12 max-w-2xl scroll-mt-8">
         <h2 className="font-display text-xl font-bold text-text mb-4">🌱 Embark Women (2017–2022)</h2>
         <p className="text-muted">
-          Co-founder and CEO of Embark Women, a grassroots organization supporting young women entrepreneurs and
-          students in Tyler, TX. Ran 20+ events — webinars, hands-on workshops, live networking meetups — serving
-          500+ participants, and built a community of 800+ members, 150+ of whom I personally recruited and mentored with career and business guidance.
-          Owned delivery end to end: sponsorships, branded decks and marketing assets, the WordPress/Wix sites, and
-          analytics dashboards across HubSpot, Google Analytics, and Facebook tools.
+          Co-founder and CEO of Embark Women, a community built to expand professional opportunity, mentorship, and
+          connection for women in Tyler, TX, with a no-selling policy to keep it relationship-focused. Ran 20+
+          programs serving 500+ participants (counted conservatively), grew the community to 800+ members on
+          Facebook, and recruited and supported 150+ members with personalized career and business guidance.
+          Owned the work end to end: speakers and sponsors, promotion, registration, venues and volunteers, recaps,
+          and the WordPress/Wix, Meetup, Eventbrite, and Mailchimp tooling behind it.
         </p>
       </section>
 
