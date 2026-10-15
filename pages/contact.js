@@ -27,6 +27,9 @@ export default function Contact() {
 
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
   const [error, setError] = useState('');
+  // When the form first rendered; sent as elapsed time so the server can tell
+  // a person filling it in from a script posting instantly.
+  const [shownAt] = useState(() => Date.now());
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -43,6 +46,7 @@ export default function Contact() {
           name: form.get('name'),
           message: form.get('message'),
           website: form.get('website'),
+          elapsedMs: Date.now() - shownAt,
         }),
       });
       const data = await response.json().catch(() => ({}));
