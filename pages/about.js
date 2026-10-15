@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
+import Slideshow from '../components/Slideshow';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION, AVAILABILITY } from '../lib/status';
 import { IVANI_WORK } from '../lib/ivani-work';
 import { EARLIER_ROLE, EDUCATION, CERTIFICATIONS, LANGUAGES, TECHNICAL_ACTIVITIES } from '../lib/background';
@@ -237,14 +238,7 @@ export default function About() {
             {paragraph}
           </p>
         ))}
-        <div className="grid sm:grid-cols-3 gap-4 mt-6 items-start">
-          {EMBARK_PHOTOS.map(({ src, width, height, alt, caption }) => (
-            <figure key={src}>
-              <Image src={src} alt={alt} width={width} height={height} sizes="(min-width: 640px) 240px, 100vw" className="rounded-md border border-border w-full h-auto" />
-              <figcaption className="text-muted text-xs mt-1">{caption}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <Slideshow photos={EMBARK_PHOTOS} label="Embark Women photos" />
         <p className="text-muted text-sm mt-3">
           Public record:{' '}
           <a href="https://www.facebook.com/groups/EmbarkWomen/" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
