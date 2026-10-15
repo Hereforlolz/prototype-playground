@@ -21,7 +21,7 @@ with emerging AI tools.
 - `/logs` — Lessons Learned. A running record of real bugs, misfires, and
   what came out of them.
 - `/about` — About. How I work, the Zero-Gravity Thinker role, more Ivani work, and Embark Women.
-- `/contact` — Request form for the résumé or a role conversation (`?type=resume` or `?type=role`). Submissions go through `/api/request`.
+- `/contact` — One form for requesting the résumé or starting a role conversation (`?type=resume` or `?type=role` pre-selects a tab). Submissions go through `/api/request`.
 - `/experiments/<slug>` — Five playful browser tools, rendered from `content/experiments/*.html`. They call model providers straight from the visitor's browser with the visitor's own API key.
 
 Current behavior worth calling out on `/projects`:
