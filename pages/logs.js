@@ -54,18 +54,18 @@ const LESSONS = [
     id: 'obvious-question',
     title: 'The obvious question is often the useful one',
     changedMind:
-      'In my one-on-one Zero-Gravity sessions, engineers who had been stuck on a bug for days walked me through it while I asked the obvious questions. That sometimes helped them step back and see it differently. I wasn’t the one who knew the answer.',
+      'In my one-on-one Zero-Gravity sessions, engineers who had been stuck on a bug for days walked me through it out loud while I asked the obvious questions. Often that was enough for them to step back and see what they had been missing. I wasn’t the one who knew the answer.',
     doDifferently:
-      'The obvious question is a real tool, not a fallback. Sometimes a bug someone had been stuck on for days got worked through in about twenty minutes. That happened sometimes. It is not an average.',
+      'I ask the plain question first, like what do you expect to happen, and what actually happens? I also stopped treating a stuck engineer as someone who needs an expert. Sometimes they need someone to talk it through with. Sometimes a bug someone had been stuck on for days got worked through in about twenty minutes. That happened sometimes. It is not an average.',
     receipts: [{ label: 'Zero-Gravity Thinker', href: '/about#zero-gravity' }],
   },
   {
     id: 'ask-then-change',
     title: 'Ask the people you’re building for, then change the plan',
     changedMind:
-      'At Embark Women, my co-founder and I picked the events and topics ourselves at first.',
+      'At Embark Women, my co-founder and I picked the events and topics ourselves at first. That worked until I realized we were guessing at what members wanted.',
     doDifferently:
-      'After every event we asked members for feedback and used it to shape what we ran next.',
+      'After every event we asked members for feedback and used it to plan what came next. I do the same with a new process now: start with something small, ask the people using it what got in the way, and change it.',
     receipts: [{ label: 'Embark Women', href: '/about#embark-women' }],
   },
 ];
