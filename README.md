@@ -16,11 +16,13 @@ with emerging AI tools.
 
 ## Pages
 
-- `/` — Home. Positioning, entry points into the other three pages.
+- `/` — Home. Positioning and plain-language entry points into the rest of the site.
 - `/projects` — Projects & Experiments. Curated, hand-written project cards.
 - `/logs` — Lessons Learned. A running record of real bugs, misfires, and
   what came out of them.
-- `/about` — About. Background, current role, and community work.
+- `/about` — About. How I work, the Zero-Gravity Thinker role, more Ivani work, and Embark Women.
+- `/contact` — Request form for the résumé or a role conversation (`?type=resume` or `?type=role`). Submissions go through `/api/request`.
+- `/experiments/<slug>` — Five playful browser tools, rendered from `content/experiments/*.html`. They call model providers straight from the visitor's browser with the visitor's own API key.
 
 Current behavior worth calling out on `/projects`:
 - Curated project cards are static content and stay visible even if
@@ -50,12 +52,12 @@ Current behavior worth calling out on `/projects`:
 ```bash
 npm install
 npm run dev     # start the dev server
-npm run test    # run lib/projects-data.test.js
+npm run test    # run every lib/*.test.js with Node's test runner
 npm run lint    # eslint
 npm run build   # production build
 ```
 
-No environment variables are required to run this locally or in CI.
+The site itself needs no environment variables. The contact form's API route (`pages/api/request.js`) needs server-side `RESEND_API_KEY` and `NOTIFY_EMAIL`, and optionally `RESEND_FROM` — see `.env.example`. Without them the route returns a 503 and the form shows a fallback message. Set them in Vercel project settings, never in the repo.
 
 ## Architecture and privacy
 
@@ -85,6 +87,7 @@ components/
   TerminalFrame.js      — shared card component
   ThemeToggle.js        — light/dark mode toggle
   ClosingCTA.js         — shared closing call-to-action (used on every page)
+  SeoHead.js            — shared title, description, canonical, and JSON-LD tags
   CaseStudy.js          — shared layout for the flagship project case-study pages
 lib/
   projects-data.js       — curated project data, GitHub fetch, privacy filtering
@@ -93,6 +96,10 @@ lib/
   analytics.js           — safeTrack() wrapper so a tracking failure never blocks navigation
   case-studies.js        — full case-study content for the flagship projects
   status.js              — work-authorization and location wording, shared sitewide
+  request.js             — request-form validation, honeypot, and rate limiter
+  ivani-work.js          — About page: more Ivani work
+  zero-gravity.js        — About page: Zero-Gravity Thinker copy
+  person.js              — Person JSON-LD for the homepage
   *.test.js               — Node test runner tests for each of the above
 pages/
   index.js                     — Home
@@ -107,6 +114,9 @@ pages/
   projects/prompt-engineering-adoption.js — Prompt Engineering Adoption case study
   logs.js                          — Lessons Learned
   about.js                         — About
+  contact.js                       — résumé / role request form
+  experiments/[slug].js            — renders one experiment from content/experiments
+  api/request.js                   — emails form submissions via Resend
 bugs.json                — manually curated external bug reports
 public/                  — static assets (résumé PDF intentionally NOT served)
 private/                 — gitignored local résumé copy, sent to requesters by hand
