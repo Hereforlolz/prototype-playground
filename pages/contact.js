@@ -65,8 +65,8 @@ export default function Contact() {
   return (
     <Layout>
       <SeoHead
-        title="Contact — Nidhi Vedartham"
-        description="Request Nidhi's résumé or start a conversation about a role."
+        title="Contact — Sreenidhi Vedartham"
+        description="Request Sreenidhi's résumé or start a conversation about a role."
         path="/contact"
       />
       <div className="max-w-xl">
