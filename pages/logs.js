@@ -4,7 +4,7 @@ import SeoHead from '../components/SeoHead';
 import TerminalFrame from '../components/TerminalFrame';
 import ClosingCTA from '../components/ClosingCTA';
 
-// Five evidence-backed lessons, traceable to the linked case studies
+// Six evidence-backed lessons, traceable to the linked case studies
 // and, where noted, a public portfolio correction.
 const LESSONS = [
   {
@@ -51,24 +51,27 @@ const LESSONS = [
     receipts: [{ label: 'Dead Code Finder', href: '/projects/dead-code-finder' }],
   },
   {
-    id: 'earn-its-place',
-    title: 'AI should have to earn its place',
-    changedMind: 'An AI solution can be interesting without being the simplest or most defensible answer to the real problem.',
+    id: 'obvious-question',
+    title: 'The obvious question is often the useful one',
+    changedMind:
+      'In my one-on-one Zero-Gravity sessions, engineers who had been stuck on a bug for days walked me through it while I asked the obvious questions. That sometimes helped them step back and see it differently. I wasn’t the one who knew the answer.',
     doDifferently:
-      "PilotCraft explicitly asks teams to compare AI with non-AI options, and to reject or rework a pilot when the evidence, risk, or expected value doesn’t justify using AI.",
-    receipts: [{ label: 'PilotCraft', href: '/projects/pilotcraft' }],
+      'The obvious question is a real tool, not a fallback. Sometimes a bug someone had been stuck on for days got worked through in about twenty minutes. That happened sometimes. It is not an average.',
+    receipts: [{ label: 'Zero-Gravity Thinker', href: '/about#zero-gravity' }],
+  },
+  {
+    id: 'ask-then-change',
+    title: 'Ask the people you’re building for, then change the plan',
+    changedMind:
+      'At Embark Women, my co-founder and I picked the events and topics ourselves at first.',
+    doDifferently:
+      'After every event we asked members for feedback and used it to shape what we ran next.',
+    receipts: [{ label: 'Embark Women', href: '/about#embark-women' }],
   },
 ];
 
 // Newest first, matching the "recent entries" framing above the list.
-// NOTE: the three 2026-07 entries below use month-level precision
-// ("~2026-07") since exact days weren't tracked at the time. Swap in a
-// real YYYY-MM-DD date if you find it, but don't state a specific day
-// that isn't real.
 const LOG_ENTRIES = [
-  { date: '~2026-07', level: 'FIXED', msg: 'This site itself: a broken link sat unnoticed for a year. Fixed.' },
-  { date: '~2026-07', level: 'BUG', msg: 'Sensify scrollytelling demo — the camera movement, the hand shape, and the limb pivot points all fought me the whole way.' },
-  { date: '~2026-07', level: 'DEBUG', msg: 'Data-analysis script — it took five rounds with a local AI model before it could reliably spot “ghost” sensors.' },
   { date: '2025-06-26', level: 'PERF', msg: 'Logging slowed down under heavy load; sped it up by saving records in batches.' },
   { date: '2025-06-23', level: 'BUG', msg: 'CompassionateConnect — hit an error in Google’s agent toolkit when a tool mixed required and optional inputs. Filed with a reproducible setup and diagnostic details as adk-docs#826.' },
 ];
@@ -106,7 +109,7 @@ export default function Logs() {
     <Layout>
       <SeoHead
         title="Lessons Learned — Sreenidhi Vedartham Portfolio"
-        description="Five lessons from building and testing AI tools and smart-device systems that changed how I work, with links to the projects behind each one."
+        description="Six lessons from building and testing AI tools, smart-device systems, and community programs that changed how I work, with links to what is behind each one."
         path="/logs"
       />
       <div className="max-w-3xl">
@@ -114,7 +117,7 @@ export default function Logs() {
           Lessons Learned
         </h1>
         <p className="text-muted mb-8 text-sm">
-          Five lessons that changed how I build, check, and describe my work. Each links to the project behind it.
+          Six lessons that changed how I build, check, and work with people. Each links to what is behind it.
         </p>
 
         <div className="space-y-6">
