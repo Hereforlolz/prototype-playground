@@ -1,15 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
-
-const NO_FLASH_THEME_SCRIPT = `
-(function () {
-  try {
-    var stored = localStorage.getItem('theme');
-    if (stored === 'light' || stored === 'dark') {
-      document.documentElement.setAttribute('data-theme', stored);
-    }
-  } catch (e) {}
-})();
-`;
+import { NO_FLASH_THEME_SCRIPT } from "../lib/theme-script";
 
 export default function Document() {
   return (

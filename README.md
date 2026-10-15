@@ -60,6 +60,10 @@ The site itself needs no environment variables. The contact form's API route (`p
 
 The in-memory rate limiter only works per serverless instance, so it is best effort. For a real limit, add a Vercel Firewall rate-limit rule: Project → Firewall → Rules → path equals `/api/request`, 5 requests per 10 minutes per IP, action Deny (or Challenge).
 
+### Content-Security-Policy
+
+Set in [`next.config.mjs`](next.config.mjs). Every page except `/experiments/*` allows scripts only from its own origin plus the hash of the theme no-flash snippet ([`lib/theme-script.js`](lib/theme-script.js)), and can only connect and load images from its own origin. The experiments keep a looser policy (inline scripts, `https:` connections) because they call model providers from the visitor's browser. `npm run build` uses `next build --webpack` because the default Turbopack output adds per-page inline scripts that a fixed hash cannot cover.
+
 ## Architecture and privacy
 
 - Curated portfolio content (project names, descriptions, links) is static
@@ -96,9 +100,10 @@ lib/
   case-studies.js        — full case-study content for the flagship projects
   status.js              — work-authorization and location wording, shared sitewide
   request.js             — request-form validation, honeypot, and rate limiter
-  background.js         — About page: earlier role, education, AWS certification, languages
+  background.js          — About page: earlier role, education, AWS certification, languages
   ivani-work.js          — About page: more Ivani work
   zero-gravity.js        — About page: Zero-Gravity Thinker copy
+  theme-script.js       — inline theme no-flash snippet (hashed into the CSP)
   person.js              — Person JSON-LD for the homepage
   *.test.js               — Node test runner tests for each of the above
 pages/
