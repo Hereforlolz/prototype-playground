@@ -30,11 +30,11 @@ export default function Projects({ repos, githubUnavailable }) {
         Projects
       </h1>
       <p className="text-muted text-sm mb-6 max-w-prose">
-        What each project does for people comes first. The tools used are listed at the end of each description.
+        Starting with my work at Ivani, then the hackathon builds and write-ups. What each project does for people comes first; the tools used come at the end.
       </p>
 
       <nav aria-label="Jump to section" className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted mb-8">
-        <a href="#impact" className="hover:text-accent transition-colors duration-150">Impact</a>
+        <a href="#impact" className="hover:text-accent transition-colors duration-150">Work at Ivani</a>
         <a href="#highlights" className="hover:text-accent transition-colors duration-150">Highlights</a>
         {caseStudies.length > 0 && (
           <a href="#case-studies" className="hover:text-accent transition-colors duration-150">Case Studies</a>
@@ -56,6 +56,10 @@ export default function Projects({ repos, githubUnavailable }) {
       )}
 
       <section className="mb-12 max-w-3xl" id="impact">
+        <h2 className="font-display text-xl font-bold text-text mb-1">Work at Ivani</h2>
+        <p className="text-muted text-sm mb-4">
+          Firmware and data work on a 1,000+ node IoT deployment, and helping the engineering team use AI better.
+        </p>
         <TerminalFrame label="AI adoption impact" variant="featured">
           <p className="text-text font-medium">{METRIC_LINE}</p>
           <p className="text-muted text-xs mt-3 italic">
@@ -65,6 +69,10 @@ export default function Projects({ repos, githubUnavailable }) {
           <p className="text-sm mt-3">
             <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
               Read the prompt-adoption case study →
+            </Link>
+            {' · '}
+            <Link href="/about" className="text-accent hover:opacity-80 underline">
+              Engineering at Ivani →
             </Link>
           </p>
         </TerminalFrame>
