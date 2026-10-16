@@ -30,7 +30,7 @@ function SidebarContent({ pathname }) {
         </p>
       </Link>
       <p className="text-sm text-muted mt-1">
-        Software/electrical engineer — IoT, technical strategy, and applied AI
+        Software/electrical engineer — IoT, AI enablement, and leading people programs
       </p>
       <p className="text-xs text-muted mt-2">
         {LOCATION} · {RELOCATION}

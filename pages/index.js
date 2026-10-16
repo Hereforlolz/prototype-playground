@@ -12,7 +12,7 @@ export default function Home() {
     <Layout>
       <SeoHead
         title="Sreenidhi Vedartham Portfolio"
-        description="Software/electrical engineer working across embedded IoT, technical strategy, and applied AI — practical prototypes and honest write-ups of what breaks."
+        description="Software/electrical engineer and community co-founder: embedded IoT, AI enablement, and technical program work, with honest write-ups of what breaks."
         path="/"
         jsonLd={PERSON_JSON_LD}
       />
@@ -63,7 +63,7 @@ export default function Home() {
             onClick={() => safeTrack('homepage_cta_click', { destination: 'projects' })}
             className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
-            View Projects &amp; Experiments
+            View Projects
           </Link>
           <Link
             href="/logs"
