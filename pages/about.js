@@ -7,6 +7,7 @@ import ClosingCTA from '../components/ClosingCTA';
 import Slideshow from '../components/Slideshow';
 import { LOCATION, RELOCATION, WORK_AUTHORIZATION, AVAILABILITY } from '../lib/status';
 import { IVANI_WORK } from '../lib/ivani-work';
+import { MARKETING_INTRO, MARKETING_OWNED, MARKETING_OUTCOMES, MARKETING_SCOPE_NOTE } from '../lib/marketing-work';
 import { EARLIER_ROLE, EDUCATION, CERTIFICATIONS, LANGUAGES, TECHNICAL_ACTIVITIES } from '../lib/background';
 import { LEADERSHIP, EMBARK, EMBARK_PHOTOS, EMBARK_LOGO } from '../lib/leadership';
 import { ZG_INTRO, ZG_IS, ZG_IS_NOT, ZG_PRACTICES } from '../lib/zero-gravity';
@@ -178,25 +179,43 @@ export default function About() {
         </div>
       </section>
 
-      {/* 3c. AI adoption */}
+      {/* 3c. Marketing co-leadership */}
+      <section id="marketing-leadership" className="mt-12 max-w-4xl scroll-mt-8">
+        <h2 className="font-display text-xl font-bold text-text mb-1">Marketing co-leadership at Ivani</h2>
+        <p className="text-muted text-sm mb-4">{MARKETING_INTRO}</p>
+        <div className="grid sm:grid-cols-2 gap-4 items-start">
+          <TerminalFrame label="What I owned">
+            <ul className="space-y-2 text-muted text-sm list-disc list-inside">
+              {MARKETING_OWNED.map(item => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </TerminalFrame>
+          <TerminalFrame label="Outcomes (shared, not solely mine)">
+            <ul className="space-y-2 text-muted text-sm list-disc list-inside">
+              {MARKETING_OUTCOMES.map(item => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </TerminalFrame>
+        </div>
+        <p className="text-muted text-xs mt-4">{MARKETING_SCOPE_NOTE}</p>
+      </section>
+
+      {/* 3d. AI adoption */}
       <section id="ai-adoption" className="mt-12 max-w-3xl scroll-mt-8">
         <h2 className="font-display text-xl font-bold text-text mb-1">AI adoption &amp; prototyping</h2>
         <p className="text-muted text-sm mb-2">
           I test where AI tools are reliable, where they fail, and what evidence is still missing, then turn what I
-          learn into guidance people can use. My prompt guidance spread across the engineering team (about 10
-          people) in about two weeks. Internal estimates from before-and-after comparisons: about 50% less rework
-          and about 8 minutes saved per engineering query. Those are directional estimates, not independently
-          validated research.
+          learn into guidance people can use. I compared original and structured prompts on real engineering
+          questions, then built reusable templates, a cheat sheet, and context guidance from what worked. Their use
+          spread from two engineers to roughly ten in about two weeks. The directional savings estimates from that
+          comparison are in the case study below, labeled as informal observations, not controlled measurement.
         </p>
         <p className="text-sm mb-3">
           <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
             Read the prompt-adoption case study →
           </Link>
-        </p>
-        <p className="text-muted text-sm mb-2">
-          As a contributor on Ivani&apos;s social-media marketing team, I specced and iterated a six-variant Sensify
-          scrollytelling demo through rounds of C-suite feedback, reframing it around what partners needed to
-          understand.
         </p>
         <p className="text-muted text-sm">
           Outside of work:{' '}

@@ -25,11 +25,10 @@ const LESSONS = [
     changedMind:
       "PilotCraft’s README once claimed it met the WCAG 2.2 AA accessibility standard, which I had never tested. The Therapist Dashboard was once described as “HIPAA-aligned” even though it had no login, no limits on who could access what, and was open to requests from anywhere.",
     doDifferently:
-      "Retract, don't hedge. The accessibility line was removed outright, not softened. The case study now states the missing security controls plainly, and “one therapist tested it” stopped being called a “pilot.” The same pass caught a smaller overstatement on this site’s own About page, a co-lead title that should have been an individual contribution, and fixed it the same way.",
+      "Retract, don't hedge. The accessibility line was removed outright, not softened. The case study now states the missing security controls plainly, and “one therapist tested it” stopped being called a “pilot.”",
     receipts: [
       { label: 'PilotCraft', href: '/projects/pilotcraft' },
       { label: 'Therapist Dashboard', href: '/projects/therapist-dashboard' },
-      { label: 'About-page correction (PR #40)', href: 'https://github.com/Hereforlolz/prototype-playground/pull/40', external: true },
     ],
   },
   {
