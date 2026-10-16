@@ -23,10 +23,11 @@ export default function Slideshow({ photos, label }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [focused, setFocused] = useState(false);
   const reducedMotion = useSyncExternalStore(subscribeReducedMotion, getReducedMotion, () => false);
   const count = photos.length;
 
-  const playing = !paused && !hovering && !reducedMotion && count > 1;
+  const playing = !paused && !hovering && !focused && !reducedMotion && count > 1;
 
   useEffect(() => {
     if (!playing) return undefined;
@@ -46,8 +47,10 @@ export default function Slideshow({ photos, label }) {
       className="mt-6"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      onFocus={() => setHovering(true)}
-      onBlur={() => setHovering(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={e => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
+      }}
     >
       <div className="relative w-full aspect-[4/3] rounded-md border border-border bg-surface-alt overflow-hidden">
         <Image
