@@ -63,8 +63,7 @@ export default function Projects({ repos, githubUnavailable }) {
         <TerminalFrame label="AI adoption impact" variant="featured">
           <p className="text-text font-medium">{METRIC_LINE}</p>
           <p className="text-muted text-xs mt-3 italic">
-            {METRIC_DISCLOSURE} These figures come from workplace AI-adoption work at Ivani, not from the
-            projects below.
+            {METRIC_DISCLOSURE} This is workplace AI-adoption work at Ivani, not one of the projects below.
           </p>
           <p className="text-sm mt-3">
             <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
