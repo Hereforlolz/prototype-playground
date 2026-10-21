@@ -9,6 +9,8 @@
   --muted: #5B6270;
   --accent: #0C7A7A;
   --accent-soft: #E3F4F3;
+  --danger: #DC2626;
+  --danger-soft: #FEE2E2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +23,8 @@
     --muted: #9BA3AD;
     --accent: #35C9BE;
     --accent-soft: #1B2E2C;
+    --danger: #F87171;
+    --danger-soft: #3A1515;
   }
 }
 
@@ -33,6 +37,8 @@
   --muted: #9BA3AD;
   --accent: #35C9BE;
   --accent-soft: #1B2E2C;
+  --danger: #F87171;
+  --danger-soft: #3A1515;
 }
 
 @theme inline {
@@ -44,6 +50,8 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
   --font-sans: var(--font-karla), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-face), ui-monospace, monospace;

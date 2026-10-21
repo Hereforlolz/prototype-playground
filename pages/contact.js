@@ -129,7 +129,7 @@ export default function Contact() {
               {status === 'sending' ? 'Sending…' : copy.button}
             </Button>
             {status === 'error' && (
-              <p role="alert" className="text-sm text-red-600">
+              <p role="alert" className="text-sm text-danger">
                 {error}
               </p>
             )}
