@@ -87,7 +87,7 @@ export default function Experiment({ slug, style, body, script }) {
 
   return (
     <>
-      <SeoHead title={`${title} — Sreenidhi Vedartham`} description={description} path={`/experiments/${slug}`} />
+      <SeoHead title={`${title} — Sreenidhi Vedartham Portfolio`} description={description} path={`/experiments/${slug}`} />
       <style dangerouslySetInnerHTML={{ __html: style }} />
       {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- deliberately a
           full page load, not client-side routing: see the file header. */}

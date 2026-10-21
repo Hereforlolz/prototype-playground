@@ -69,7 +69,7 @@ export default function Contact() {
   return (
     <Layout>
       <SeoHead
-        title="Contact — Sreenidhi Vedartham"
+        title="Contact — Sreenidhi Vedartham Portfolio"
         description="Request Sreenidhi's résumé or start a conversation about a role."
         path="/contact"
       />
