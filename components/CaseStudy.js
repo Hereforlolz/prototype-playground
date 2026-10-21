@@ -120,7 +120,7 @@ function ExplanationSelector({ mode, onSelect }) {
             type="button"
             aria-pressed={selected}
             onClick={() => onSelect(option.id)}
-            className={`px-3 py-1.5 rounded text-sm font-display font-semibold transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 ${
+            className={`px-3 py-1.5 rounded-md text-sm font-display font-semibold transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 ${
               selected ? 'bg-accent text-surface' : 'text-muted hover:text-text'
             }`}
           >
