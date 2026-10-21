@@ -79,8 +79,8 @@ const LOG_ENTRIES = [
 // of hues: red flags a problem, the site's accent marks a resolved one, and
 // everything else is a neutral process note rather than a severity signal.
 const LEVEL_COLOR = {
-  BUG: 'text-red-500',
-  FATAL: 'text-red-500',
+  BUG: 'text-danger',
+  FATAL: 'text-danger',
   PATCH: 'text-muted',
   PERF: 'text-muted',
   DEBUG: 'text-muted',
