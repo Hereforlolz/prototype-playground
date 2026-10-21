@@ -1,5 +1,6 @@
 // 📁 /pages/index.js
 import Link from 'next/link';
+import Button from '../components/Button';
 import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
@@ -58,27 +59,23 @@ export default function Home() {
         </section>
 
         <nav className="flex flex-wrap gap-3 mb-10">
-          <Link
-            href="/projects"
-            onClick={() => safeTrack('homepage_cta_click', { destination: 'projects' })}
-            className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-          >
+          <Button href="/projects" onClick={() => safeTrack('homepage_cta_click', { destination: 'projects' })}>
             View Projects
-          </Link>
-          <Link
+          </Button>
+          <Button
             href="/logs"
+            variant="secondary"
             onClick={() => safeTrack('homepage_cta_click', { destination: 'logs' })}
-            className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             Lessons Learned
-          </Link>
-          <Link
+          </Button>
+          <Button
             href="/about"
+            variant="secondary"
             onClick={() => safeTrack('homepage_cta_click', { destination: 'about' })}
-            className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             About
-          </Link>
+          </Button>
         </nav>
       </div>
     </Layout>

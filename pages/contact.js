@@ -1,6 +1,7 @@
 // 📁 /pages/contact.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Button from '../components/Button';
 import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
@@ -124,13 +125,9 @@ export default function Contact() {
               <label htmlFor="website">Website</label>
               <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
             </div>
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150 disabled:opacity-60"
-            >
+            <Button type="submit" disabled={status === 'sending'}>
               {status === 'sending' ? 'Sending…' : copy.button}
-            </button>
+            </Button>
             {status === 'error' && (
               <p role="alert" className="text-sm text-red-600">
                 {error}
