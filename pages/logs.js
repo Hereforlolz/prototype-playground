@@ -8,6 +8,18 @@ import ClosingCTA from '../components/ClosingCTA';
 // and, where noted, a public portfolio correction.
 const LESSONS = [
   {
+    id: 'evidence',
+    title: "I stopped letting a claim outrun its evidence",
+    changedMind:
+      "PilotCraft’s README once claimed it met the WCAG 2.2 AA accessibility standard, which I had never tested. The Therapist Dashboard was once described as “HIPAA-aligned” even though it had no login, no limits on who could access what, and was open to requests from anywhere.",
+    doDifferently:
+      "Retract, don't hedge. The accessibility line was removed outright, not softened. The case study now states the missing security controls plainly, and “one therapist tested it” stopped being called a “pilot.”",
+    receipts: [
+      { label: 'PilotCraft', href: '/projects/pilotcraft' },
+      { label: 'Therapist Dashboard', href: '/projects/therapist-dashboard' },
+    ],
+  },
+  {
     id: 'validated',
     title: "Working isn't the same as good",
     changedMind:
@@ -20,16 +32,22 @@ const LESSONS = [
     ],
   },
   {
-    id: 'evidence',
-    title: "I stopped letting a claim outrun its evidence",
+    id: 'ask-then-change',
+    title: 'Ask the people you’re building for, then change the plan',
     changedMind:
-      "PilotCraft’s README once claimed it met the WCAG 2.2 AA accessibility standard, which I had never tested. The Therapist Dashboard was once described as “HIPAA-aligned” even though it had no login, no limits on who could access what, and was open to requests from anywhere.",
+      'At Embark Women, my co-founder and I picked the events and topics ourselves at first. That worked until I realized we were guessing at what members wanted.',
     doDifferently:
-      "Retract, don't hedge. The accessibility line was removed outright, not softened. The case study now states the missing security controls plainly, and “one therapist tested it” stopped being called a “pilot.”",
-    receipts: [
-      { label: 'PilotCraft', href: '/projects/pilotcraft' },
-      { label: 'Therapist Dashboard', href: '/projects/therapist-dashboard' },
-    ],
+      'After every event we asked members for feedback and used it to plan what came next. I do the same with a new process now: start with something small, ask the people using it what got in the way, and change it.',
+    receipts: [{ label: 'Embark Women', href: '/about#embark-women' }],
+  },
+  {
+    id: 'obvious-question',
+    title: 'The obvious question is often the useful one',
+    changedMind:
+      'In my one-on-one Zero-Gravity sessions, engineers who had been stuck on a bug for days walked me through it out loud while I asked the obvious questions. Often that was enough for them to step back and see what they had been missing. I wasn’t the one who knew the answer.',
+    doDifferently:
+      'I ask the plain question first, like what do you expect to happen, and what actually happens? I also stopped treating a stuck engineer as someone who needs an expert. Sometimes they need someone to talk it through with. Sometimes a bug someone had been stuck on for days got worked through in about twenty minutes. That happened sometimes. It is not an average.',
+    receipts: [{ label: 'Zero-Gravity Thinker', href: '/about#zero-gravity' }],
   },
   {
     id: 'untrusted-data',
@@ -48,24 +66,6 @@ const LESSONS = [
     doDifferently:
       "Every finding goes into one of three labeled buckets: Confident, Uncertain, or Skipped (“can’t assess this automatically, and here’s why”). It is never a flat yes or no. Before trusting the backup mode, I checked its guesses independently against the real source of truth (GitLab’s code knowledge graph, queried from the command line outside the tool) rather than assuming its logic was good enough.",
     receipts: [{ label: 'Dead Code Finder', href: '/projects/dead-code-finder' }],
-  },
-  {
-    id: 'obvious-question',
-    title: 'The obvious question is often the useful one',
-    changedMind:
-      'In my one-on-one Zero-Gravity sessions, engineers who had been stuck on a bug for days walked me through it out loud while I asked the obvious questions. Often that was enough for them to step back and see what they had been missing. I wasn’t the one who knew the answer.',
-    doDifferently:
-      'I ask the plain question first, like what do you expect to happen, and what actually happens? I also stopped treating a stuck engineer as someone who needs an expert. Sometimes they need someone to talk it through with. Sometimes a bug someone had been stuck on for days got worked through in about twenty minutes. That happened sometimes. It is not an average.',
-    receipts: [{ label: 'Zero-Gravity Thinker', href: '/about#zero-gravity' }],
-  },
-  {
-    id: 'ask-then-change',
-    title: 'Ask the people you’re building for, then change the plan',
-    changedMind:
-      'At Embark Women, my co-founder and I picked the events and topics ourselves at first. That worked until I realized we were guessing at what members wanted.',
-    doDifferently:
-      'After every event we asked members for feedback and used it to plan what came next. I do the same with a new process now: start with something small, ask the people using it what got in the way, and change it.',
-    receipts: [{ label: 'Embark Women', href: '/about#embark-women' }],
   },
 ];
 
