@@ -70,7 +70,7 @@ export default function Projects({ repos, githubUnavailable }) {
               Read the prompt-adoption case study →
             </Link>
             {' · '}
-            <Link href="/about" className="text-accent hover:opacity-80 underline">
+            <Link href="/about#ivani-engineering" className="text-accent hover:opacity-80 underline">
               Engineering at Ivani →
             </Link>
           </p>

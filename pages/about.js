@@ -153,7 +153,7 @@ export default function About() {
       </section>
 
       {/* 3b. More from Ivani */}
-      <section className="mt-12 max-w-4xl">
+      <section id="ivani-engineering" className="mt-12 max-w-4xl scroll-mt-8">
         <h2 className="font-display text-xl font-bold text-text mb-1">Engineering at Ivani</h2>
         <p className="text-muted text-sm mb-2">
           Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, firmware, device
