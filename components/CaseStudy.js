@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from './Button';
 import Layout from './Layout';
 import SeoHead from './SeoHead';
 import TerminalFrame from './TerminalFrame';
@@ -164,50 +165,28 @@ export default function CaseStudy({ study }) {
         {hasAnyCaseStudyLink(study) && (
           <div className="flex flex-wrap gap-3 mb-8 text-sm">
             {liveUrl && (
-              <a
+              <Button
                 href={liveUrl}
-                target="_blank"
-                rel="noreferrer"
+                external
                 onClick={() => safeTrack(analyticsEvent, { source: 'case_study_live_demo' })}
-                className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
               >
                 Try the live demo
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>
+              </Button>
             )}
             {repoUrl && (
-              <a
-                href={repoUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => safeTrack(analyticsEvent, { source: 'case_study' })}
-                className="font-display font-semibold bg-accent text-surface px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-150"
-              >
+              <Button href={repoUrl} external onClick={() => safeTrack(analyticsEvent, { source: 'case_study' })}>
                 {repoLabel(repoUrl)}
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>
+              </Button>
             )}
             {devpostUrl && (
-              <a
-                href={devpostUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
-              >
+              <Button href={devpostUrl} external variant="secondary">
                 View on Devpost
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>
+              </Button>
             )}
             {linkedinUrl && (
-              <a
-                href={linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="font-display font-semibold border border-border text-text px-4 py-2 rounded-md hover:border-accent hover:text-accent transition-colors duration-150"
-              >
+              <Button href={linkedinUrl} external variant="secondary">
                 LinkedIn article
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>
+              </Button>
             )}
           </div>
         )}
