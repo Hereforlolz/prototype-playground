@@ -61,6 +61,15 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Bumps the rem base on small screens only, so text-sm/text-xs copy reads
+   at a normal size on mobile instead of looking undersized — desktop sizing
+   is untouched. */
+@media (max-width: 639px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text);

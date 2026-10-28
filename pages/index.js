@@ -1,11 +1,12 @@
 // 📁 /pages/index.js
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from '../components/Button';
 import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
 import { AVAILABILITY } from '../lib/status';
-import { HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE, START_HERE } from '../lib/homepage-content';
+import { GREETING, HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE, START_HERE } from '../lib/homepage-content';
 import { PERSON_JSON_LD } from '../lib/person';
 
 export default function Home() {
@@ -18,6 +19,19 @@ export default function Home() {
         jsonLd={PERSON_JSON_LD}
       />
       <div className="max-w-2xl">
+        <div className="flex items-center gap-4 mb-5">
+          <Image
+            src="/profile.jpg"
+            alt="Portrait of Sreenidhi Vedartham, smiling, in a black sleeveless top"
+            width={2448}
+            height={3264}
+            sizes="80px"
+            priority
+            className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full border border-border object-cover object-[50%_35%]"
+          />
+          <p className="font-display text-base sm:text-lg font-semibold text-text">{GREETING}</p>
+        </div>
+
         <h1 className="font-display [text-wrap:balance] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text mb-4">
           {HEADLINE}
         </h1>
