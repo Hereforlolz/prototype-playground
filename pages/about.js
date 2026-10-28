@@ -65,10 +65,10 @@ export default function About() {
 
           <div className="min-w-0">
             <p className="text-muted mb-3">
-              Hi, I&apos;m Sreenidhi. I&apos;m a software and electrical engineer, and I also build and lead
-              community programs. I like finding where things break, from smart devices to AI tools, and working
-              with people to figure out what actually fixes it. I build fast, write down what goes wrong along the
-              way instead of smoothing it over, and adjust from there.
+              Hi, I&apos;m Sreenidhi — a software and electrical engineer who also builds and leads community
+              programs. I like finding where things break, from smart devices to AI tools, and working with people
+              on what actually fixes it. I build fast, write down what goes wrong instead of smoothing it over, and
+              adjust from there.
             </p>
             <p className="text-text text-sm font-medium mb-3">{AVAILABILITY}</p>
             <p className="text-muted text-xs">
@@ -152,19 +152,65 @@ export default function About() {
         </TerminalFrame>
       </section>
 
+      {/* 3a-ii. AI adoption — grouped with Zero-Gravity as character/approach,
+          not the chronological résumé section below. */}
+      <section id="ai-adoption" className="mt-12 max-w-3xl scroll-mt-8">
+        <h2 className="font-display text-xl font-bold text-text mb-1">AI adoption &amp; prototyping</h2>
+        <p className="text-muted text-sm mb-2">
+          I test where AI tools are reliable, where they fail, and what evidence is still missing, then turn what I
+          learn into guidance people can use. At Ivani, that meant comparing original and structured prompts on real
+          engineering questions, then building reusable templates, a cheat sheet, and context guidance from what
+          worked — use spread from two engineers to roughly ten in about two weeks. Directional savings estimates
+          are in the case study below, labeled as informal observations, not controlled measurement.
+        </p>
+        <p className="text-sm mb-3">
+          <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
+            Read the prompt-adoption case study →
+          </Link>
+        </p>
+        <p className="text-muted text-sm">
+          Outside of work:{' '}
+          <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            a Slack helper for new hires
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>,{' '}
+          <a href="https://devpost.com/software/track-1-qwen-memoryagent" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            an AI memory that knows what to forget
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>, and{' '}
+          <a href="https://devpost.com/software/dead-code-finder" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            a tool that finds unused code
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>{' '}
+          — plus a habit of writing up what broke on{' '}
+          <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
+            dev.to
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>. More on{' '}
+          <Link href="/projects" className="text-accent hover:opacity-80 underline">Projects &amp; Experiments</Link>.
+        </p>
+      </section>
+
+      {/* Divider: everything above is character/approach; everything below
+          is the chronological résumé, in order. */}
+      <div className="mt-16 pt-8 border-t-2 border-border max-w-4xl">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted mb-1">Chronological</p>
+        <h2 className="font-display text-2xl font-bold text-text">Experience</h2>
+        <p className="text-muted text-sm mt-1 max-w-prose">Where I&apos;ve worked, roughly in order.</p>
+      </div>
+
       {/* 3b. More from Ivani */}
-      <section id="ivani-engineering" className="mt-12 max-w-4xl scroll-mt-8">
+      <section id="ivani-engineering" className="mt-10 max-w-4xl scroll-mt-8">
         <h2 className="font-display text-xl font-bold text-text mb-1">Engineering at Ivani</h2>
         <p className="text-muted text-sm mb-2">
-          Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026), working across hardware, firmware, device
-          software, and data for wireless IoT systems (OpenThread, with ESP32, Nordic, and SiLabs chips). I helped
-          design and maintain the system that carries data from the devices to the cloud, and I contributed to the
-          math and machine-learning code that makes sense of it.
+          Software/Electrical Engineer at Ivani (Jan 2018–Sept 2026): hardware, firmware, device software, and data
+          for wireless IoT systems (OpenThread, with ESP32, Nordic, and SiLabs chips). I helped design and maintain
+          the system that carries data from the devices to the cloud, and contributed to the detection algorithm.
         </p>
         <p className="text-muted text-sm mb-4">
           Detailed performance results for the detection work are confidential, so there are no accuracy or latency
-          numbers here. The 1,000+ node figure is the size of the deployment I helped flash and provision. It is not
-          a result, and I didn&apos;t own the whole deployment.
+          numbers here. The 1,000+ node figure is the size of the deployment I helped flash and provision — not a
+          result, and not a deployment I owned alone.
         </p>
         <div className="grid sm:grid-cols-2 gap-4 items-start">
           {IVANI_WORK.map(({ group, items }) => (
@@ -200,44 +246,6 @@ export default function About() {
           </TerminalFrame>
         </div>
         <p className="text-muted text-xs mt-4">{MARKETING_SCOPE_NOTE}</p>
-      </section>
-
-      {/* 3d. AI adoption */}
-      <section id="ai-adoption" className="mt-12 max-w-3xl scroll-mt-8">
-        <h2 className="font-display text-xl font-bold text-text mb-1">AI adoption &amp; prototyping</h2>
-        <p className="text-muted text-sm mb-2">
-          I test where AI tools are reliable, where they fail, and what evidence is still missing, then turn what I
-          learn into guidance people can use. I compared original and structured prompts on real engineering
-          questions, then built reusable templates, a cheat sheet, and context guidance from what worked. Their use
-          spread from two engineers to roughly ten in about two weeks. The directional savings estimates from that
-          comparison are in the case study below, labeled as informal observations, not controlled measurement.
-        </p>
-        <p className="text-sm mb-3">
-          <Link href="/projects/prompt-engineering-adoption" className="text-accent hover:opacity-80 underline">
-            Read the prompt-adoption case study →
-          </Link>
-        </p>
-        <p className="text-muted text-sm">
-          Outside of work:{' '}
-          <a href="https://devpost.com/software/teamtrail" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-            a Slack helper for new hires
-            <span className="sr-only"> (opens in new tab)</span>
-          </a>,{' '}
-          <a href="https://devpost.com/software/track-1-qwen-memoryagent" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-            an AI memory that knows what to forget
-            <span className="sr-only"> (opens in new tab)</span>
-          </a>, and{' '}
-          <a href="https://devpost.com/software/dead-code-finder" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-            a tool that finds unused code
-            <span className="sr-only"> (opens in new tab)</span>
-          </a>{' '}
-          — plus a habit of writing up what broke on{' '}
-          <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
-            dev.to
-            <span className="sr-only"> (opens in new tab)</span>
-          </a>. More on{' '}
-          <Link href="/projects" className="text-accent hover:opacity-80 underline">Projects &amp; Experiments</Link>.
-        </p>
       </section>
 
       {/* 4. Embark Women */}

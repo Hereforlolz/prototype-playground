@@ -35,7 +35,7 @@ export default function Projects({ repos, githubUnavailable }) {
 
       <nav aria-label="Jump to section" className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted mb-8">
         <a href="#impact" className="hover:text-accent transition-colors duration-150">Work at Ivani</a>
-        <a href="#highlights" className="hover:text-accent transition-colors duration-150">Highlights</a>
+        <a href="#flagship" className="hover:text-accent transition-colors duration-150">Flagship Builds</a>
         {caseStudies.length > 0 && (
           <a href="#case-studies" className="hover:text-accent transition-colors duration-150">Case Studies</a>
         )}
@@ -77,8 +77,8 @@ export default function Projects({ repos, githubUnavailable }) {
         </TerminalFrame>
       </section>
 
-      <section className="mb-12 max-w-3xl" id="highlights">
-        <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Recent Highlights</h2>
+      <section className="mb-12 max-w-3xl" id="flagship">
+        <h2 className="font-display text-xl font-bold text-text mb-1">⭐ Flagship Builds</h2>
         <p className="text-muted text-sm mb-4">The most differentiated, hackathon-judged builds.</p>
         <div className="space-y-4">
           {flagship.map(({ name, title, url, blurb, analyticsEvent, caseStudyHref }) => (
