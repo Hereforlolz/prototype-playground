@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 import SeoHead from '../components/SeoHead';
 import { safeTrack } from '../lib/analytics';
 import { AVAILABILITY } from '../lib/status';
-import { GREETING, HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE, START_HERE } from '../lib/homepage-content';
+import { GREETING, HEADLINE, SUBTEXT, PROOF_POINTS, METRIC_LINE, METRIC_DISCLOSURE } from '../lib/homepage-content';
 import { PERSON_JSON_LD } from '../lib/person';
 
 export default function Home() {
@@ -55,25 +55,15 @@ export default function Home() {
           </details>
         </div>
 
-        <section className="mb-10 max-w-prose" aria-labelledby="start-here">
-          <h2 id="start-here" className="font-display text-lg font-bold text-text mb-3">Start here</h2>
-          <ul className="space-y-3 text-sm">
-            {START_HERE.map(({ href, title, detail }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="font-display font-semibold text-accent hover:opacity-80 underline"
-                >
-                  {title}
-                </Link>
-                <p className="text-muted mt-1">{detail}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
         <nav className="flex flex-wrap gap-3 mb-10">
-          <Button href="/projects" onClick={() => safeTrack('homepage_cta_click', { destination: 'projects' })}>
+          <Button href="/highlights" onClick={() => safeTrack('homepage_cta_click', { destination: 'highlights' })}>
+            See Highlights
+          </Button>
+          <Button
+            href="/projects"
+            variant="secondary"
+            onClick={() => safeTrack('homepage_cta_click', { destination: 'projects' })}
+          >
             View Projects
           </Button>
           <Button
