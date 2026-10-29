@@ -5,7 +5,7 @@
 // description, so a link pasted into an email or LinkedIn DM gets a real
 // preview instead of a bare URL. og:image/twitter:image use the
 // shared profile crop from lib/seo.js. Pass jsonLd (a plain object) to also emit a
-// <script type="application/ld+json"> block — used on the homepage for
+// <script type="application/ld+json"> block, used on the homepage for
 // Person structured data.
 import Head from 'next/head';
 import { SITE_URL, OG_IMAGE } from '../lib/seo';

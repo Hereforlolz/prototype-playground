@@ -59,7 +59,7 @@ export default async function handler(req, res) {
         from: RESEND_FROM || 'Portfolio <onboarding@resend.dev>',
         to: [NOTIFY_EMAIL],
         reply_to: email,
-        subject: `${SUBJECTS[type]} — ${email}`,
+        subject: `${SUBJECTS[type]}: ${email}`,
         text: lines,
         html: `<pre style="font-family:inherit;white-space:pre-wrap">${escapeHtml(lines)}</pre>`,
       }),

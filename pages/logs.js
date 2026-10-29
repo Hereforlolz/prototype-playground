@@ -23,7 +23,7 @@ const LESSONS = [
     id: 'validated',
     title: "Working isn't the same as good",
     changedMind:
-      "My CompassionateConnect project’s own retrospective says it plainly: “No eval harness — I tracked whether the system ran, not whether the outputs were actually good.” For a mental-health-adjacent tool, “it runs” and “it spots a crisis well” are very different claims, and I had only checked the first.",
+      "My CompassionateConnect project’s own retrospective says it plainly: “No eval harness: I tracked whether the system ran, not whether the outputs were actually good.” For a mental-health-adjacent tool, “it runs” and “it spots a crisis well” are very different claims, and I had only checked the first.",
     doDifferently:
       'PilotCraft has a real evaluation: 9 made-up workplace scenarios, each scored by checks written for that scenario, run against the live Gemini model rather than canned answers. Separately, two bugs only showed up in the production version of the app, which neither my everyday testing nor my unit tests exercised. I caught them only after adding an automated test that starts the real, built app.',
     receipts: [
@@ -69,24 +69,6 @@ const LESSONS = [
   },
 ];
 
-// Newest first, matching the "recent entries" framing above the list.
-const LOG_ENTRIES = [
-  { date: '2025-06-26', level: 'PERF', msg: 'Logging slowed down under heavy load; sped it up by saving records in batches.' },
-  { date: '2025-06-23', level: 'BUG', msg: 'CompassionateConnect — hit an error in Google’s agent toolkit when a tool mixed required and optional inputs. Filed with a reproducible setup and diagnostic details as adk-docs#826.' },
-];
-
-// Colors are drawn from the site's own palette instead of an arbitrary set
-// of hues: red flags a problem, the site's accent marks a resolved one, and
-// everything else is a neutral process note rather than a severity signal.
-const LEVEL_COLOR = {
-  BUG: 'text-danger',
-  FATAL: 'text-danger',
-  PATCH: 'text-muted',
-  PERF: 'text-muted',
-  DEBUG: 'text-muted',
-  FIXED: 'text-accent',
-};
-
 function Receipt({ label, href, external }) {
   if (external) {
     return (
@@ -107,7 +89,7 @@ export default function Logs() {
   return (
     <Layout>
       <SeoHead
-        title="Lessons Learned — Sreenidhi Vedartham Portfolio"
+        title="Lessons Learned: Sreenidhi Vedartham Portfolio"
         description="Six lessons from building and testing AI tools, smart-device systems, and community programs that changed how I work, with links to what is behind each one."
         path="/logs"
       />
@@ -146,23 +128,6 @@ export default function Logs() {
             </TerminalFrame>
           ))}
         </div>
-
-        <section className="mt-12">
-          <h2 className="font-display text-lg font-bold text-text mb-3">Recent entries</h2>
-          <TerminalFrame label="Recent entries" variant="quiet">
-            <div className="space-y-3 text-sm">
-              {LOG_ENTRIES.map((entry, i) => (
-                <p key={i} className="text-muted hover:translate-x-1 transition-transform duration-150">
-                  <span className="text-muted">[{entry.date}]</span>{' '}
-                  <span className={`font-semibold ${LEVEL_COLOR[entry.level] || 'text-muted'}`}>
-                    [{entry.level}]
-                  </span>{' '}
-                  {entry.msg}
-                </p>
-              ))}
-            </div>
-          </TerminalFrame>
-        </section>
       </div>
 
       <div className="mt-12 max-w-3xl">

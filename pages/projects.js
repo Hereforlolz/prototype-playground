@@ -22,7 +22,7 @@ export default function Projects({ repos, githubUnavailable }) {
   return (
     <Layout>
       <SeoHead
-        title="Projects — Sreenidhi Vedartham Portfolio"
+        title="Projects: Sreenidhi Vedartham Portfolio"
         description="Repos, hackathon builds, and a running log of open issues filed against my own and other people's tools."
         path="/projects"
       />
@@ -51,7 +51,7 @@ export default function Projects({ repos, githubUnavailable }) {
 
       {githubUnavailable && (
         <p className="text-muted text-sm mb-8 border border-border rounded-md px-3 py-2 bg-surface-alt w-fit">
-          Live GitHub data temporarily unavailable — showing project info without it.
+          Live GitHub data temporarily unavailable, showing project info without it.
         </p>
       )}
 
@@ -158,14 +158,14 @@ export default function Projects({ repos, githubUnavailable }) {
         <section className="mb-12 max-w-3xl" id="in-progress">
           <h2 className="font-display text-xl font-bold text-text mb-1">🔒 In Progress</h2>
           <p className="text-muted text-sm mb-4">
-            Private prototypes with public write-ups — no repository link since there&apos;s nothing public to open yet.
+            Private prototypes with public write-ups, no repository link since there&apos;s nothing public to open yet.
           </p>
           <div className="space-y-4">
             {inProgress.map(({ name, title, blurb }) => (
               <TerminalFrame key={name} label={name}>
                 <p className="font-display font-semibold text-text">{title}</p>
                 <p className="text-muted text-sm mt-2">{blurb}</p>
-                <p className="text-muted text-xs mt-2 italic">Private prototype — case study coming soon</p>
+                <p className="text-muted text-xs mt-2 italic">Private prototype, case study coming soon</p>
               </TerminalFrame>
             ))}
           </div>
@@ -238,7 +238,7 @@ export default function Projects({ repos, githubUnavailable }) {
 
 // Switched from getServerSideProps to getStaticProps + ISR.
 // The old version fired an N+1 sequence of GitHub API calls (one per repo
-// with issues enabled) on every single page visit — slow first load, and
+// with issues enabled) on every single page visit: slow first load, and
 // burns through GitHub's rate limit per-visitor instead of per-hour.
 // With revalidate: 3600, Next.js serves the pre-built page instantly and
 // regenerates it in the background at most once an hour, so a stale repo

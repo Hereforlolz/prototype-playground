@@ -39,8 +39,8 @@ export default function About() {
   return (
     <Layout>
       <SeoHead
-        title="About — Sreenidhi Vedartham Portfolio"
-        description="Sreenidhi — software/electrical engineer with 8+ years building smart-device systems, leading community programs, helping engineering teams, and testing AI tools in practice."
+        title="About: Sreenidhi Vedartham Portfolio"
+        description="Sreenidhi: software/electrical engineer with 8+ years building smart-device systems, leading community programs, helping engineering teams, and testing AI tools in practice."
         path="/about"
       />
 
@@ -65,14 +65,14 @@ export default function About() {
 
           <div className="min-w-0">
             <p className="text-muted mb-3">
-              Hi, I&apos;m Sreenidhi — a software and electrical engineer who also builds and leads community
+              Hi, I&apos;m Sreenidhi, a software and electrical engineer who also builds and leads community
               programs. I like finding where things break, from smart devices to AI tools, and working with people
               on what actually fixes it. I build fast, write down what goes wrong instead of smoothing it over, and
               adjust from there.
             </p>
             <p className="text-text text-sm font-medium mb-3">{AVAILABILITY}</p>
             <p className="text-muted text-xs">
-              {LOCATION} — {RELOCATION.toLowerCase()}. {WORK_AUTHORIZATION}.
+              {LOCATION}, {RELOCATION.toLowerCase()}. {WORK_AUTHORIZATION}.
             </p>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function About() {
         </TerminalFrame>
       </section>
 
-      {/* 3a-ii. AI adoption — grouped with Zero-Gravity as character/approach,
+      {/* 3a-ii. AI adoption, grouped with Zero-Gravity as character/approach,
           not the chronological résumé section below. */}
       <section id="ai-adoption" className="mt-12 max-w-3xl scroll-mt-8">
         <h2 className="font-display text-xl font-bold text-text mb-1">AI adoption &amp; prototyping</h2>
@@ -160,7 +160,7 @@ export default function About() {
           I test where AI tools are reliable, where they fail, and what evidence is still missing, then turn what I
           learn into guidance people can use. At Ivani, that meant comparing original and structured prompts on real
           engineering questions, then building reusable templates, a cheat sheet, and context guidance from what
-          worked — use spread from two engineers to roughly ten in about two weeks. Directional savings estimates
+          worked; use spread from two engineers to roughly ten in about two weeks. Directional savings estimates
           are in the case study below, labeled as informal observations, not controlled measurement.
         </p>
         <p className="text-sm mb-3">
@@ -182,7 +182,7 @@ export default function About() {
             a tool that finds unused code
             <span className="sr-only"> (opens in new tab)</span>
           </a>{' '}
-          — plus a habit of writing up what broke on{' '}
+          , plus a habit of writing up what broke on{' '}
           <a href="https://dev.to/hereforlolz" target="_blank" rel="noreferrer" className="text-accent hover:opacity-80 underline">
             dev.to
             <span className="sr-only"> (opens in new tab)</span>
@@ -209,7 +209,7 @@ export default function About() {
         </p>
         <p className="text-muted text-sm mb-4">
           Detailed performance results for the detection work are confidential, so there are no accuracy or latency
-          numbers here. The 1,000+ node figure is the size of the deployment I helped flash and provision — not a
+          numbers here. The 1,000+ node figure is the size of the deployment I helped flash and provision, not a
           result, and not a deployment I owned alone.
         </p>
         <div className="grid sm:grid-cols-2 gap-4 items-start">

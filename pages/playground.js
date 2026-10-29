@@ -27,7 +27,7 @@ export default function Playground() {
   return (
     <Layout>
       <SeoHead
-        title="Playground — Sreenidhi Vedartham Portfolio"
+        title="Playground: Sreenidhi Vedartham Portfolio"
         description="Small, playful AI tools I built to experiment with. Some work with no setup, and some need your own API key."
         path="/playground"
       />

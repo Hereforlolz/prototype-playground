@@ -16,7 +16,7 @@ const NAV_LINKS = [
 ];
 
 // Terse sidebar labels, sourced from the shared CTA data so hrefs/events
-// stay in sync with the closing CTA — only the visible label differs here.
+// stay in sync with the closing CTA; only the visible label differs here.
 const CONTACT_LINKS = [
   { href: CTA_ACTIONS.contact.href, label: 'Contact', event: CTA_ACTIONS.contact.event },
   { href: CTA_ACTIONS.linkedin.href, label: 'LinkedIn', event: CTA_ACTIONS.linkedin.event },
@@ -31,7 +31,7 @@ function SidebarContent({ pathname }) {
         </p>
       </Link>
       <p className="text-sm text-muted mt-1">
-        Software/electrical engineer — IoT, AI enablement, and leading people programs
+        Software/electrical engineer: IoT, AI enablement, and leading people programs
       </p>
       <p className="text-xs text-muted mt-2">
         {LOCATION} · {RELOCATION}
