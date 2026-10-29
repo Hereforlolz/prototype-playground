@@ -1,8 +1,8 @@
 // components/TerminalFrame.js
 //
 // Three variants give the same card component a visual hierarchy instead of
-// rendering every section — flagship highlights, a reference repo list, a
-// bugs log — with identical weight:
+// rendering every section (flagship highlights, a reference repo list, a
+// bugs log) with identical weight:
 // - featured: flagship highlights. Accent-tinted border and a shadow that's
 //   visible at rest, not just on hover, so it reads as elevated immediately.
 // - default: ordinary content (case studies, stack info, log entries).

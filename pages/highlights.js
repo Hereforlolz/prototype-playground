@@ -10,15 +10,15 @@ export default function Highlights() {
   return (
     <Layout>
       <SeoHead
-        title="Highlights — Sreenidhi Vedartham Portfolio"
-        description="A curated starting point across projects, leadership, and side experiments — the clearest examples of the work, picked out from the fuller Projects and About pages."
+        title="Highlights: Sreenidhi Vedartham Portfolio"
+        description="A curated starting point across projects, leadership, and side experiments: the clearest examples of the work, picked out from the fuller Projects and About pages."
         path="/highlights"
       />
       <h1 className="font-display [text-wrap:balance] text-2xl sm:text-3xl font-bold text-text mb-4">
         Highlights
       </h1>
       <p className="text-muted text-sm mb-8 max-w-prose">
-        A short, curated path through the work — engineering, leadership, and a few side experiments — picked out
+        A short, curated path through the work (engineering, leadership, and a few side experiments) picked out
         as the clearest examples. For the full list of projects, see{' '}
         <Link href="/projects" className="text-accent hover:opacity-80 underline">Projects</Link>; for the full
         story behind the leadership and marketing work, see{' '}

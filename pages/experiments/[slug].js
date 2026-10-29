@@ -8,14 +8,14 @@
 // risking bugs from a line-by-line port to JSX.
 //
 // The original tools wire themselves up on 'DOMContentLoaded', which
-// has already fired long before this effect runs — so it's re-dispatched
+// has already fired long before this effect runs, so it's re-dispatched
 // here for the listener the injected script just registered. The script
 // is only ever injected once per real page load (guarded by injectedRef)
 // so React 18 StrictMode's dev-only double-effect doesn't try to
 // re-declare the same top-level consts/lets and throw. Every link in and
 // out of these pages is a plain <a>, not next/link, so a visitor moving
-// between tools always gets a full page load — a fresh JS realm each
-// time — rather than stale globals from a previous tool leaking into
+// between tools always gets a full page load (a fresh JS realm each
+// time) rather than stale globals from a previous tool leaking into
 // the next one via client-side routing.
 import { useEffect, useRef } from 'react';
 import fs from 'fs';
@@ -87,7 +87,7 @@ export default function Experiment({ slug, style, body, script }) {
 
   return (
     <>
-      <SeoHead title={`${title} — Sreenidhi Vedartham Portfolio`} description={description} path={`/experiments/${slug}`} />
+      <SeoHead title={`${title}: Sreenidhi Vedartham Portfolio`} description={description} path={`/experiments/${slug}`} />
       <style dangerouslySetInnerHTML={{ __html: style }} />
       {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- deliberately a
           full page load, not client-side routing: see the file header. */}

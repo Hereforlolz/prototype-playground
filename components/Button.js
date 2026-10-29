@@ -1,6 +1,6 @@
 // components/Button.js
 //
-// Shared primary/secondary CTA styling — previously copy-pasted as long
+// Shared primary/secondary CTA styling, previously copy-pasted as long
 // classname strings across index.js, ClosingCTA.js, CaseStudy.js, and
 // contact.js. Renders a next/link for internal navigation, a plain <a>
 // (with target="_blank" + the sr-only "(opens in new tab)" suffix) for

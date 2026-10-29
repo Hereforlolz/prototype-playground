@@ -24,7 +24,7 @@ function Section({ title, items }) {
   );
 }
 
-// A small number of real product screenshots — not a gallery. Only renders
+// A small number of real product screenshots, not a gallery. Only renders
 // when a case study opts in via an optional `media` field (undefined for
 // every case study but PilotCraft), so this never changes anything about
 // the other six.
@@ -42,7 +42,7 @@ function CaseStudyMedia({ src, width, height, alt, label, caption }) {
   );
 }
 
-// The existing recruiter/product-level case study — unchanged from before
+// The existing recruiter/product-level case study, unchanged from before
 // the mode selector existed. Extracted so it can render either on its own
 // (every case study without a simple explanation) or below the selector
 // (PilotCraft), without duplicating this markup between the two. `media`
@@ -84,7 +84,7 @@ function Overview({ stack, problem, approach, whatBroke, outcome, scope, media }
 }
 
 // Plain-language translation of the same project, not a shortened Overview.
-// Deliberately excludes architecture/implementation detail — that stays in
+// Deliberately excludes architecture/implementation detail; that stays in
 // the linked repo, not duplicated here.
 function SimpleExplanation({ sections }) {
   return (
@@ -101,7 +101,7 @@ function SimpleExplanation({ sections }) {
 
 // Two mutually exclusive views of the same case study, kept as two plain,
 // individually Tab-focusable buttons with aria-pressed marking which one
-// is active — not the full ARIA tabs pattern (tablist/tab/tabpanel, roving
+// is active, not the full ARIA tabs pattern (tablist/tab/tabpanel, roving
 // tabindex, arrow-key navigation), which is more machinery than two views
 // need.
 function ExplanationSelector({ mode, onSelect }) {
@@ -148,8 +148,8 @@ export default function CaseStudy({ study }) {
   return (
     <Layout>
       <SeoHead
-        title={`${title} case study — Sreenidhi Vedartham Portfolio`}
-        description={`${subtitle} — problem, approach, what broke, and honest scope.`}
+        title={`${title} case study: Sreenidhi Vedartham Portfolio`}
+        description={`${subtitle}: problem, approach, what broke, and honest scope.`}
         path={`/projects/${slug}`}
       />
       <div className="max-w-3xl">

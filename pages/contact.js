@@ -69,7 +69,7 @@ export default function Contact() {
   return (
     <Layout>
       <SeoHead
-        title="Contact — Sreenidhi Vedartham Portfolio"
+        title="Contact: Sreenidhi Vedartham Portfolio"
         description="Request Sreenidhi's résumé or start a conversation about a role."
         path="/contact"
       />
@@ -98,7 +98,7 @@ export default function Contact() {
 
         {status === 'sent' ? (
           <p role="status" className="text-text font-medium">
-            Thanks — your request is in. I’ll be in touch soon.
+            Thanks, your request is in. I’ll be in touch soon.
           </p>
         ) : (
           <form onSubmit={onSubmit} className="space-y-4">
